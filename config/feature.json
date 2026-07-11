@@ -110,7 +110,7 @@
                                        },
     "WPFFeatureDisableLegacyRecovery":  {
                                             "Content":  "旧版F8启动恢复 - 禁用",
-                                            "Description":  "Disables Advanced Boot Options screen that lets you start Windows in advanced troubleshooting modes.",
+                                            "Description":  "禁用高级启动选项屏幕，该屏幕允许您以高级故障排除模式启动Windows。",
                                             "category":  "功能",
                                             "panel":  "1",
                                             "feature":  [

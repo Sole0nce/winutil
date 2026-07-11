@@ -72,7 +72,7 @@
     "WPFAppxMicrosoft_WindowsCrossDevice":  {
                                                 "Category":  "微软生态",
                                                 "Content":  "移动设备",
-                                                "Description":  "Manages system-level background connectivity with paired mobile devices. Removing this may disable cross-device features such as phone screen mirroring, file transfer, and mobile hotspot handoff integrated into Windows Settings.",
+                                                "Description":  "管理已配对移动设备的系统级后台连接。移除此项可能禁用跨设备功能，如手机屏幕镜像、文件传输和集成在Windows设置中的移动热点切换。",
                                                 "Panel":  "0",
                                                 "PackageId":  "MicrosoftWindows.CrossDevice"
                                             },
@@ -198,7 +198,7 @@
     "WPFAppxMicrosoft_XboxIdentityProvider":  {
                                                   "Category":  "Xbox与游戏",
                                                   "Content":  "Xbox身份提供程序",
-                                                  "Description":  "Manages Xbox network user authentication and background account validation for connected titles. Warning: removing this may break Microsoft account sign-in for non-Xbox games and apps that rely on this authentication pipeline.",
+                                                  "Description":  "管理Xbox网络用户认证和已连接游戏的背景账户验证。警告：移除此项可能导致依赖此认证流程的非Xbox游戏和应用无法使用Microsoft账户登录。",
                                                   "Panel":  "1",
                                                   "PackageId":  "Microsoft.XboxIdentityProvider"
                                               },
@@ -212,7 +212,7 @@
     "WPFAppxMicrosoft_Xbox_TCUI":  {
                                        "Category":  "Xbox与游戏",
                                        "Content":  "Xbox TCUI",
-                                       "Description":  "Provides core account connection UI modules for single sign-on flows within game titles. Warning: removing this may break Microsoft account authentication in games and apps that do not otherwise require the Xbox app.",
+                                       "Description":  "为游戏内的单点登录流程提供核心账户连接UI模块。警告：移除此项可能导致无需Xbox应用的游戏和应用中的Microsoft账户认证失败。",
                                        "Panel":  "1",
                                        "PackageId":  "Microsoft.Xbox.TCUI"
                                    },
