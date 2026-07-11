@@ -1,4 +1,4 @@
-Write-Host @"
+﻿Write-Host @"
     CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
  CCC::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
 CC:::::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
@@ -16,8 +16,8 @@ CC:::::::::::::::C       T:::::::::T            T:::::::::T
 CCC::::::::::::C         T:::::::::T            T:::::::::T
   CCCCCCCCCCCCC          TTTTTTTTTTT            TTTTTTTTTTT
 
-====Chris Titus Tech=====
-=====Windows Toolbox=====
+====Chris Titus Tech====
+====Windows工具箱====
 "@
 
 # Load the configuration files
@@ -302,7 +302,7 @@ $sync["Form"].Add_ContentRendered({
         # Disable the install tab
         $sync.WPFTab1BT.IsEnabled = $false
         $sync.WPFTab1BT.Opacity = 0.5
-        $sync.WPFTab1BT.ToolTip = "Internet connection required for installing applications."
+        $sync.WPFTab1BT.ToolTip = "安装应用程序需要网络连接。"
 
         # Disable install-related buttons
         $sync.WPFInstall.IsEnabled = $false
@@ -311,7 +311,7 @@ $sync["Form"].Add_ContentRendered({
         $sync.WPFGetInstalled.IsEnabled = $false
 
         # Show offline indicator
-        Write-Host "Offline mode detected - Install tab disabled." -ForegroundColor Yellow
+        Write-Host "检测到离线模式 - 安装选项卡已禁用。" -ForegroundColor Yellow
 
         # Optionally switch to a different tab if install tab was going to be default
         Invoke-WPFTab "WPFTab2BT"  # Switch to Tweaks tab instead
@@ -507,3 +507,4 @@ $sync["WPFWin11ISOCleanResetButton"].Add_Click({
 
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript
+

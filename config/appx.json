@@ -1,233 +1,233 @@
-{
-  "WPFAppxMicrosoft_WindowsFeedbackHub": {
-    "Category": "Microsoft Apps",
-    "Content": "Feedback Hub",
-    "Description": "Allows users to submit bug reports, feature suggestions, and diagnostic data directly to Microsoft.",
-    "Panel": "0",
-    "PackageId": "Microsoft.WindowsFeedbackHub"
-  },
-  "WPFAppxMicrosoft_GetHelp": {
-    "Category": "Microsoft Apps",
-    "Content": "Get Help",
-    "Description": "Provides access to automated troubleshooting guides, support documentation, and direct Microsoft customer assistance.",
-    "Panel": "0",
-    "PackageId": "Microsoft.GetHelp"
-  },
-  "WPFAppxMicrosoft_OutlookForWindows": {
-    "Category": "Microsoft Apps",
-    "Content": "Outlook for Windows",
-    "Description": "Provides modern email management, calendar scheduling, and contact organization features.",
-    "Panel": "0",
-    "PackageId": "Microsoft.OutlookForWindows"
-  },
-  "WPFAppxMSTeams": {
-    "Category": "Microsoft Apps",
-    "Content": "Microsoft Teams",
-    "Description": "Facilitates instant messaging, video conferencing, file sharing, and workspace collaboration.",
-    "Panel": "0",
-    "PackageId": "MSTeams"
-  },
-  "WPFAppxClipchamp_Clipchamp": {
-    "Category": "Utilities & Productivity",
-    "Content": "Clipchamp",
-    "Description": "Provides a user-friendly video editor with built-in templates, effects, and timeline editing tools.",
-    "Panel": "0",
-    "PackageId": "Clipchamp.Clipchamp"
-  },
-  "WPFAppxMicrosoft_MicrosoftOfficeHub": {
-    "Category": "Microsoft Apps",
-    "Content": "Microsoft 365",
-    "Description": "Serves as a centralized launcher and dashboard for accessing cloud-based Microsoft 365 apps and recent documents.",
-    "Panel": "0",
-    "PackageId": "Microsoft.MicrosoftOfficeHub"
-  },
-  "WPFAppxMicrosoft_ZuneMusic": {
-    "Category": "Utilities & Productivity",
-    "Content": "Media Player",
-    "Description": "Plays local audio and video files with modern playlist management and casting capabilities.",
-    "Panel": "0",
-    "PackageId": "Microsoft.ZuneMusic"
-  },
-  "WPFAppxMicrosoft_BingSearch": {
-    "Category": "Bing & Web Services",
-    "Content": "Bing Search",
-    "Description": "Integrates Microsoft Bing search capabilities and web services directly into the operating system.",
-    "Panel": "1",
-    "PackageId": "Microsoft.BingSearch"
-  },
-  "WPFAppxMicrosoftCorporationII_QuickAssist": {
-    "Category": "Utilities & Productivity",
-    "Content": "Quick Assist",
-    "Description": "Enables secure remote technical support and screen sharing over an internet connection.",
-    "Panel": "0",
-    "PackageId": "MicrosoftCorporationII.QuickAssist"
-  },
-  "WPFAppxMicrosoft_WindowsDevHome": {
-    "Category": "Developer Tools",
-    "Content": "Dev Home",
-    "Description": "Provides a specialized dashboard for software developer environment setups, repository syncing, and hardware widgets.",
-    "Panel": "1",
-    "PackageId": "Microsoft.Windows.DevHome"
-  },
-  "WPFAppxMicrosoft_WindowsCrossDevice": {
-    "Category": "Microsoft Ecosystem",
-    "Content": "Mobile Devices",
-    "Description": "Manages system-level background connectivity with paired mobile devices. Removing this may disable cross-device features such as phone screen mirroring, file transfer, and mobile hotspot handoff integrated into Windows Settings.",
-    "Panel": "0",
-    "PackageId": "MicrosoftWindows.CrossDevice"
-  },
-  "WPFAppxMicrosoft_Todos": {
-    "Category": "Utilities & Productivity",
-    "Content": "To Do",
-    "Description": "Creates, tracks, and synchronizes personal tasks, smart lists, and daily reminders.",
-    "Panel": "0",
-    "PackageId": "Microsoft.Todos"
-  },
-  "WPFAppxMicrosoft_PowerAutomateDesktop": {
-    "Category": "Developer Tools",
-    "Content": "Power Automate",
-    "Description": "Automates repetitive workflows and desktop tasks using low-code visual scripting.",
-    "Panel": "1",
-    "PackageId": "Microsoft.PowerAutomateDesktop"
-  },
-  "WPFAppxMicrosoft_YourPhone": {
-    "Category": "Microsoft Ecosystem",
-    "Content": "Phone Link",
-    "Description": "Synchronizes text messages, phone notifications, photos, and calls from a mobile device to the desktop.",
-    "Panel": "0",
-    "PackageId": "Microsoft.YourPhone"
-  },
-  "WPFAppxMicrosoft_MicrosoftStickyNotes": {
-    "Category": "Utilities & Productivity",
-    "Content": "Sticky Notes",
-    "Description": "Creates quick, floating text notes on the desktop that automatically sync across devices.",
-    "Panel": "0",
-    "PackageId": "Microsoft.MicrosoftStickyNotes"
-  },
-  "WPFAppxMicrosoft_WindowsSoundRecorder": {
-    "Category": "Utilities & Productivity",
-    "Content": "Sound Recorder",
-    "Description": "Records and trims live audio inputs with simple microphone adjustment controls.",
-    "Panel": "0",
-    "PackageId": "Microsoft.WindowsSoundRecorder"
-  },
-  "WPFAppxMicrosoft_WindowsAlarms": {
-    "Category": "Utilities & Productivity",
-    "Content": "Clock",
-    "Description": "Features world clocks, alarms, countdown timers, stopwatches, and dedicated focus session tracking.",
-    "Panel": "0",
-    "PackageId": "Microsoft.WindowsAlarms"
-  },
-  "WPFAppxMicrosoft_Paint": {
-    "Category": "Utilities & Productivity",
-    "Content": "Paint",
-    "Description": "Provides built-in digital sketching, basic image editing, and pixel-level graphic manipulation tools.",
-    "Panel": "0",
-    "PackageId": "Microsoft.Paint"
-  },
-  "WPFAppxMicrosoft_WindowsNotepad": {
-    "Category": "Utilities & Productivity",
-    "Content": "Notepad",
-    "Description": "Provides a lightweight text editor with multi-tab support for plain text files and code snippets.",
-    "Panel": "0",
-    "PackageId": "Microsoft.WindowsNotepad"
-  },
-  "WPFAppxMicrosoft_ScreenSketch": {
-    "Category": "Utilities & Productivity",
-    "Content": "Snipping Tool",
-    "Description": "Captures screenshots or screen recordings with built-in markup, image cropping, and optical character recognition (OCR).",
-    "Panel": "0",
-    "PackageId": "Microsoft.ScreenSketch"
-  },
-  "WPFAppxMicrosoft_Copilot": {
-    "Category": "Bing & Web Services",
-    "Content": "Copilot",
-    "Description": "Launches the Microsoft AI companion for contextual answers, creative writing assistance, and intelligent web search.",
-    "Panel": "1",
-    "PackageId": "Microsoft.Copilot"
-  },
-  "WPFAppxMicrosoft_WindowsCalculator": {
-    "Category": "Utilities & Productivity",
-    "Content": "Calculator",
-    "Description": "Performs standard arithmetic, scientific operations, programming calculations, and unit conversions.",
-    "Panel": "0",
-    "PackageId": "Microsoft.WindowsCalculator"
-  },
-  "WPFAppxMicrosoft_WindowsCamera": {
-    "Category": "Utilities & Productivity",
-    "Content": "Camera",
-    "Description": "Captures photographs and records video files via connected webcams or imaging hardware.",
-    "Panel": "0",
-    "PackageId": "Microsoft.WindowsCamera"
-  },
-  "WPFAppxMicrosoft_WindowsPhotos": {
-    "Category": "Utilities & Productivity",
-    "Content": "Photos",
-    "Description": "Organizes, views, and crops local images with basic color adjustment and album creation tools.",
-    "Panel": "0",
-    "PackageId": "Microsoft.Windows.Photos"
-  },
-  "WPFAppxMicrosoft_BingNews": {
-    "Category": "Bing & Web Services",
-    "Content": "News",
-    "Description": "Aggregates breaking news headlines, personalized article feeds, and world current events.",
-    "Panel": "1",
-    "PackageId": "Microsoft.BingNews"
-  },
-  "WPFAppxMicrosoft_BingWeather": {
-    "Category": "Bing & Web Services",
-    "Content": "Weather",
-    "Description": "Displays local real-time weather tracking, radar maps, and historical meteorological forecasts.",
-    "Panel": "1",
-    "PackageId": "Microsoft.BingWeather"
-  },
-  "WPFAppxMicrosoft_GamingApp": {
-    "Category": "Xbox & Gaming",
-    "Content": "Xbox App",
-    "Description": "Serves as the primary gaming library manager, social community interface, and PC Game Pass dashboard.",
-    "Panel": "1",
-    "PackageId": "Microsoft.GamingApp"
-  },
-  "WPFAppxMicrosoft_XboxGamingOverlay": {
-    "Category": "Xbox & Gaming",
-    "Content": "Xbox Game Bar",
-    "Description": "Provides customizable in-game status widgets, audio balancing sliders, system monitoring tools, and gameplay recording.",
-    "Panel": "1",
-    "PackageId": "Microsoft.XboxGamingOverlay"
-  },
-  "WPFAppxMicrosoft_XboxIdentityProvider": {
-    "Category": "Xbox & Gaming",
-    "Content": "Xbox Identity Provider",
-    "Description": "Manages Xbox network user authentication and background account validation for connected titles. Warning: removing this may break Microsoft account sign-in for non-Xbox games and apps that rely on this authentication pipeline.",
-    "Panel": "1",
-    "PackageId": "Microsoft.XboxIdentityProvider"
-  },
-  "WPFAppxMicrosoft_XboxSpeechToTextOverlay": {
-    "Category": "Xbox & Gaming",
-    "Content": "Xbox Speech To Text Overlay",
-    "Description": "Provides system-level live accessibility captions and voice-to-text translation for gaming chat networks.",
-    "Panel": "1",
-    "PackageId": "Microsoft.XboxSpeechToTextOverlay"
-  },
-  "WPFAppxMicrosoft_Xbox_TCUI": {
-    "Category": "Xbox & Gaming",
-    "Content": "Xbox TCUI",
-    "Description": "Provides core account connection UI modules for single sign-on flows within game titles. Warning: removing this may break Microsoft account authentication in games and apps that do not otherwise require the Xbox app.",
-    "Panel": "1",
-    "PackageId": "Microsoft.Xbox.TCUI"
-  },
-  "WPFAppxMicrosoft_StartExperiencesApp": {
-    "Category": "Bing & Web Services",
-    "Content": "Start Experiences App",
-    "Description": "Powers the Windows Widgets board, delivering a personalized feed of news, weather, sports, and finance content.",
-    "Panel": "1",
-    "PackageId": "Microsoft.StartExperiencesApp"
-  },
-  "WPFAppxMicrosoft_MicrosoftSolitaireCollection": {
-    "Category": "Xbox & Gaming",
-    "Content": "Solitaire Collection",
-    "Description": "Bundles built-in card game modes including Klondike, Spider, FreeCell, Pyramid, and TriPeaks alongside daily challenges.",
-    "Panel": "1",
-    "PackageId": "Microsoft.MicrosoftSolitaireCollection"
-  }
+﻿{
+    "WPFAppxMicrosoft_WindowsFeedbackHub":  {
+                                                "Category":  "微软应用",
+                                                "Content":  "反馈中心",
+                                                "Description":  "允许用户直接向微软提交错误报告、功能建议和诊断数据。",
+                                                "Panel":  "0",
+                                                "PackageId":  "Microsoft.WindowsFeedbackHub"
+                                            },
+    "WPFAppxMicrosoft_GetHelp":  {
+                                     "Category":  "微软应用",
+                                     "Content":  "获取帮助",
+                                     "Description":  "提供自动故障排除指南、支持文档和微软客户直接协助的访问。",
+                                     "Panel":  "0",
+                                     "PackageId":  "Microsoft.GetHelp"
+                                 },
+    "WPFAppxMicrosoft_OutlookForWindows":  {
+                                               "Category":  "微软应用",
+                                               "Content":  "Windows版Outlook",
+                                               "Description":  "提供现代化的电子邮件管理、日历排程和联系人组织功能。",
+                                               "Panel":  "0",
+                                               "PackageId":  "Microsoft.OutlookForWindows"
+                                           },
+    "WPFAppxMSTeams":  {
+                           "Category":  "微软应用",
+                           "Content":  "Microsoft Teams",
+                           "Description":  "促进即时消息、视频会议、文件共享和工作区协作。",
+                           "Panel":  "0",
+                           "PackageId":  "MSTeams"
+                       },
+    "WPFAppxClipchamp_Clipchamp":  {
+                                       "Category":  "工具与生产力",
+                                       "Content":  "Clipchamp",
+                                       "Description":  "提供用户友好的视频编辑器，内置模板、特效和时间线编辑工具。",
+                                       "Panel":  "0",
+                                       "PackageId":  "Clipchamp.Clipchamp"
+                                   },
+    "WPFAppxMicrosoft_MicrosoftOfficeHub":  {
+                                                "Category":  "微软应用",
+                                                "Content":  "Microsoft 365",
+                                                "Description":  "作为集中启动器和仪表板，用于访问基于云的Microsoft 365应用和最近文档。",
+                                                "Panel":  "0",
+                                                "PackageId":  "Microsoft.MicrosoftOfficeHub"
+                                            },
+    "WPFAppxMicrosoft_ZuneMusic":  {
+                                       "Category":  "工具与生产力",
+                                       "Content":  "媒体播放器",
+                                       "Description":  "播放本地音视频文件，具有现代化播放列表管理和投屏功能。",
+                                       "Panel":  "0",
+                                       "PackageId":  "Microsoft.ZuneMusic"
+                                   },
+    "WPFAppxMicrosoft_BingSearch":  {
+                                        "Category":  "Bing与网络服务",
+                                        "Content":  "必应搜索",
+                                        "Description":  "将微软必应搜索能力和网络服务直接集成到操作系统中。",
+                                        "Panel":  "1",
+                                        "PackageId":  "Microsoft.BingSearch"
+                                    },
+    "WPFAppxMicrosoftCorporationII_QuickAssist":  {
+                                                      "Category":  "工具与生产力",
+                                                      "Content":  "快速助手",
+                                                      "Description":  "通过互联网连接实现安全的远程技术支持和屏幕共享。",
+                                                      "Panel":  "0",
+                                                      "PackageId":  "MicrosoftCorporationII.QuickAssist"
+                                                  },
+    "WPFAppxMicrosoft_WindowsDevHome":  {
+                                            "Category":  "开发工具",
+                                            "Content":  "Dev Home",
+                                            "Description":  "为软件开发人员提供环境设置、仓库同步和硬件小部件的专用仪表板。",
+                                            "Panel":  "1",
+                                            "PackageId":  "Microsoft.Windows.DevHome"
+                                        },
+    "WPFAppxMicrosoft_WindowsCrossDevice":  {
+                                                "Category":  "微软生态",
+                                                "Content":  "移动设备",
+                                                "Description":  "Manages system-level background connectivity with paired mobile devices. Removing this may disable cross-device features such as phone screen mirroring, file transfer, and mobile hotspot handoff integrated into Windows Settings.",
+                                                "Panel":  "0",
+                                                "PackageId":  "MicrosoftWindows.CrossDevice"
+                                            },
+    "WPFAppxMicrosoft_Todos":  {
+                                   "Category":  "工具与生产力",
+                                   "Content":  "待办事项",
+                                   "Description":  "创建、跟踪和同步个人任务、智能列表和每日提醒。",
+                                   "Panel":  "0",
+                                   "PackageId":  "Microsoft.Todos"
+                               },
+    "WPFAppxMicrosoft_PowerAutomateDesktop":  {
+                                                  "Category":  "开发工具",
+                                                  "Content":  "Power Automate",
+                                                  "Description":  "使用低代码可视化脚本自动化重复工作流和桌面任务。",
+                                                  "Panel":  "1",
+                                                  "PackageId":  "Microsoft.PowerAutomateDesktop"
+                                              },
+    "WPFAppxMicrosoft_YourPhone":  {
+                                       "Category":  "微软生态",
+                                       "Content":  "手机连接",
+                                       "Description":  "将移动设备的短信、手机通知、照片和通话同步到桌面。",
+                                       "Panel":  "0",
+                                       "PackageId":  "Microsoft.YourPhone"
+                                   },
+    "WPFAppxMicrosoft_MicrosoftStickyNotes":  {
+                                                  "Category":  "工具与生产力",
+                                                  "Content":  "便笺",
+                                                  "Description":  "在桌面上创建快速的浮动文本便笺，并自动跨设备同步。",
+                                                  "Panel":  "0",
+                                                  "PackageId":  "Microsoft.MicrosoftStickyNotes"
+                                              },
+    "WPFAppxMicrosoft_WindowsSoundRecorder":  {
+                                                  "Category":  "工具与生产力",
+                                                  "Content":  "录音机",
+                                                  "Description":  "录制和剪辑现场音频输入，带有简单的麦克风调节控制。",
+                                                  "Panel":  "0",
+                                                  "PackageId":  "Microsoft.WindowsSoundRecorder"
+                                              },
+    "WPFAppxMicrosoft_WindowsAlarms":  {
+                                           "Category":  "工具与生产力",
+                                           "Content":  "时钟",
+                                           "Description":  "提供世界时钟、闹钟、倒计时、秒表和专注时段跟踪功能。",
+                                           "Panel":  "0",
+                                           "PackageId":  "Microsoft.WindowsAlarms"
+                                       },
+    "WPFAppxMicrosoft_Paint":  {
+                                   "Category":  "工具与生产力",
+                                   "Content":  "画图",
+                                   "Description":  "提供内置的数字素描、基本图像编辑和像素级图形操作工具。",
+                                   "Panel":  "0",
+                                   "PackageId":  "Microsoft.Paint"
+                               },
+    "WPFAppxMicrosoft_WindowsNotepad":  {
+                                            "Category":  "工具与生产力",
+                                            "Content":  "记事本",
+                                            "Description":  "提供轻量级文本编辑器，支持多标签页，用于纯文本文件和代码片段。",
+                                            "Panel":  "0",
+                                            "PackageId":  "Microsoft.WindowsNotepad"
+                                        },
+    "WPFAppxMicrosoft_ScreenSketch":  {
+                                          "Category":  "工具与生产力",
+                                          "Content":  "截图工具",
+                                          "Description":  "捕获屏幕截图或录屏，带有内置标注、图片裁剪和光学字符识别（OCR）功能。",
+                                          "Panel":  "0",
+                                          "PackageId":  "Microsoft.ScreenSketch"
+                                      },
+    "WPFAppxMicrosoft_Copilot":  {
+                                     "Category":  "Bing与网络服务",
+                                     "Content":  "Copilot",
+                                     "Description":  "启动微软AI助手，提供上下文回答、创意写作辅助和智能网络搜索。",
+                                     "Panel":  "1",
+                                     "PackageId":  "Microsoft.Copilot"
+                                 },
+    "WPFAppxMicrosoft_WindowsCalculator":  {
+                                               "Category":  "工具与生产力",
+                                               "Content":  "计算器",
+                                               "Description":  "执行标准算术、科学运算、编程计算和单位转换。",
+                                               "Panel":  "0",
+                                               "PackageId":  "Microsoft.WindowsCalculator"
+                                           },
+    "WPFAppxMicrosoft_WindowsCamera":  {
+                                           "Category":  "工具与生产力",
+                                           "Content":  "相机",
+                                           "Description":  "通过连接的摄像头或成像硬件拍摄照片和录制视频文件。",
+                                           "Panel":  "0",
+                                           "PackageId":  "Microsoft.WindowsCamera"
+                                       },
+    "WPFAppxMicrosoft_WindowsPhotos":  {
+                                           "Category":  "工具与生产力",
+                                           "Content":  "照片",
+                                           "Description":  "组织、查看和裁剪本地图片，提供基本颜色调整和相册创建工具。",
+                                           "Panel":  "0",
+                                           "PackageId":  "Microsoft.Windows.Photos"
+                                       },
+    "WPFAppxMicrosoft_BingNews":  {
+                                      "Category":  "Bing与网络服务",
+                                      "Content":  "新闻",
+                                      "Description":  "聚合突发新闻标题、个性化文章推送和全球时事。",
+                                      "Panel":  "1",
+                                      "PackageId":  "Microsoft.BingNews"
+                                  },
+    "WPFAppxMicrosoft_BingWeather":  {
+                                         "Category":  "Bing与网络服务",
+                                         "Content":  "天气",
+                                         "Description":  "显示本地实时天气跟踪、雷达地图和历史气象预报。",
+                                         "Panel":  "1",
+                                         "PackageId":  "Microsoft.BingWeather"
+                                     },
+    "WPFAppxMicrosoft_GamingApp":  {
+                                       "Category":  "Xbox与游戏",
+                                       "Content":  "Xbox应用",
+                                       "Description":  "作为主要游戏库管理器、社交社区界面和PC Game Pass仪表板。",
+                                       "Panel":  "1",
+                                       "PackageId":  "Microsoft.GamingApp"
+                                   },
+    "WPFAppxMicrosoft_XboxGamingOverlay":  {
+                                               "Category":  "Xbox与游戏",
+                                               "Content":  "Xbox Game Bar",
+                                               "Description":  "提供可自定义的游戏内状态小部件、音频平衡滑块、系统监控工具和游戏录制功能。",
+                                               "Panel":  "1",
+                                               "PackageId":  "Microsoft.XboxGamingOverlay"
+                                           },
+    "WPFAppxMicrosoft_XboxIdentityProvider":  {
+                                                  "Category":  "Xbox与游戏",
+                                                  "Content":  "Xbox身份提供程序",
+                                                  "Description":  "Manages Xbox network user authentication and background account validation for connected titles. Warning: removing this may break Microsoft account sign-in for non-Xbox games and apps that rely on this authentication pipeline.",
+                                                  "Panel":  "1",
+                                                  "PackageId":  "Microsoft.XboxIdentityProvider"
+                                              },
+    "WPFAppxMicrosoft_XboxSpeechToTextOverlay":  {
+                                                     "Category":  "Xbox与游戏",
+                                                     "Content":  "Xbox语音转文本覆盖",
+                                                     "Description":  "为游戏聊天网络提供系统级实时辅助字幕和语音到文本转换。",
+                                                     "Panel":  "1",
+                                                     "PackageId":  "Microsoft.XboxSpeechToTextOverlay"
+                                                 },
+    "WPFAppxMicrosoft_Xbox_TCUI":  {
+                                       "Category":  "Xbox与游戏",
+                                       "Content":  "Xbox TCUI",
+                                       "Description":  "Provides core account connection UI modules for single sign-on flows within game titles. Warning: removing this may break Microsoft account authentication in games and apps that do not otherwise require the Xbox app.",
+                                       "Panel":  "1",
+                                       "PackageId":  "Microsoft.Xbox.TCUI"
+                                   },
+    "WPFAppxMicrosoft_StartExperiencesApp":  {
+                                                 "Category":  "Bing与网络服务",
+                                                 "Content":  "开始体验应用",
+                                                 "Description":  "驱动Windows小组件面板，提供个性化的新闻、天气、体育和财经内容推送。",
+                                                 "Panel":  "1",
+                                                 "PackageId":  "Microsoft.StartExperiencesApp"
+                                             },
+    "WPFAppxMicrosoft_MicrosoftSolitaireCollection":  {
+                                                          "Category":  "Xbox与游戏",
+                                                          "Content":  "纸牌合集",
+                                                          "Description":  "捆绑内置纸牌游戏模式，包括Klondike、Spider、FreeCell、Pyramid和TriPeaks以及每日挑战。",
+                                                          "Panel":  "1",
+                                                          "PackageId":  "Microsoft.MicrosoftSolitaireCollection"
+                                                      }
 }
