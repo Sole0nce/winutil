@@ -5,10 +5,10 @@ function Show-WPFInstallAppBusy {
         This is used to indicate that an install or uninstall is in progress.
         Dynamically updates the size of the overlay based on the app area on each invocation.
     .PARAMETER text
-        The text to display in the busy overlay. Defaults to "Installing apps...".
+        The text to display in the busy overlay. Defaults to "正在安装应用...".
     #>
     param (
-        $text = "Installing apps..."
+        $text = "正在安装应用..."
     )
     $overlayText = $text
 

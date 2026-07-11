@@ -19,7 +19,7 @@ if ($Offline) {
 }
 
 if ($ExecutionContext.SessionState.LanguageMode -ne 'FullLanguage') {
-    Write-Host "WinUtil is unable to run on your system. PowerShell execution is restricted by security policies." -ForegroundColor Red
+    Write-Host "WinUtil 无法在您的系统上运行。PowerShell 执行受安全策略限制。" -ForegroundColor Red
     return
 }
 

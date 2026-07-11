@@ -5,7 +5,7 @@ function Show-WinUtilMessage {
     #>
     param (
         [string]$Message,
-        [string]$Title = "Winutil",
+        [string]$Title = "WinUtil 中文版",
         $Button = "OK",
         $Icon = "Information"
     )

@@ -8,7 +8,7 @@ function Invoke-WPFFeatureInstall {
 
     if($sync.ProcessRunning) {
         $msg = "[Invoke-WPFFeatureInstall] Install process is currently running."
-        [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
+        [System.Windows.MessageBox]::Show($msg, "WinUtil 中文版", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }
 
@@ -33,8 +33,8 @@ function Invoke-WPFFeatureInstall {
         Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" }
 
         Write-Host "==================================="
-        Write-Host "---   Features are Installed    ---"
-        Write-Host "---  A Reboot may be required   ---"
+        Write-Host "---   功能已安装    ---"
+        Write-Host "---  可能需要重新启动   ---"
         Write-Host "==================================="
     }
 }

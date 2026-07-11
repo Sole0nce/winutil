@@ -11,7 +11,7 @@ function Invoke-WPFUnInstall {
 
     if($sync.ProcessRunning) {
         $msg = "[Invoke-WPFUnInstall] Install process is currently running"
-        Show-WinUtilMessage -Message $msg -Title "Winutil" -Button "OK" -Icon "Warning"
+        Show-WinUtilMessage -Message $msg -Title "WinUtil 中文版" -Button "OK" -Icon "Warning"
         return
     }
 
@@ -61,14 +61,14 @@ function Invoke-WPFUnInstall {
             }
             Hide-WPFInstallAppBusy
             Write-Host "==========================================="
-            Write-Host "--       Uninstalls have finished       ---"
+            Write-Host "--      卸载已完成       ---"
             Write-Host "==========================================="
             Write-WinUtilLog -Component "Uninstall" -Message "Uninstall workflow completed."
             Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" }
         } catch {
             Hide-WPFInstallAppBusy
             Write-Host "==========================================="
-            Write-Host "Error: $_"
+            Write-Host "错误：$_"
             Write-Host "==========================================="
             Write-WinUtilLog -Level "ERROR" -Component "Uninstall" -Message "Uninstall workflow failed: $($_.Exception.Message)"
            Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "Error" -overlay "warning" }

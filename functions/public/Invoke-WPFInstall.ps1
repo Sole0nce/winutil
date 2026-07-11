@@ -9,7 +9,7 @@ function Invoke-WPFInstall {
 
     if($sync.ProcessRunning) {
         $msg = "[Invoke-WPFInstall] An Install process is currently running."
-        Show-WinUtilMessage -Message $msg -Title "Winutil" -Button "OK" -Icon "Warning"
+        Show-WinUtilMessage -Message $msg -Title "WinUtil 中文版" -Button "OK" -Icon "Warning"
         return
     }
 
@@ -36,7 +36,7 @@ function Invoke-WPFInstall {
         try {
             $sync.ProcessRunning = $true
             if($packagesWinget.Count -gt 0 -and $packagesWinget -ne "0") {
-                Show-WPFInstallAppBusy -text "Installing apps..."
+                Show-WPFInstallAppBusy -text "正在安装应用..."
                 Install-WinUtilWinget
                 Install-WinUtilProgramWinget -Action Install -Programs $packagesWinget
             }
@@ -46,14 +46,14 @@ function Invoke-WPFInstall {
             }
             Hide-WPFInstallAppBusy
             Write-Host "==========================================="
-            Write-Host "--      Installs have finished          ---"
+            Write-Host "--      安装已完成          ---"
             Write-Host "==========================================="
             Write-WinUtilLog -Component "Install" -Message "Install workflow completed."
             Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" }
         } catch {
             Hide-WPFInstallAppBusy
             Write-Host "==========================================="
-            Write-Host "Error: $_"
+            Write-Host "错误：$_"
             Write-Host "==========================================="
             Write-WinUtilLog -Level "ERROR" -Component "Install" -Message "Install workflow failed: $($_.Exception.Message)"
             Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "Error" -overlay "warning" }

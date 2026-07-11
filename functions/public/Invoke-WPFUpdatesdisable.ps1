@@ -11,7 +11,7 @@ function Invoke-WPFUpdatesdisable {
     $ErrorActionPreference = 'SilentlyContinue'
     Write-WinUtilLog -Component "Updates" -Message "Disabling Windows Update settings."
 
-    Write-Host "Configuring registry settings..." -ForegroundColor Yellow
+    Write-Host "正在配置注册表设置..." -ForegroundColor Yellow
     Write-WinUtilLog -Component "Updates" -Message "Configuring Windows Update registry policy values for disable mode."
     New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Force
 
@@ -21,28 +21,28 @@ function Invoke-WPFUpdatesdisable {
     New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Force
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 0
 
-    Write-Host "Hiding Windows Updates from settings..."
+    Write-Host "正在从设置中隐藏 Windows 更新..."
     Write-WinUtilLog -Component "Updates" -Message "Hiding Windows Update settings page."
     Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer -Name SettingsPageVisibility -Value hide:windowsupdate
 
-    Write-Host "Disabled BITS Service."
+    Write-Host "已禁用 BITS 服务。"
     Write-WinUtilLog -Component "Updates" -Message "Disabling BITS service."
     Set-Service -Name BITS -StartupType Disabled
 
-    Write-Host "Disabled wuauserv Service."
+    Write-Host "已禁用 wuauserv 服务。"
     Write-WinUtilLog -Component "Updates" -Message "Disabling wuauserv service."
     Set-Service -Name wuauserv -StartupType Disabled
 
-    Write-Host "Disabled UsoSvc Service."
+    Write-Host "已禁用 UsoSvc 服务。"
     Write-WinUtilLog -Component "Updates" -Message "Stopping and disabling UsoSvc service."
     Stop-Service -Name UsoSvc -Force
     Set-Service -Name UsoSvc -StartupType Disabled
 
     Remove-Item "C:\Windows\SoftwareDistribution\*" -Recurse -Force
-    Write-Host "Cleared SoftwareDistribution folder."
+    Write-Host "已清空 SoftwareDistribution 文件夹。"
     Write-WinUtilLog -Component "Updates" -Message "Cleared SoftwareDistribution folder."
 
-    Write-Host "Disabling update related scheduled tasks..." -ForegroundColor Yellow
+    Write-Host "正在禁用更新相关的计划任务..." -ForegroundColor Yellow
     Write-WinUtilLog -Component "Updates" -Message "Disabling update related scheduled tasks."
 
     $Tasks =
@@ -58,9 +58,9 @@ function Invoke-WPFUpdatesdisable {
     }
 
     Write-Host "=================================" -ForegroundColor Green
-    Write-Host "---   Updates Are Disabled    ---" -ForegroundColor Green
+    Write-Host "---   更新已禁用    ---" -ForegroundColor Green
     Write-Host "=================================" -ForegroundColor Green
 
-    Write-Host "Note: You must restart your system in order for all changes to take effect." -ForegroundColor Yellow
+    Write-Host "注意：您必须重新启动系统才能使所有更改生效。" -ForegroundColor Yellow
     Write-WinUtilLog -Component "Updates" -Message "Windows Update disable workflow completed. Restart required."
 }

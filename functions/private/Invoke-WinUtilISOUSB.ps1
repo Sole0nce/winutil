@@ -52,7 +52,7 @@ function Invoke-WinUtilISOWriteUSB {
     $sizeGB     = [math]::Round($targetDisk.Size / 1GB, 1)
 
     $confirm = [System.Windows.MessageBox]::Show(
-        "ALL data on Disk $diskNum ($($targetDisk.FriendlyName), $sizeGB GB) will be PERMANENTLY ERASED.`n`nAre you sure you want to continue?",
+        "磁盘 $diskNum（$($targetDisk.FriendlyName)，$sizeGB GB）上的所有数据将被永久删除。`n`n确定要继续吗？",
         "Confirm USB Erase", "YesNo", "Warning")
 
     if ($confirm -ne "Yes") {
@@ -245,7 +245,7 @@ function Invoke-WinUtilISOWriteUSB {
 
             $sync["WPFWin11ISOStatusLog"].Dispatcher.Invoke([action]{
                 [System.Windows.MessageBox]::Show(
-                    "USB drive created successfully!`n`nYou can now boot from this drive to install Windows 11.",
+                    "USB 驱动器创建成功！`n`n您现在可以从该驱动器启动以安装 Windows 11。",
                     "USB Ready", "OK", "Info")
             })
         } catch {

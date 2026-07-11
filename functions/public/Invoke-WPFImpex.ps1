@@ -47,7 +47,7 @@ function Invoke-WPFImpex {
                     $allConfs = ($sync.selectedApps + $sync.selectedTweaks + $sync.selectedToggles + $sync.selectedFeatures + $sync.selectedAppx) | ForEach-Object { [string]$_ }
                     if (-not $allConfs) {
                         [System.Windows.MessageBox]::Show(
-                            "No settings are selected to export. Please select at least one app, tweak, toggle, feature, or AppX package before exporting.",
+                            "未选择要导出的设置。请在导出前至少选择一个应用、优化、开关、功能或 AppX 包。",
                             "Nothing to Export", "OK", "Warning")
                         return
                     }
@@ -79,7 +79,7 @@ function Invoke-WPFImpex {
 
                     if (-not $flattenedJson) {
                         [System.Windows.MessageBox]::Show(
-                            "The selected file contains no settings to import. No changes have been made.",
+                            "所选文件不包含要导入的设置。未进行任何更改。",
                             "Empty Configuration", "OK", "Warning")
                         return
                     }

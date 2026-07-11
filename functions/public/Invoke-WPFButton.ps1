@@ -81,7 +81,7 @@ function Invoke-WPFButton {
                 }
             }
         }
-        "WPFCloseButton" {$sync.Form.Close(); Write-Host "Bye bye!"}
+        "WPFCloseButton" {$sync.Form.Close(); Write-Host "再见！"}
         "WPFMinimizeButton" {$sync.Form.WindowState = [Windows.WindowState]::Minimized}
         "WPFselectedAppsButton" {$sync.selectedAppsPopup.IsOpen = -not $sync.selectedAppsPopup.IsOpen}
     }

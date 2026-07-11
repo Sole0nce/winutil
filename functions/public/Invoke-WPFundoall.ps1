@@ -8,7 +8,7 @@ function Invoke-WPFundoall {
 
     if($sync.ProcessRunning) {
         $msg = "[Invoke-WPFundoall] Install process is currently running."
-        [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
+        [System.Windows.MessageBox]::Show($msg, "WinUtil 中文版", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }
 
@@ -16,7 +16,7 @@ function Invoke-WPFundoall {
 
     if ($tweaks.count -eq 0) {
         $msg = "Please check the tweaks you wish to undo."
-        [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
+        [System.Windows.MessageBox]::Show($msg, "WinUtil 中文版", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }
 
@@ -42,7 +42,7 @@ function Invoke-WPFundoall {
         $sync.ProcessRunning = $false
         Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" }
         Write-Host "=================================="
-        Write-Host "---  Undo Tweaks are Finished  ---"
+        Write-Host "---  撤销优化已完成  ---"
         Write-Host "=================================="
         Write-WinUtilLog -Component "Tweaks" -Message "Undo tweaks workflow completed."
 

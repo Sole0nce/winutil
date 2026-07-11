@@ -11,7 +11,7 @@ function Invoke-WPFSSHServer {
         Invoke-WinUtilSSHServer
 
         Write-Host "======================================="
-        Write-Host "--     OpenSSH Server installed!    ---"
+        Write-Host "--     OpenSSH 服务器已安装！    ---"
         Write-Host "======================================="
     }
 }

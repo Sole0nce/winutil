@@ -31,18 +31,18 @@ function Set-WinUtilRegistry {
         if(!(Test-Path 'HKU:\')) {New-PSDrive -PSProvider Registry -Name HKU -Root HKEY_USERS}
 
         If (!(Test-Path $Path)) {
-            Write-Host "$Path was not found. Creating..."
+            Write-Host "未找到 $Path。正在创建..."
             Write-WinUtilLog -Component "Registry" -Message "Creating registry path: $Path"
             New-Item -Path $Path -Force -ErrorAction Stop | Out-Null
         }
 
         if ($Value -ne "<RemoveEntry>") {
-            Write-Host "Set $Path\$Name to $Value"
+            Write-Host "已将 $Path\$Name 设置为 $Value"
             Write-WinUtilLog -Component "Registry" -Message "Setting $Path\$Name ($Type) to $Value"
             Set-ItemProperty -Path $Path -Name $Name -Type $Type -Value $Value -Force -ErrorAction Stop | Out-Null
         }
         else{
-            Write-Host "Remove $Path\$Name"
+            Write-Host "已移除 $Path\$Name"
             Write-WinUtilLog -Component "Registry" -Message "Removing $Path\$Name"
             Remove-ItemProperty -Path $Path -Name $Name -Force -ErrorAction Stop | Out-Null
         }

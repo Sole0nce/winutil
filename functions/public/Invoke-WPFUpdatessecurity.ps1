@@ -13,7 +13,7 @@ function Invoke-WPFUpdatessecurity {
 
     #>
 
-    Write-Host "Disabling driver offering through Windows Update..."
+    Write-Host "正在禁用 Windows 更新提供驱动..."
     Write-WinUtilLog -Component "Updates" -Message "Applying recommended Windows Update settings."
     Write-WinUtilLog -Component "Updates" -Message "Disabling driver offering through Windows Update."
 
@@ -29,7 +29,7 @@ function Invoke-WPFUpdatessecurity {
     New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Force
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -Type DWord -Value 1
 
-    Write-Host "Setting cumulative updates back by 1 year and security updates by 4 days..."
+    Write-Host "正在将累积更新推迟1年、安全更新推迟4天..."
     Write-WinUtilLog -Component "Updates" -Message "Deferring feature updates by 365 days and quality updates by 4 days."
 
     New-Item -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" -Force
@@ -38,7 +38,7 @@ function Invoke-WPFUpdatessecurity {
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" -Name "DeferFeatureUpdatesPeriodInDays" -Type DWord -Value 365
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" -Name "DeferQualityUpdatesPeriodInDays" -Type DWord -Value 4
 
-    Write-Host "Disabling Windows Update automatic restart..."
+    Write-Host "正在禁用 Windows 更新自动重启..."
     Write-WinUtilLog -Component "Updates" -Message "Disabling Windows Update automatic restart while users are logged in."
 
     New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Force
@@ -46,7 +46,7 @@ function Invoke-WPFUpdatessecurity {
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -Type DWord -Value 0
 
     Write-Host "================================="
-    Write-Host "-- Updates Set to Recommended ---"
+    Write-Host "-- 更新已设为推荐设置 ---"
     Write-Host "================================="
     Write-WinUtilLog -Component "Updates" -Message "Recommended Windows Update settings workflow completed."
 }

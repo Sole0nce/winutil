@@ -8,7 +8,7 @@ function Invoke-WPFtweaksbutton {
 
   if($sync.ProcessRunning) {
     $msg = "[Invoke-WPFtweaksbutton] Install process is currently running."
-    [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
+    [System.Windows.MessageBox]::Show($msg, "WinUtil 中文版", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
     return
   }
 
@@ -26,7 +26,7 @@ function Invoke-WPFtweaksbutton {
 
   if ($tweaks.count -eq 0 -and $dnsProvider -eq "Default") {
     $msg = "Please check the tweaks you wish to perform."
-    [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
+    [System.Windows.MessageBox]::Show($msg, "WinUtil 中文版", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
     return
   }
 
@@ -49,7 +49,7 @@ function Invoke-WPFtweaksbutton {
       $sync.ProcessRunning = $false
       Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" }
       Write-Host "================================="
-      Write-Host "--     Tweaks are Finished    ---"
+      Write-Host "--     优化已完成    ---"
       Write-Host "================================="
       Write-WinUtilLog -Component "Tweaks" -Message "Tweaks workflow completed after restore point."
       return
@@ -85,7 +85,7 @@ function Invoke-WPFtweaksbutton {
     $sync.ProcessRunning = $false
     Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" -overlay "checkmark" }
     Write-Host "================================="
-    Write-Host "--     Tweaks are Finished    ---"
+    Write-Host "--     优化已完成    ---"
     Write-Host "================================="
     Write-WinUtilLog -Component "Tweaks" -Message "Tweaks workflow completed."
   }

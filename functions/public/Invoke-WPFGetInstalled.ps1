@@ -11,7 +11,7 @@ function Invoke-WPFGetInstalled {
     param($checkbox)
     if ($sync.ProcessRunning) {
         $msg = "[Invoke-WPFGetInstalled] Install process is currently running."
-        [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
+        [System.Windows.MessageBox]::Show($msg, "WinUtil 中文版", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }
 
@@ -29,14 +29,14 @@ function Invoke-WPFGetInstalled {
         Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "Indeterminate" }
 
         if ($checkbox -eq "winget") {
-            Write-Host "Getting Installed Programs..."
+            Write-Host "正在获取已安装程序..."
             switch ($managerPreference) {
                 "Choco"{$Checkboxes = Invoke-WinUtilCurrentSystem -CheckBox "choco"; break}
                 "Winget"{$Checkboxes = Invoke-WinUtilCurrentSystem -CheckBox $checkbox; break}
             }
         }
         elseif ($checkbox -eq "tweaks") {
-            Write-Host "Getting Installed Tweaks..."
+            Write-Host "正在获取已安装优化..."
             $Checkboxes = Invoke-WinUtilCurrentSystem -CheckBox $checkbox
         }
 
@@ -46,7 +46,7 @@ function Invoke-WPFGetInstalled {
             }
         })
 
-        Write-Host "Done..."
+        Write-Host "完成..."
         $sync.ProcessRunning = $false
         Invoke-WPFUIThread -ScriptBlock { Set-WinUtilTaskbaritem -state "None" }
     }
