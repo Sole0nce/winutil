@@ -499,7 +499,7 @@ function Invoke-WinUtilISOCheckExistingWork {
     Write-Win11ISOLog "Click 'Clean & Reset' if you want to start over with a new ISO."
 
     [System.Windows.MessageBox]::Show(
-        "找到之前的 WinUtil ISO 工作目录：`n`n$($existingWorkDir.FullName)`n`n（上次修改时间：$modified）`n`n步骤 4（输出选项）已恢复，以便您保存已修改的映像。`n`n如果要重新开始，请点击步骤 4 中的"清理并重置"。",
+        "找到之前的 WinUtil ISO 工作目录：`n`n$($existingWorkDir.FullName)`n`n（上次修改时间：$modified）`n`n步骤 4（输出选项）已恢复，以便您保存已修改的映像。`n`n如果要重新开始，请点击步骤 4 中的「清理并重置」。",
         "Existing Work Found", "OK", "Info")
 }
 
