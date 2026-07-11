@@ -1217,7 +1217,7 @@
         </Grid>
 
         <TabControl Name="WPFTabNav" Background="Transparent" Width="Auto" Height="Auto" BorderBrush="Transparent" BorderThickness="0" Grid.Row="2" Grid.Column="0" Padding="-1">
-            <TabItem Header="安装" Visibility="Collapsed" Name="WPFTab1">
+            <TabItem Header="Install" Visibility="Collapsed" Name="WPFTab1">
                 <Grid Background="Transparent" >
 
                     <Grid Grid.Row="0" Grid.Column="0" Margin="{DynamicResource TabContentMargin}">
@@ -1234,7 +1234,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="优化" Visibility="Collapsed" Name="WPFTab2">
+            <TabItem Header="Tweaks" Visibility="Collapsed" Name="WPFTab2">
                 <Grid>
                     <!-- Main content area with a ScrollViewer -->
                     <Grid.RowDefinitions>
@@ -1282,13 +1282,13 @@
                     </Border>
                 </Grid>
             </TabItem>
-            <TabItem Header="配置" Visibility="Collapsed" Name="WPFTab3">
+            <TabItem Header="Config" Visibility="Collapsed" Name="WPFTab3">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="{DynamicResource TabContentMargin}">
                     <Grid Name="featurespanel" Grid.Row="1" Background="Transparent">
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="更新" Visibility="Collapsed" Name="WPFTab4">
+            <TabItem Header="Updates" Visibility="Collapsed" Name="WPFTab4">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="{DynamicResource TabContentMargin}">
                     <Grid Background="Transparent" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
                         <Grid.RowDefinitions>
@@ -1384,7 +1384,7 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Win11系统" Visibility="Collapsed" Name="WPFTab5">
+            <TabItem Header="Win11ISO" Visibility="Collapsed" Name="WPFTab5">
                 <Grid Name="Win11ISOPanel" Margin="{DynamicResource TabContentMargin}" Background="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>  <!-- Steps 1-4 -->
