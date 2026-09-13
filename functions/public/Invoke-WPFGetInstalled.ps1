@@ -13,13 +13,13 @@
         return
     }
 
-    Start-WinUtilJob -Name "Detect installed" -Description "Checking what is already installed" -Parameters @{
+    Start-WinUtilJob -Name "Detect installed" -Description "正在检查已安装的项目" -Parameters @{
         Checkbox = $checkbox
         ManagerPreference = $sync.preferences.packagemanager
     } -ScriptBlock {
         param($Checkbox, $ManagerPreference)
 
-        Step-WinUtilJob -Status "Checking what is already installed" -State "Indeterminate"
+        Step-WinUtilJob -Status "正在检查已安装的项目" -State "Indeterminate"
 
         $found = @()
         if ($Checkbox -eq "winget") {

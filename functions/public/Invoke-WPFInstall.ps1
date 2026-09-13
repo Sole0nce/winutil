@@ -19,7 +19,7 @@
     $packageSummary = Get-WinUtilPackageLogSummary -Packages $PackagesToInstall -Preference $ManagerPreference
     Write-WinUtilLog -Component "Install" -Message "Install selected package(s): $($packageSummary -join '; ')"
 
-    Start-WinUtilJob -Name "Install" -Description "Installing apps" -DisableAppList -Parameters @{
+    Start-WinUtilJob -Name "Install" -Description "正在安装应用" -DisableAppList -Parameters @{
         PackagesToInstall = $PackagesToInstall
         ManagerPreference = $ManagerPreference
     } -ScriptBlock {

@@ -7,11 +7,11 @@
     #>
 
     if ($null -eq $sync.selectedAppx -or $sync.selectedAppx.Count -eq 0) {
-        Show-WinUtilMessage -Message "No AppX Package selected" -Title "错误" -Button "OK" -Icon "错误"
+        Show-WinUtilMessage -Message "未选择 AppX 包" -Title "错误" -Button "OK" -Icon "错误"
         return
     }
 
-    Start-WinUtilJob -Name "AppX" -Description "Removing AppX packages" -Parameters @{
+    Start-WinUtilJob -Name "AppX" -Description "正在移除 AppX 包" -Parameters @{
         Selected = @($sync.selectedAppx)
         Apps = $sync.configs.appxHashtable
     } -ScriptBlock {
@@ -42,7 +42,7 @@
                 Stop-Process -Name dllhost -Force -Confirm:$false -ErrorAction SilentlyContinue
             }
 
-            Write-Host "Removing $($app.Content)"
+            Write-Host "正在移除 $($app.Content)"
             Write-WinUtilLog -Component "AppX" -Message "Removing $($app.Content) ($($app.PackageId))."
             Remove-WinUtilAPPX -Name $app.PackageId
             $packageList.Add($app.PackageId)

@@ -9,11 +9,11 @@
     $tweaks = $sync.selectedTweaks
 
     if ($tweaks.count -eq 0) {
-        Show-WinUtilMessage -Message "Please check the tweaks you wish to undo." -Title "WinUtil" -Button "OK" -Icon "Warning"
+        Show-WinUtilMessage -Message "请勾选您要撤销的优化项。" -Title "WinUtil" -Button "OK" -Icon "Warning"
         return
     }
 
-    Start-WinUtilJob -Name "Undo tweaks" -Description "Undoing tweaks" -Parameters @{
+    Start-WinUtilJob -Name "Undo tweaks" -Description "正在撤销优化" -Parameters @{
         Tweaks = @($tweaks)
     } -ScriptBlock {
         param($Tweaks)

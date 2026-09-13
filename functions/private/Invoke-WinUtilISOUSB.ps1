@@ -48,7 +48,7 @@ function Invoke-WinUtilISOWriteUSB {
         $esdSizeBytes = (Get-Item $installEsd).Length
         if ($esdSizeBytes -ge 4GB) {
             $esdSizeMB = [math]::Ceiling($esdSizeBytes / 1MB)
-            Show-WinUtilMessage -Message "This ISO uses an install.esd file that is $esdSizeMB MB. WinUtil's FAT32 USB format cannot store files larger than 4 GB.`n`nExport an ISO instead or use media with install.wim." -Title "USB Creation Not Supported" -Button "OK" -Icon "Warning" | Out-Null
+            Show-WinUtilMessage -Message "此 ISO 使用 install.esd 文件（$esdSizeMB MB）。WinUtil 的 FAT32 U 盘格式无法存放大于 4 GB 的文件。`n`n请改为导出 ISO，或使用带 install.wim 的介质。" -Title "不支持创建 U 盘" -Button "OK" -Icon "Warning" | Out-Null
             return
         }
     }
@@ -80,7 +80,7 @@ function Invoke-WinUtilISOWriteUSB {
         return
     }
 
-    Start-WinUtilJob -Name "USB write" -Description "Writing USB drive" -Parameters @{
+    Start-WinUtilJob -Name "USB write" -Description "正在写入 U 盘" -Parameters @{
         DiskNumber  = $diskNum
         ContentsDir = $contentsDir
     } -ScriptBlock {
@@ -233,7 +233,7 @@ function Invoke-WinUtilISOWriteUSB {
             Step-WinUtilJob -Status "USB write complete" -Percent 100
             Write-WinUtilISOLog "USB drive is ready for use."
 
-            Show-WinUtilMessage -Message "USB 驱动器创建成功！`n`n您现在可以从该驱动器启动以安装 Windows 11。" -Title "USB Ready" -Button "OK" -Icon "Info" | Out-Null
+            Show-WinUtilMessage -Message "USB 驱动器创建成功！`n`n您现在可以从该驱动器启动以安装 Windows 11。" -Title "U 盘就绪" -Button "OK" -Icon "Info" | Out-Null
         } catch {
             Write-WinUtilISOLog -Level "ERROR" -Message "USB write failed: $_"
             $_.Exception.Data["WinUtilErrorReported"] = $true

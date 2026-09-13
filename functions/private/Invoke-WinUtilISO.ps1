@@ -124,7 +124,7 @@ function Invoke-WinUtilISOMountAndVerify {
         return
     }
 
-    Start-WinUtilJob -Name "ISO mount" -Description "Mounting ISO" -Parameters @{
+    Start-WinUtilJob -Name "ISO mount" -Description "正在挂载 ISO" -Parameters @{
         IsoPath = $isoPath
     } -ScriptBlock {
         param($isoPath)
@@ -207,7 +207,7 @@ function Invoke-WinUtilISOMountAndVerify {
             } -ScriptBlock {
                 param($DriveLetter, $ImageFileName, $imageInfo)
 
-                $sync["WPFWin11ISOMountDriveLetter"].Text = "Mounted at: $DriveLetter   |   Image file: $ImageFileName"
+                $sync["WPFWin11ISOMountDriveLetter"].Text = "挂载位置：$DriveLetter   |   映像文件：$ImageFileName"
                 $sync["WPFWin11ISOEditionComboBox"].Items.Clear()
                 foreach ($img in $imageInfo) {
                     [void]$sync["WPFWin11ISOEditionComboBox"].Items.Add("$($img.ImageIndex): $($img.ImageName)")
@@ -283,7 +283,7 @@ function Invoke-WinUtilISOModify {
         if (Test-Path $toolsXml) { Get-Content $toolsXml -Raw } else { "" }
     }
 
-    Start-WinUtilJob -Name "ISO modify" -Description "Modifying ISO" -Parameters @{
+    Start-WinUtilJob -Name "ISO modify" -Description "正在修改 ISO" -Parameters @{
         IsoPath             = $isoPath
         DriveLetter         = $driveLetter
         WimPath             = $wimPath
@@ -464,7 +464,7 @@ function Invoke-WinUtilISOCleanAndReset {
         if ($confirm -ne "Yes") { return }
     }
 
-    Start-WinUtilJob -Name "ISO cleanup" -Description "Cleaning up" -Parameters @{
+    Start-WinUtilJob -Name "ISO cleanup" -Description "正在清理" -Parameters @{
         WorkDir = $workDir
     } -ScriptBlock {
         param($workDir)
@@ -579,7 +579,7 @@ function Invoke-WinUtilISOExport {
 
     if ($dlg.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) { return }
 
-    Start-WinUtilJob -Name "ISO export" -Description "Building ISO" -Parameters @{
+    Start-WinUtilJob -Name "ISO export" -Description "正在构建 ISO" -Parameters @{
         ContentsDir = $contentsDir
         OutputISO   = $dlg.FileName
     } -ScriptBlock {

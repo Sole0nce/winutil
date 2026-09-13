@@ -18,7 +18,7 @@
     }
 
     if ($Force) {
-        Write-Host "Repairing the WinGet installation..." -ForegroundColor Yellow
+        Write-Host "正在修复 WinGet 安装..." -ForegroundColor Yellow
     } else {
         Write-Host "WinGet 未安装。正在安装..." -ForegroundColor Red
     }

@@ -7,7 +7,7 @@
     #>
     Write-WinUtilLog -Component "Updates" -Message "Resetting Windows Update settings to default."
 
-    Write-Host "Removing Windows Update settings managed by WinUtil..." -ForegroundColor Green
+    Write-Host "正在移除由 WinUtil 管理的 Windows 更新设置..." -ForegroundColor Green
     Write-WinUtilLog -Component "Updates" -Message "Removing Windows Update registry values managed by WinUtil."
 
     $registryValues = @(
@@ -46,7 +46,7 @@
     $explorerPolicyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer"
     $settingsPageVisibility = (Get-ItemProperty -Path $explorerPolicyPath -Name "SettingsPageVisibility" -ErrorAction SilentlyContinue).SettingsPageVisibility
     if ($settingsPageVisibility -eq "hide:windowsupdate") {
-        Write-Host "Removing WinUtil's legacy Windows Update page restriction..."
+        Write-Host "正在移除 WinUtil 旧版 Windows 更新页面限制..."
         Write-WinUtilLog -Component "Updates" -Message "Removing the legacy Windows Update settings page restriction."
         Remove-ItemProperty -Path $explorerPolicyPath -Name "SettingsPageVisibility" -ErrorAction SilentlyContinue
     }

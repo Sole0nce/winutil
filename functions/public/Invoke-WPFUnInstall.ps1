@@ -29,7 +29,7 @@
     $packageSummary = Get-WinUtilPackageLogSummary -Packages $PackagesToUninstall -Preference $ManagerPreference
     Write-WinUtilLog -Component "Uninstall" -Message "Uninstall selected package(s): $($packageSummary -join '; ')"
 
-    Start-WinUtilJob -Name "Uninstall" -Description "Uninstalling apps" -DisableAppList -Parameters @{
+    Start-WinUtilJob -Name "Uninstall" -Description "正在卸载应用" -DisableAppList -Parameters @{
         PackagesToUninstall = $PackagesToUninstall
         ManagerPreference = $ManagerPreference
     } -ScriptBlock {

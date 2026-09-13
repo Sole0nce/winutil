@@ -19,7 +19,7 @@
     $windowsUpdatePolicyPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
     $automaticUpdatePolicyPath = Join-Path $windowsUpdatePolicyPath "AU"
 
-    Write-Host "Restoring Windows Update availability..."
+    Write-Host "正在恢复 Windows 更新的可用性..."
     Write-WinUtilLog -Component "Updates" -Message "Restoring Windows Update services and scheduled tasks before applying recommended settings."
 
     Remove-ItemProperty -Path $automaticUpdatePolicyPath -Name "NoAutoUpdate" -ErrorAction SilentlyContinue
@@ -54,7 +54,7 @@
     New-Item -Path $windowsUpdatePolicyPath -Force
     Set-ItemProperty -Path $windowsUpdatePolicyPath -Name "ExcludeWUDriversInQualityUpdate" -Type DWord -Value 1
 
-    Write-Host "Deferring feature updates by 365 days and quality updates by 4 days..."
+    Write-Host "正在将功能更新推迟 365 天、质量更新推迟 4 天..."
     Write-WinUtilLog -Component "Updates" -Message "Deferring feature updates by 365 days and quality updates by 4 days."
 
     Set-ItemProperty -Path $windowsUpdatePolicyPath -Name "DeferFeatureUpdates" -Type DWord -Value 1
@@ -67,7 +67,7 @@
         Remove-ItemProperty -Path $legacySettingsPath -Name $legacyValue -ErrorAction SilentlyContinue
     }
 
-    Write-Host "Preventing automatic restarts while users are signed in..."
+    Write-Host "正在禁止用户登录状态下自动重启..."
     Write-WinUtilLog -Component "Updates" -Message "Configuring scheduled automatic updates without restarting while users are signed in."
 
     New-Item -Path $automaticUpdatePolicyPath -Force

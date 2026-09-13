@@ -1,4 +1,4 @@
-#===========================================================================
+﻿#===========================================================================
 # Tests - Work button routing
 
 BeforeAll {
@@ -33,7 +33,7 @@ Describe "Work button preflight" {
                     }
                 }
             }
-            WPFUpdatesdisable = [pscustomobject]@{ Content = "Disable Updates" }
+            WPFUpdatesdisable = [pscustomobject]@{ Content = "禁用更新" }
         })
         $script:capturedJob = $null
 
@@ -77,7 +77,7 @@ Describe "Work button preflight" {
         Invoke-WPFButton -Button "WPFUpdatesdisable"
 
         Should -Invoke Start-WinUtilJob -Times 1 -Exactly -ParameterFilter {
-            $Name -eq "Disable Updates" -and $Parameters.UpdatesDisableConfirmed -eq $true
+            $Name -eq "禁用更新" -and $Parameters.UpdatesDisableConfirmed -eq $true
         }
 
         $jobParameters = $script:capturedJob.Parameters

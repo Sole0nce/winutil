@@ -1256,8 +1256,8 @@
                     HorizontalAlignment="Right" VerticalAlignment="Center"
                     Margin="0,0,2,0"
                     FontFamily="Segoe MDL2 Assets"
-                    ToolTip="Settings"
-                    AutomationProperties.Name="Settings"
+                    ToolTip="设置"
+                    AutomationProperties.Name="设置"
                     Content="&#xE713;"/>
                     <Popup Name="SettingsPopup"
                     IsOpen="False"
@@ -1276,9 +1276,9 @@
                                 </MenuItem.ToolTip>
                             </MenuItem>
                             <Separator/>
-                            <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="Export Environment Report" Name="ExportEnvironmentReportMenuItem" Foreground="{DynamicResource MainForegroundColor}">
+                            <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="导出环境报告" Name="ExportEnvironmentReportMenuItem" Foreground="{DynamicResource MainForegroundColor}">
                                 <MenuItem.ToolTip>
-                                    <ToolTip Content="Export a read-only diagnostics report for troubleshooting."/>
+                                    <ToolTip Content="导出只读的诊断报告，用于排查问题。"/>
                                 </MenuItem.ToolTip>
                             </MenuItem>
                             <Separator/>
@@ -1301,8 +1301,8 @@
                         FontFamily="Segoe MDL2 Assets"
                         Foreground="{DynamicResource MainForegroundColor}"
                         FontSize="{DynamicResource CloseIconFontSize}"
-                        ToolTip="Minimize"
-                        AutomationProperties.Name="Minimize"
+                        ToolTip="最小化"
+                        AutomationProperties.Name="最小化"
                         Name="WPFMinimizeButton" />
                     <Button
                         BorderThickness="0"
@@ -1343,15 +1343,15 @@
                         FontFamily="Segoe MDL2 Assets"
                         Foreground="{DynamicResource MainForegroundColor}"
                         FontSize="{DynamicResource CloseIconFontSize}"
-                        ToolTip="Close"
-                        AutomationProperties.Name="Close"
+                        ToolTip="关闭"
+                        AutomationProperties.Name="关闭"
                         Name="WPFCloseButton" />
                 </StackPanel>
             </Grid>
         </Grid>
 
         <TabControl Name="WPFTabNav" Background="Transparent" Width="自动" Height="自动" BorderBrush="Transparent" BorderThickness="0" Grid.Row="2" Grid.Column="0" Padding="-1">
-            <TabItem Header="Install" Visibility="Collapsed" Name="WPFTab1">
+            <TabItem Header="安装" Visibility="Collapsed" Name="WPFTab1">
                 <Grid Background="Transparent" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="自动"/>
@@ -1367,18 +1367,18 @@
                                    Background="Transparent"
                                    VerticalAlignment="Center"
                                    Margin="10,0,10,0"
-                                   ToolTip="Filter by category. Ctrl click to select more than one."/>
-                        <ToggleButton Name="WPFSearchChipAll"             Content="All"               Style="{StaticResource FilterChipToggleStyle}" IsChecked="True"/>
-                        <ToggleButton Name="WPFSearchChipBrowsers"        Content="Browsers"          Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipCommunications"  Content="Communications"    Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipDevelopment"     Content="Development"       Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipDocument"        Content="Document"          Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipGames"           Content="Games"             Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipMicrosoftTools"  Content="Microsoft Tools"   Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipMultimediaTools" Content="Multimedia Tools"  Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipProTools"        Content="Pro Tools"         Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipSelfhostedTools" Content="Selfhosted Tools"  Style="{StaticResource FilterChipToggleStyle}"/>
-                        <ToggleButton Name="WPFSearchChipUtilities"       Content="Utilities"         Style="{StaticResource FilterChipToggleStyle}"/>
+                                   ToolTip="按类别筛选。按住 Ctrl 可多选。"/>
+                        <ToggleButton Name="WPFSearchChipAll"             Content="全部"               Style="{StaticResource FilterChipToggleStyle}" IsChecked="True"/>
+                        <ToggleButton Name="WPFSearchChipBrowsers"        Content="浏览器"          Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipCommunications"  Content="通讯"    Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipDevelopment"     Content="开发"       Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipDocument"        Content="文档"          Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipGames"           Content="游戏"             Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipMicrosoftTools"  Content="微软工具"   Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipMultimediaTools" Content="多媒体工具"  Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipProTools"        Content="专业工具"         Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipSelfhostedTools" Content="自建服务"  Style="{StaticResource FilterChipToggleStyle}"/>
+                        <ToggleButton Name="WPFSearchChipUtilities"       Content="实用工具"         Style="{StaticResource FilterChipToggleStyle}"/>
                     </WrapPanel>
 
                     <Grid Grid.Row="1" Margin="{DynamicResource TabContentMargin}">
@@ -1395,7 +1395,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Tweaks" Visibility="Collapsed" Name="WPFTab2">
+            <TabItem Header="优化" Visibility="Collapsed" Name="WPFTab2">
                 <Grid>
                     <!-- Main content area with a ScrollViewer -->
                     <Grid.RowDefinitions>
@@ -1419,7 +1419,7 @@
                                     <Button Name="WPFAdvanced" Content=" 高级 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFClearTweaksSelection" Content=" 清除选择 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFGetInstalledTweaks" Content=" 获取已安装优化 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFAppxRemoval" Content=" AppX Removal " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFAppxRemoval" Content=" AppX 移除 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                 </WrapPanel>
                             </StackPanel>
 
@@ -1444,13 +1444,13 @@
                     </Border>
                 </Grid>
             </TabItem>
-            <TabItem Header="Config" Visibility="Collapsed" Name="WPFTab3">
+            <TabItem Header="配置" Visibility="Collapsed" Name="WPFTab3">
                 <ScrollViewer VerticalScrollBarVisibility="自动" HorizontalScrollBarVisibility="自动" Margin="{DynamicResource TabContentMargin}">
                     <Grid Name="featurespanel" Grid.Row="1" Background="Transparent">
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Updates" Visibility="Collapsed" Name="WPFTab4">
+            <TabItem Header="更新" Visibility="Collapsed" Name="WPFTab4">
                 <ScrollViewer VerticalScrollBarVisibility="自动" HorizontalScrollBarVisibility="Disabled" Margin="{DynamicResource TabContentMargin}">
                     <Grid Background="Transparent" MaxWidth="1250" HorizontalAlignment="Center">
                         <Grid.RowDefinitions>
@@ -1460,11 +1460,11 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0" Margin="10,10,10,14">
-                            <TextBlock Text="Windows Update Profiles"
+                            <TextBlock Text="Windows 更新方案"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="{DynamicResource MainForegroundColor}"/>
-                            <TextBlock Text="Choose how Windows receives updates. Each profile replaces the Windows Update settings managed by WinUtil."
+                            <TextBlock Text="选择 Windows 接收更新的方式。每个方案都会替换由 WinUtil 管理的 Windows 更新设置。"
                                        Margin="0,6,0,0"
                                        FontSize="13"
                                        TextWrapping="Wrap"
@@ -1484,21 +1484,21 @@
                                         <RowDefinition Height="自动"/>
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Margin="0,0,0,14">
-                                        <TextBlock Text="Recommended"
+                                        <TextBlock Text="推荐"
                                                    FontSize="20"
                                                    FontWeight="Bold"
                                                    Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="Balanced security and stability"
+                                        <TextBlock Text="兼顾安全与稳定"
                                                    Margin="0,4,0,0"
                                                    FontSize="13"
                                                    Foreground="{DynamicResource MainForegroundColor}"/>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1">
-                                        <TextBlock Text="- Defers feature updates for 365 days" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Defers quality updates for 4 days" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Excludes drivers from quality updates" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Prevents automatic restarts while a user is signed in" TextWrapping="Wrap" Margin="0,0,0,12" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="Available on Windows Pro, Enterprise, and Education editions."
+                                        <TextBlock Text="- 功能更新推迟 365 天" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 质量更新推迟 4 天" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 从质量更新中排除驱动程序" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 用户登录时禁止自动重启" TextWrapping="Wrap" Margin="0,0,0,12" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="仅适用于 Windows 专业版、企业版和教育版。"
                                                    FontSize="11"
                                                    FontStyle="Italic"
                                                    TextWrapping="Wrap"
@@ -1506,7 +1506,7 @@
                                     </StackPanel>
                                     <Button Name="WPFUpdatessecurity"
                                             Grid.Row="2"
-                                            Content="Apply Recommended"
+                                            Content="应用推荐方案"
                                             FontSize="{DynamicResource ConfigTabButtonFontSize}"
                                             Margin="0,16,0,0"
                                             Padding="10"/>
@@ -1521,20 +1521,20 @@
                                         <RowDefinition Height="自动"/>
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Margin="0,0,0,14">
-                                        <TextBlock Text="Windows Default"
+                                        <TextBlock Text="Windows 默认"
                                                    FontSize="20"
                                                    FontWeight="Bold"
                                                    Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="Return control to Windows"
+                                        <TextBlock Text="将控制权交还 Windows"
                                                    Margin="0,4,0,0"
                                                    FontSize="13"
                                                    Foreground="{DynamicResource MainForegroundColor}"/>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1">
-                                        <TextBlock Text="- Removes Windows Update policies applied by WinUtil" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Restores update service startup settings" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Re-enables update scheduled tasks" TextWrapping="Wrap" Margin="0,0,0,12" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="Use this to undo the Recommended or Disable profile."
+                                        <TextBlock Text="- 移除 WinUtil 应用的 Windows 更新策略" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 恢复更新服务的启动设置" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 重新启用更新相关的计划任务" TextWrapping="Wrap" Margin="0,0,0,12" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="用于撤销“推荐”或“禁用”方案。"
                                                    FontSize="11"
                                                    FontStyle="Italic"
                                                    TextWrapping="Wrap"
@@ -1542,7 +1542,7 @@
                                     </StackPanel>
                                     <Button Name="WPFUpdatesdefault"
                                             Grid.Row="2"
-                                            Content="Restore Defaults"
+                                            Content="恢复默认"
                                             FontSize="{DynamicResource ConfigTabButtonFontSize}"
                                             Margin="0,16,0,0"
                                             Padding="10"/>
@@ -1557,21 +1557,21 @@
                                         <RowDefinition Height="自动"/>
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Margin="0,0,0,14">
-                                        <TextBlock Text="Disable Updates"
+                                        <TextBlock Text="禁用更新"
                                                    FontSize="20"
                                                    FontWeight="Bold"
                                                    Foreground="Red"/>
-                                        <TextBlock Text="Advanced use only"
+                                        <TextBlock Text="仅供高级用户"
                                                    Margin="0,4,0,0"
                                                    FontSize="13"
                                                    FontWeight="SemiBold"
                                                    Foreground="Red"/>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1">
-                                        <TextBlock Text="- Disables automatic update policy" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Stops update services and scheduled tasks" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="- Clears downloaded update files" TextWrapping="Wrap" Margin="0,0,0,12" Foreground="{DynamicResource MainForegroundColor}"/>
-                                        <TextBlock Text="Security updates will not be installed while this profile is active."
+                                        <TextBlock Text="- 禁用自动更新策略" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 停止更新服务与计划任务" TextWrapping="Wrap" Margin="0,0,0,7" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="- 清除已下载的更新文件" TextWrapping="Wrap" Margin="0,0,0,12" Foreground="{DynamicResource MainForegroundColor}"/>
+                                        <TextBlock Text="该方案启用期间不会安装安全更新。"
                                                    FontSize="11"
                                                    FontStyle="Italic"
                                                    TextWrapping="Wrap"
@@ -1579,7 +1579,7 @@
                                     </StackPanel>
                                     <Button Name="WPFUpdatesdisable"
                                             Grid.Row="2"
-                                            Content="Disable Updates"
+                                            Content="禁用更新"
                                             FontSize="{DynamicResource ConfigTabButtonFontSize}"
                                             Foreground="Red"
                                             Margin="0,16,0,0"
@@ -1589,7 +1589,7 @@
                         </UniformGrid>
 
                         <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="8,14,8,8" Padding="12">
-                            <TextBlock Text="Changes apply system-wide. Restart Windows after switching profiles. Use Restore Defaults to undo WinUtil update policies."
+                            <TextBlock Text="更改将对全系统生效。切换方案后请重启 Windows。可用“恢复默认”撤销 WinUtil 的更新策略。"
                                        TextWrapping="Wrap"
                                        HorizontalAlignment="Center"
                                        Foreground="{DynamicResource MainForegroundColor}"/>
@@ -1725,7 +1725,7 @@
                                               Foreground="{DynamicResource MainForegroundColor}"
                                               IsChecked="False"
                                               Margin="0,8,0,0"
-                                              ToolTip="Stages boot-storage drivers for Setup and adds all exported drivers to the selected install.wim edition in one DISM pass."/>
+                                              ToolTip="在一次 DISM 处理中为安装程序准备启动存储驱动，并将所有已导出的驱动添加到所选的 install.wim 版本中。"/>
                                 </StackPanel>
 
                                 <!-- Verification results panel -->
@@ -1945,8 +1945,8 @@
 
                     <Border Grid.Row="1" Background="{DynamicResource MainBackgroundColor}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" Padding="10">
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Button Name="WPFBackToTweaks" Content="Back to Tweaks" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                            <Button Name="WPFInstallSelectedAppx" Content="Install Selected" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFBackToTweaks" Content="返回优化" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFInstallSelectedAppx" Content="安装所选" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                             <Button Name="WPFRemoveSelectedAppx" Content="移除选中" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                         </WrapPanel>
                     </Border>

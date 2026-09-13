@@ -35,8 +35,8 @@
 
         $dohSupported = [bool](Get-Command Add-DnsClientDohServerAddress -ErrorAction SilentlyContinue)
         if ($DNSProvider -ne "DHCP" -and $dns.DohOnly -and -not $dohSupported) {
-            Write-Warning "DNS provider $DNSProvider requires DNS over HTTPS, which is not supported on this system."
-            Write-WinUtilLog -Level "ERROR" -Component "DNS" -Message "DNS provider $DNSProvider requires DNS over HTTPS, which is not supported on this system."
+            Write-Warning "DNS 提供商 $DNSProvider 需要 DNS over HTTPS，当前系统不支持。"
+            Write-WinUtilLog -Level "ERROR" -Component "DNS" -Message "DNS 提供商 $DNSProvider 需要 DNS over HTTPS，当前系统不支持。"
             return $false
         }
 
@@ -103,7 +103,7 @@
                             throw
                         }
 
-                        Write-Warning "DNS over HTTPS setup for provider $DNSProvider failed; continuing with plain DNS."
+                        Write-Warning "提供商 $DNSProvider 的 DNS over HTTPS 配置失败；将继续使用普通 DNS。"
                         Write-WinUtilLog -Level "WARN" -Component "DNS" -Message "DNS over HTTPS setup for provider $DNSProvider failed; continuing with plain DNS: $($psitem.Exception.Message)"
                     }
                 }
@@ -120,7 +120,7 @@
         Write-WinUtilLog -Component "DNS" -Message "DNS provider change completed: $DNSProvider"
         return $true
     } catch {
-        Write-Warning "DNS provider $DNSProvider was not completed because an error occurred."
+        Write-Warning "由于发生错误，DNS 提供商 $DNSProvider 未能完成。"
         Write-Warning $psitem.Exception.Message
         Write-WinUtilLog -Level "ERROR" -Component "DNS" -Message "DNS provider $DNSProvider was not completed: $($psitem.Exception.Message)"
         return $false

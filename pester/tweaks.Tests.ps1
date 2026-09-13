@@ -1,4 +1,4 @@
-#===========================================================================
+﻿#===========================================================================
 # Tests - Tweak Orchestration
 #===========================================================================
 
@@ -217,7 +217,7 @@ Describe "Invoke-WPFtweaksbutton" {
         Invoke-WPFtweaksbutton
 
         Should -Invoke -CommandName Show-WinUtilMessage -Times 1 -Exactly -ParameterFilter {
-            $Message -eq "Please check the tweaks you wish to perform."
+            $Message -eq "请勾选您要执行的优化项。"
         }
         Should -Invoke -CommandName Start-WinUtilJob -Times 0 -Exactly
     }
@@ -329,7 +329,7 @@ Describe "Invoke-WPFundoall" {
         Invoke-WPFundoall
 
         Should -Invoke -CommandName Show-WinUtilMessage -Times 1 -Exactly -ParameterFilter {
-            $Message -eq "Please check the tweaks you wish to undo."
+            $Message -eq "请勾选您要撤销的优化项。"
         }
         Should -Invoke -CommandName Start-WinUtilJob -Times 0 -Exactly
     }

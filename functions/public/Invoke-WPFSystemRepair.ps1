@@ -51,7 +51,7 @@
             if ($step.SuccessCodes.ContainsKey($exitCode)) {
                 # Start-WinUtilJob records WarningRecord output in both the session log and the
                 # job result, so accepted nonzero outcomes cannot finish with a green checkmark.
-                Write-Warning "$($step.Label) finished: $($step.SuccessCodes[$exitCode])."
+                Write-Warning "$($step.Label) 已完成：$($step.SuccessCodes[$exitCode])。"
             } else {
                 throw "$($step.Label) failed with exit code $exitCode."
             }

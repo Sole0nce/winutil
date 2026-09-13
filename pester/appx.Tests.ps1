@@ -1,4 +1,4 @@
-#===========================================================================
+﻿#===========================================================================
 # Tests - AppX Management
 #===========================================================================
 
@@ -417,7 +417,7 @@ Describe "Invoke-WPFAppxInstall" {
         Invoke-WPFAppxInstall
 
         Should -Invoke -CommandName Show-WinUtilMessage -Times 1 -Exactly -ParameterFilter {
-            $Message -eq "No AppX Package selected" -and
+            $Message -eq "未选择 AppX 包" -and
                 $Title -eq "Error" -and
                 $Button -eq "OK" -and
                 $Icon -eq "Error"
@@ -558,7 +558,7 @@ Describe "Invoke-WPFAppxRemoval" {
         Invoke-WPFAppxRemoval
 
         Should -Invoke -CommandName Show-WinUtilMessage -Times 1 -Exactly -ParameterFilter {
-            $Message -eq "No AppX Package selected" -and
+            $Message -eq "未选择 AppX 包" -and
                 $Title -eq "Error" -and
                 $Button -eq "OK" -and
                 $Icon -eq "Error"

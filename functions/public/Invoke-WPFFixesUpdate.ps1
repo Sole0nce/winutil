@@ -192,14 +192,14 @@
     try {
         (New-Object -ComObject Microsoft.Update.AutoUpdate).DetectNow()
     } catch {
-        Write-WinUtilLog -Level "ERROR" -Component "Updates" -Message "Failed to create Windows Update COM object: $_"
-        Write-Warning "Failed to create Windows Update COM object: $_"
+        Write-WinUtilLog -Level "ERROR" -Component "Updates" -Message "创建 Windows 更新 COM 对象失败：$_"
+        Write-Warning "创建 Windows 更新 COM 对象失败：$_"
     }
     Start-Process -NoNewWindow -FilePath "wuauclt" -ArgumentList "/resetauthorization", "/detectnow"
     Write-Progress -Id 10 -ParentId 0 -Activity "Forcing discovery" -Status "Completed" -PercentComplete 100
     Write-Progress -Id 0 -Activity "Repairing Windows Update" -Status "Completed" -PercentComplete 100
 
-    Show-WinUtilMessage -Message "已加载默认设置。`n 请重新启动计算机" -Title "Reset Windows Update" -Button "OK" -Icon "Information" | Out-Null
+    Show-WinUtilMessage -Message "已加载默认设置。`n 请重新启动计算机" -Title "重置 Windows 更新" -Button "OK" -Icon "Information" | Out-Null
 
     # Remove the progress bars
     Write-Progress -Id 0 -Activity "Repairing Windows Update" -Completed

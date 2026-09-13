@@ -1,4 +1,4 @@
-#===========================================================================
+﻿#===========================================================================
 # Tests - UI Selection and State Helpers
 #===========================================================================
 
@@ -335,7 +335,7 @@ Describe "Invoke-WPFImpex import selection state" {
             $Message -eq "Skipped unsupported legacy selections: WPFInstallRetired"
         }
         Should -Invoke -CommandName Show-WinUtilMessage -Times 1 -Exactly -ParameterFilter {
-            $Title -eq "Legacy Configuration Partially Imported" -and
+            $Title -eq "旧版配置已部分导入" -and
             $Message -like "*WPFInstallRetired*"
         }
         Should -Invoke -CommandName Write-Error -Times 0 -Exactly
@@ -379,7 +379,7 @@ Describe "Invoke-WPFImpex import selection state" {
             $Message -eq "Skipped unsupported legacy selections: WPFInstallRetired"
         }
         Should -Invoke -CommandName Show-WinUtilMessage -Times 1 -Exactly -ParameterFilter {
-            $Title -eq "Unsupported Legacy Configuration"
+            $Title -eq "不支持的旧版配置"
         }
         Should -Invoke -CommandName Write-Error -Times 0 -Exactly
     }

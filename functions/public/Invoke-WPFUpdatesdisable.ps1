@@ -27,8 +27,8 @@
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 0
 
     foreach ($serviceName in @("BITS", "wuauserv", "UsoSvc")) {
-        Write-Host "Stopping and disabling $serviceName service."
-        Write-WinUtilLog -Component "Updates" -Message "Stopping and disabling $serviceName service."
+        Write-Host "正在停止并禁用 $serviceName 服务。"
+        Write-WinUtilLog -Component "Updates" -Message "正在停止并禁用 $serviceName 服务。"
         Stop-Service -Name $serviceName -Force -ErrorAction SilentlyContinue
         Set-Service -Name $serviceName -StartupType Disabled
     }

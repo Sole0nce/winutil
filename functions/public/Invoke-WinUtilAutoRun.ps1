@@ -128,36 +128,36 @@ function Write-WinUtilAutoRunSummary {
     )
 
     Write-Host ""
-    Write-Host "=== WinUtil headless run ===" -ForegroundColor Cyan
+    Write-Host "=== WinUtil 无界面运行 ===" -ForegroundColor Cyan
 
     foreach ($step in @($Summary.Steps)) {
         $state = if ($step.TimedOut) { "TIMED OUT" } elseif ($step.Errors -gt 0) { "$($step.Errors) error(s)" } elseif ($step.Warnings -gt 0) { "$($step.Warnings) warning(s)" } else { "ok" }
         $colour = if ($step.TimedOut -or $step.Errors -gt 0 -or $step.Warnings -gt 0) { "Yellow" } else { "Green" }
-        Write-Host ("  {0,-14} {1,3} item(s)  {2,5}s  {3}" -f $step.Name, $step.Items, $step.Seconds, $state) -ForegroundColor $colour
+        Write-Host ("  {0,-14} {1,3} 项  {2,5} 秒  {3}" -f $step.Name, $step.Items, $step.Seconds, $state) -ForegroundColor $colour
     }
 
     if (@($Summary.Steps).Count -eq 0) {
-        Write-Host "  nothing was selected" -ForegroundColor Yellow
+        Write-Host "  未选择任何项目" -ForegroundColor Yellow
         Write-Host ""
         return 2
     }
 
     if ($Summary.TimedOut -gt 0 -or $Summary.Failed -gt 0) {
         Write-Host ""
-        Write-Host "Finished with problems. See $($sync.logPath)" -ForegroundColor Yellow
+        Write-Host "已完成，但存在问题。详见 $($sync.logPath)" -ForegroundColor Yellow
         Write-Host ""
         return 1
     }
 
     if ($Summary.Warnings -gt 0) {
         Write-Host ""
-        Write-Host "Completed with warnings. See $($sync.logPath)" -ForegroundColor Yellow
+        Write-Host "已完成，但有警告。详见 $($sync.logPath)" -ForegroundColor Yellow
         Write-Host ""
         return 0
     }
 
     Write-Host ""
-    Write-Host "All steps completed. Log: $($sync.logPath)" -ForegroundColor Green
+    Write-Host "所有步骤已完成。日志：$($sync.logPath)" -ForegroundColor Green
     Write-Host ""
     return 0
 }

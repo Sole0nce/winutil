@@ -1,4 +1,4 @@
-#===========================================================================
+﻿#===========================================================================
 # Tests - XAML Control Wiring
 
 BeforeAll {
@@ -219,9 +219,9 @@ Describe "XAML document" {
         $updatesTab = $script:xaml.SelectSingleNode('//*[local-name()="TabItem"][@Name="WPFTab4"]')
         $profileGrid = $updatesTab.SelectSingleNode('.//*[local-name()="UniformGrid"]')
         $expectedButtons = @{
-            WPFUpdatessecurity = "Apply Recommended"
-            WPFUpdatesdefault = "Restore Defaults"
-            WPFUpdatesdisable = "Disable Updates"
+            WPFUpdatessecurity = "应用推荐方案"
+            WPFUpdatesdefault = "恢复默认"
+            WPFUpdatesdisable = "禁用更新"
         }
 
         $profileGrid.GetAttribute("Columns") | Should -Be "3"

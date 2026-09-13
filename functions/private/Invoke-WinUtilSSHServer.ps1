@@ -26,7 +26,7 @@
         Write-Host "OpenSSH 服务器的防火墙规则已创建并启用。"
     } elseif ([int]$firewallRule.Enabled -eq 2) {
         Set-NetFirewallRule -Name 'sshd' -Enabled True
-        Write-Host "Firewall rule for OpenSSH Server enabled."
+        Write-Host "已启用 OpenSSH 服务器的防火墙规则。"
     }
 
     # An SSH logon for a member of the administrators group gets a full token
@@ -51,9 +51,9 @@
     $configWasOverridden = $restoredContent -ne $configContent
 
     if (-not (Test-Path -Path $authorizedKeysPath)) {
-        Write-Host "Creating administrators_authorized_keys file..."
+        Write-Host "正在创建 administrators_authorized_keys 文件..."
         New-Item -Path $authorizedKeysPath -ItemType File -Force | Out-Null
-        Write-Host "administrators_authorized_keys file created at $authorizedKeysPath."
+        Write-Host "administrators_authorized_keys 文件已创建于 $authorizedKeysPath。"
     }
 
     if ($configWasOverridden -and (Test-Path -Path $profileKeysPath)) {
@@ -64,7 +64,7 @@
 
         if ($keysToMove.Count -gt 0) {
             Add-Content -Path $authorizedKeysPath -Value $keysToMove
-            Write-Host "Moved $($keysToMove.Count) key(s) from $profileKeysPath to $authorizedKeysPath."
+            Write-Host "已将 $($keysToMove.Count) 个密钥从 $profileKeysPath 移动到 $authorizedKeysPath。"
         }
     }
 
@@ -84,11 +84,11 @@
 
     if ($configWasOverridden) {
         Set-Content -Path $sshdConfigPath -Value $restoredContent -Force
-        Write-Host "Restored the administrator key file setting in sshd_config."
+        Write-Host "已在 sshd_config 中恢复管理员密钥文件设置。"
         Restart-Service -Name sshd -Force
     }
 
     Write-Host "OpenSSH 服务器已成功启用。"
-    Write-Host "The config file can be located at $sshdConfigPath"
+    Write-Host "配置文件位于 $sshdConfigPath"
     Write-Host "将您的公钥添加到该文件 -> $authorizedKeysPath"
 }

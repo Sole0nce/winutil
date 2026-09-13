@@ -130,7 +130,7 @@
 
                         if ($skippedSelections.Count -eq @($flattenedJson).Count) {
                             if ($sync.Form) {
-                                Show-WinUtilMessage -Message "This legacy configuration contains no settings supported by this version of WinUtil. No changes have been made." -Title "Unsupported Legacy Configuration" -Icon "Warning" | Out-Null
+                                Show-WinUtilMessage -Message "此旧版配置不包含当前版本 WinUtil 支持的设置，未做任何更改。" -Title "不支持的旧版配置" -Icon "Warning" | Out-Null
                             }
                             return
                         }
@@ -141,7 +141,7 @@
                                 $skippedDisplay += "`n...and $($skippedSelections.Count - 10) more. See the WinUtil log for details."
                             }
                             if ($sync.Form) {
-                                Show-WinUtilMessage -Message "Supported settings were imported. The following retired settings were skipped:`n`n$skippedDisplay" -Title "Legacy Configuration Partially Imported" -Icon "Warning" | Out-Null
+                                Show-WinUtilMessage -Message "已导入受支持的设置。以下已停用的设置被跳过：`n`n$skippedDisplay" -Title "旧版配置已部分导入" -Icon "Warning" | Out-Null
                             }
                         }
                     } else {
