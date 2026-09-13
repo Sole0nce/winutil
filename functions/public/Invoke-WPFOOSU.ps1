@@ -1,12 +1,18 @@
-function Invoke-WPFOOSU {
-    try {
-        $ProgressPreference = 'SilentlyContinue'
+﻿function Invoke-WPFOOSU {
+    Start-WinUtilJob -Name "OOSU" -Description "Downloading O&O ShutUp10++" -Parameters @{
+        DownloadPath = Join-Path $sync.winutildir "ooshutup10.exe"
+    } -ScriptBlock {
+        param($DownloadPath)
 
-        Invoke-WebRequest -Uri https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe -OutFile "$winutildir\ooshutup10.exe"
-        Start-Process -FilePath "$winutildir\ooshutup10.exe"
+        Write-WinUtilLog -Component "OOSU" -Message "Downloading O&O ShutUp10++."
 
-        $ProgressPreference = 'Continue'
-    } catch {
-        Write-Error "无法下载 O&O ShutUp10。请确保你有可用的网络连接。"
+        Save-WinUtilFile -Uri "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -DestinationPath $DownloadPath -ProgressCallback {
+            param($percent)
+            Step-WinUtilJob -Status "Downloading O&O ShutUp10++ ($percent%)" -Percent $percent
+        }
+
+        Step-WinUtilJob -Status "Launching O&O ShutUp10++" -Percent 100
+        Start-Process -FilePath $DownloadPath
+        Write-WinUtilLog -Component "OOSU" -Message "O&O ShutUp10++ launched."
     }
 }

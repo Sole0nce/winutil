@@ -53,7 +53,8 @@ if ($failed.Count -gt 0) {
 }
 '@
 
-            $output = & $windowsPowerShell.Source -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command $parseScript 2>&1
+            $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($parseScript))
+            $output = & $windowsPowerShell.Source -NoProfile -NonInteractive -ExecutionPolicy Bypass -EncodedCommand $encodedCommand 2>&1
             if ($LASTEXITCODE -ne 0) {
                 throw "Windows PowerShell parser failed:`n$($output | Out-String)"
             }
@@ -131,10 +132,12 @@ Describe "Compiled WinUtil sanity" {
             ('$sync.configs.applications = @' + "'"),
             ('$inputXML = @' + "'"),
             ('$WinUtilAutounattendXml = @' + "'"),
-            "SessionStateVariableEntry -ArgumentList 'sync'",
+            "SessionStateVariableEntry",
             "SessionStateFunctionEntry",
             "[runspacefactory]::CreateRunspacePool",
-            "function Invoke-WPFRunspace"
+            "[runspacefactory]::CreateRunspace(`$Host, (New-WinUtilSessionState))",
+            "function Invoke-WPFRunspace",
+            "function Start-WinUtilJob"
         )
 
         foreach ($snippet in $requiredSnippets) {
@@ -177,7 +180,7 @@ Describe "Compiled WinUtil sanity" {
             ('$sync.configs.applications = @' + "'"),
             ('$inputXML = @' + "'"),
             ('$WinUtilAutounattendXml = @' + "'"),
-            '$sync.SearchBarClearButton.Add_Click({'
+            '$uiShell.AddScript({ Start-WinUtilUserInterface })'
         )
 
         $lastIndex = -1
@@ -197,16 +200,23 @@ Describe "Compiled WinUtil sanity" {
     It "replaces the generated build date placeholder" {
         $content = Get-Content -Path $script:compiledPath -Raw
         $expectedBuildDate = Get-Date -Format "yy.MM.dd"
+        $expectedLocalCompile = (-not [string]::Equals($env:GITHUB_ACTIONS, "true", [StringComparison]::OrdinalIgnoreCase)).ToString().ToLowerInvariant()
 
         $content | Should -Not -Match ([regex]::Escape("#{replaceme}"))
+        $content | Should -Not -Match ([regex]::Escape("#{islocalcompile}"))
         $content | Should -Match ([regex]::Escape('$sync.version = "' + $expectedBuildDate + '"'))
+        $content | Should -Match ([regex]::Escape('$sync.IsLocalCompile = "' + $expectedLocalCompile + '" -eq "true"'))
     }
 }
 
 Describe "Runspace sanity" {
     BeforeAll {
+        . (Join-Path $script:repoRoot "functions\private\Get-WinUtilRunspacePoolLock.ps1")
+        . (Join-Path $script:repoRoot "functions\private\Register-WinUtilRunspaceCleanup.ps1")
         . (Join-Path $script:repoRoot "functions\public\Invoke-WPFRunspace.ps1")
         . (Join-Path $script:repoRoot "functions\private\Close-WinUtilRunspacePool.ps1")
+        . (Join-Path $script:repoRoot "functions\private\Stop-WinUtilActiveWork.ps1")
+        . (Join-Path $script:repoRoot "functions\private\New-WinUtilSessionState.ps1")
         . (Join-Path $script:repoRoot "functions\private\Initialize-WinUtilRunspacePool.ps1")
     }
 

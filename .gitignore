@@ -10,11 +10,9 @@ testResults.xml
 # general software/os specific
 desktop.ini
 .DS_Store
+__pycache__/
+*.pyc
+.venv/
 
 .vscode/
 .idea/
-
-# hugo files
-docs/public/
-docs/.hugo_build.lock
-docs/resources/

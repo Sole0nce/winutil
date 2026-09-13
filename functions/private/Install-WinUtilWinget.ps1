@@ -1,4 +1,4 @@
-function Install-WinUtilWinget {
+﻿function Install-WinUtilWinget {
     <#
 
     .SYNOPSIS
@@ -7,11 +7,21 @@ function Install-WinUtilWinget {
     .DESCRIPTION
         installs winGet if needed
     #>
-    if ((Test-WinUtilPackageManager -winget) -eq "installed") {
+    param(
+        [switch]$Force
+    )
+
+    # The repair action needs Repair-WinGetPackageManager to run even when winget is detected,
+    # which is the case a broken installation presents
+    if (-not $Force -and (Test-WinUtilPackageManager -winget) -eq "installed") {
         return
     }
 
-    Write-Host "WinGet 未安装。正在安装..." -ForegroundColor Red
+    if ($Force) {
+        Write-Host "Repairing the WinGet installation..." -ForegroundColor Yellow
+    } else {
+        Write-Host "WinGet 未安装。正在安装..." -ForegroundColor Red
+    }
 
     Install-PackageProvider -Name NuGet -Force
     Install-Module -Name Microsoft.WinGet.Client -Force

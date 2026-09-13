@@ -6,10 +6,118 @@ $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 
 BeforeAll {
     $script:repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+    . (Join-Path $script:repoRoot "functions\private\Invoke-WinUtilCurrentSystem.ps1")
     . (Join-Path $script:repoRoot "functions\private\Set-WinUtilRegistry.ps1")
     . (Join-Path $script:repoRoot "functions\private\Set-WinUtilService.ps1")
+    . (Join-Path $script:repoRoot "functions\public\Invoke-WPFPanelAutologin.ps1")
+    . (Join-Path $script:repoRoot "functions\private\Invoke-WinUtilInstallPSProfile.ps1")
 
+    function winget {
+        param([Parameter(ValueFromRemainingArguments = $true)]$Arguments)
+    }
+    function choco {
+        param([Parameter(ValueFromRemainingArguments = $true)]$Arguments)
+    }
+    # The CLI path is what these tests cover; the module path is verified against real winget
+    function Step-WinUtilJob { param([string]$Status, [int]$Percent, [string]$State, [string]$Overlay, [switch]$Hide) }
     function Write-WinUtilLog { }
+}
+
+Describe "Invoke-WPFPanelAutologin" {
+    BeforeEach {
+        $script:sync = [Hashtable]::Synchronized(@{ winutildir = $TestDrive })
+        Mock Invoke-WebRequest { }
+        Mock Start-Process { }
+    }
+
+    It "uses the shared WinUtil data directory from a worker runspace" {
+        Invoke-WPFPanelAutologin
+
+        $expectedPath = Join-Path $TestDrive "autologin.exe"
+        Should -Invoke -CommandName Invoke-WebRequest -Times 1 -Exactly -ParameterFilter { $OutFile -eq $expectedPath }
+        Should -Invoke -CommandName Start-Process -Times 1 -Exactly -ParameterFilter { $FilePath -eq $expectedPath }
+    }
+}
+
+Describe "Get-WinUtilPowerShell7Path" {
+    It "finds a new standard install even before the current process PATH refreshes" {
+        $expectedPath = "$env:ProgramFiles\PowerShell\7\pwsh.exe"
+        Mock Get-Command { $null } -ParameterFilter { $Name -eq "pwsh" }
+        Mock Test-Path { $LiteralPath -eq $expectedPath }
+
+        Get-WinUtilPowerShell7Path | Should -Be $expectedPath
+    }
+
+    It "is also used by profile removal so a stale process PATH is supported" {
+        $source = Get-Content (Join-Path $script:repoRoot "functions\private\Invoke-WinUtilUninstallPSProfile.ps1") -Raw
+
+        $source | Should -Match '\$pwshPath = Get-WinUtilPowerShell7Path'
+        $source | Should -Match '& \$pwshPath -NoProfile'
+        $source | Should -Not -Match 'Get-Command pwsh'
+    }
+}
+
+Describe "Invoke-WinUtilCurrentSystem installed apps" {
+    BeforeEach {
+        $script:sync = [Hashtable]::Synchronized(@{
+            configs = [pscustomobject]@{
+                applicationsHashtable = @{
+                    WPFInstallGit = [pscustomobject]@{ winget = "Git.Git"; choco = "git" }
+                    WPFInstallChatGPT = [pscustomobject]@{ winget = "msstore:9NT1R1C2HH7J"; choco = "na" }
+                    WPFInstallMissing = [pscustomobject]@{ winget = "Git"; choco = "missing" }
+                }
+            }
+        })
+
+        Mock winget {
+            $global:LASTEXITCODE = 0
+            $script:wingetArguments = @($Arguments)
+            @(
+                "Name  Id  Version  Source",
+                "--------------------------------",
+                "Git  Git.Git  2.0  winget",
+                "ChatGPT  9NT1R1C2HH7J  1.0  msstore"
+            )
+        }
+        Mock choco {
+            $script:chocoArguments = @($Arguments)
+            @("Chocolatey v2", "git 2.0", "2 packages installed.")
+        }
+    }
+
+    AfterEach {
+        Remove-Variable -Name sync -Scope Script -ErrorAction SilentlyContinue
+        Remove-Variable -Name wingetArguments -Scope Script -ErrorAction SilentlyContinue
+        Remove-Variable -Name chocoArguments -Scope Script -ErrorAction SilentlyContinue
+    }
+
+    It "matches single standard and Microsoft Store package IDs" {
+        $result = @(Invoke-WinUtilCurrentSystem -CheckBox "winget")
+
+        $result | Should -HaveCount 2
+        $result | Should -Contain "WPFInstallGit"
+        $result | Should -Contain "WPFInstallChatGPT"
+        $result | Should -Not -Contain "WPFInstallMissing"
+        Should -Invoke -CommandName winget -Times 1 -Exactly
+        $script:wingetArguments | Should -Be @("list", "--accept-source-agreements", "--disable-interactivity")
+    }
+
+    It "fails promptly when Winget cannot list applications" {
+        Mock winget {
+            $global:LASTEXITCODE = 1
+            "winget failed"
+        }
+
+        { Invoke-WinUtilCurrentSystem -CheckBox "winget" } | Should -Throw "winget list failed with exit code 1."
+    }
+
+    It "matches the primary Chocolatey package ID in one list call" {
+        $result = @(Invoke-WinUtilCurrentSystem -CheckBox "choco")
+
+        $result | Should -Be @("WPFInstallGit")
+        Should -Invoke -CommandName choco -Times 1 -Exactly
+        $script:chocoArguments | Should -Be @("list")
+    }
 }
 
 Describe "Set-WinUtilRegistry" {
@@ -78,7 +186,6 @@ Describe "Set-WinUtilRegistry" {
         $registryPath = "HKLM:\Software\WinUtilTest"
         $script:testPathResults["HKU:\"] = $true
         $script:testPathResults[$registryPath] = $true
-
         Set-WinUtilRegistry -Path $registryPath -Name "ObsoleteValue" -Type "String" -Value "<RemoveEntry>"
 
         Should -Invoke -CommandName Set-ItemProperty -Times 0 -Exactly
@@ -89,6 +196,7 @@ Describe "Set-WinUtilRegistry" {
                 $ErrorAction -eq "Stop"
         }
     }
+
 }
 
 Describe "Set-WinUtilService" {

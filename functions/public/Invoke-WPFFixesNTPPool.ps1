@@ -1,4 +1,4 @@
-function Invoke-WPFFixesNTPPool {
+﻿function Invoke-WPFFixesNTPPool {
     <#
     .SYNOPSIS
         Configures Windows to use pool.ntp.org for NTP synchronization
@@ -14,7 +14,4 @@ function Invoke-WPFFixesNTPPool {
     Restart-Service w32time
     w32tm /resync
 
-    Write-Host "================================="
-    Write-Host "-- NTP 配置完成 ---"
-    Write-Host "================================="
 }

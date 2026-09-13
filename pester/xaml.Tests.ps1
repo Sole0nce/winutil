@@ -1,6 +1,5 @@
 #===========================================================================
 # Tests - XAML Control Wiring
-#===========================================================================
 
 BeforeAll {
     $script:repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
@@ -8,7 +7,7 @@ BeforeAll {
     $script:functionRoot = Join-Path $script:repoRoot "functions"
     $script:scriptsRoot = Join-Path $script:repoRoot "scripts"
     $script:xamlPath = Join-Path $script:repoRoot "xaml\inputXML.xaml"
-    $script:mainScriptPath = Join-Path $script:scriptsRoot "main.ps1"
+    $script:uiScriptPath = Join-Path $script:functionRoot "private\Start-WinUtilUserInterface.ps1"
     $script:buttonScriptPath = Join-Path $script:functionRoot "public\Invoke-WPFButton.ps1"
     $script:xamlText = Get-Content -Path $script:xamlPath -Raw
     $script:xaml = [xml]$script:xamlText
@@ -111,6 +110,40 @@ BeforeAll {
     }
 }
 
+Describe "Interface startup failures" {
+    BeforeAll {
+        function Measure-WinUtilStep { param($Scope, $Name, $ScriptBlock) $null = $Scope, $Name; & $ScriptBlock }
+        function Write-WinUtilLog { param($Level, $Component, $Message) $null = $Level, $Component, $Message }
+    }
+
+    BeforeEach {
+        . $script:uiScriptPath
+        $script:sync = [Hashtable]::Synchronized(@{
+            StepTimings = [System.Collections.ArrayList]::Synchronized([System.Collections.ArrayList]::new())
+            preferences = @{ theme = "Auto" }
+        })
+        $script:inputXML = '<NotAWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />'
+
+        Mock Measure-WinUtilStep { & $ScriptBlock }
+        Mock Write-WinUtilLog { }
+        Mock Write-Host { }
+    }
+
+    It "throws when the XAML cannot create the window" {
+        { Start-WinUtilUserInterface } | Should -Throw "Failed to parse the XAML content*"
+
+        Should -Invoke Write-WinUtilLog -Times 1 -Exactly -ParameterFilter {
+            $Level -eq "ERROR" -and $Component -eq "UI"
+        }
+    }
+
+    It "exits a direct file process but returns to an in-memory caller after an interface failure" {
+        $mainScript = Get-Content -Path (Join-Path $script:scriptsRoot "main.ps1") -Raw
+
+        $mainScript | Should -Match '\$uiFailed = \$true[\s\S]*if \(\$uiFailed\) \{\s*\$global:LASTEXITCODE = 1\s*if \(\$script:WinUtilIsFileProcess\) \{ exit 1 \}\s*return 1'
+    }
+}
+
 Describe "XAML document" {
     It "loads inputXML.xaml as a WPF window XML document" {
         $script:xaml.DocumentElement.LocalName | Should -Be "Window"
@@ -134,20 +167,32 @@ Describe "XAML document" {
             "WPFTab3BT",
             "WPFTab4BT",
             "WPFTab5BT",
-            "WPFTab6BT",
             "SearchBar",
+            "SearchBarIcon",
             "SearchBarClearButton",
+            "WPFSearchChips",
+            "WPFSearchChipAll",
+            "WPFSearchChipBrowsers",
+            "WPFSearchChipCommunications",
+            "WPFSearchChipDevelopment",
+            "WPFSearchChipDocument",
+            "WPFSearchChipGames",
+            "WPFSearchChipMicrosoftTools",
+            "WPFSearchChipMultimediaTools",
+            "WPFSearchChipProTools",
+            "WPFSearchChipSelfhostedTools",
+            "WPFSearchChipUtilities",
             "appscategory",
             "appspanel",
             "tweakspanel",
             "featurespanel",
-            "updatespanel",
             "appxpanel",
             "WPFstandard",
             "WPFminimal",
             "WPFAdvanced",
             "WPFClearTweaksSelection",
             "WPFGetInstalledTweaks",
+            "WPFAppxRemoval",
             "WPFTweaksbutton",
             "WPFUndoall",
             "WPFUpdatesdefault",
@@ -157,6 +202,8 @@ Describe "XAML document" {
             "WPFGetInstalledAppx",
             "WPFSelectAllAppx",
             "WPFClearAppxSelection",
+            "WPFBackToTweaks",
+            "WPFInstallSelectedAppx",
             "WPFRemoveSelectedAppx"
         )
 
@@ -164,6 +211,25 @@ Describe "XAML document" {
         if ($missingControls.Count -gt 0) {
             throw ($missingControls -join "`n")
         }
+    }
+
+
+
+    It "presents the three Updates profiles with accurate action labels" {
+        $updatesTab = $script:xaml.SelectSingleNode('//*[local-name()="TabItem"][@Name="WPFTab4"]')
+        $profileGrid = $updatesTab.SelectSingleNode('.//*[local-name()="UniformGrid"]')
+        $expectedButtons = @{
+            WPFUpdatessecurity = "Apply Recommended"
+            WPFUpdatesdefault = "Restore Defaults"
+            WPFUpdatesdisable = "Disable Updates"
+        }
+
+        $profileGrid.GetAttribute("Columns") | Should -Be "3"
+        foreach ($buttonName in $expectedButtons.Keys) {
+            $button = $updatesTab.SelectSingleNode(".//*[local-name()='Button'][@Name='$buttonName']")
+            $button.GetAttribute("Content") | Should -Be $expectedButtons[$buttonName]
+        }
+        $updatesTab.SelectSingleNode('.//*[@Name="updatespanel"]') | Should -BeNullOrEmpty
     }
 
     It "contains Win11 Creator controls used by the ISO workflow" {
@@ -223,15 +289,88 @@ Describe "XAML document" {
             }
         }
     }
+
+
+
+    It "centers top bar controls vertically" {
+        $navPanel = $script:xaml.SelectSingleNode('//*[local-name()="StackPanel"][@Name="NavDockPanel"]')
+        $minimizeButton = $script:xaml.SelectSingleNode('//*[local-name()="Button"][@Name="WPFMinimizeButton"]')
+        $actionPanel = $minimizeButton.ParentNode
+        $topBarButtonNames = @(
+            "ThemeButton",
+            "FontScalingButton",
+            "SettingsButton",
+            "WPFMinimizeButton",
+            "WPFMaximizeButton",
+            "WPFCloseButton"
+        )
+
+        $navPanel.GetAttribute("VerticalAlignment") | Should -Be "Center"
+        $actionPanel.GetAttribute("VerticalAlignment") | Should -Be "Center"
+
+        foreach ($buttonName in $topBarButtonNames) {
+            $button = $script:xaml.SelectSingleNode("//*[local-name()='Button'][@Name='$buttonName']")
+            $button.GetAttribute("VerticalAlignment") | Should -Be "Center"
+        }
+    }
+
+
+
+
+
+    It "scopes toggle button styles without leaking into combo boxes" {
+        $resources = $script:xaml.SelectSingleNode('//*[local-name()="Window.Resources"]')
+        $implicitToggleStyles = @($resources.SelectNodes('./*[local-name()="Style"][@TargetType="ToggleButton" or @TargetType="{x:Type ToggleButton}"][not(@x:Key)]', $script:xamlNamespace))
+        $tabStyle = $resources.SelectSingleNode('./*[local-name()="Style"][@x:Key="TabToggleButton"]', $script:xamlNamespace)
+        $comboToggleStyle = $resources.SelectSingleNode('./*[local-name()="Style"][@x:Key="ComboBoxToggleButtonStyle"]', $script:xamlNamespace)
+        $comboStyle = $resources.SelectSingleNode('./*[local-name()="Style"][@TargetType="ComboBox"]')
+        $comboToggle = $comboStyle.SelectSingleNode('.//*[local-name()="ToggleButton"][@Name="ToggleButton"]')
+        $comboItemStyle = $resources.SelectSingleNode('./*[local-name()="Style"][@TargetType="ComboBoxItem"]')
+        $navButtons = @($script:xaml.SelectNodes('//*[local-name()="StackPanel"][@Name="NavDockPanel"]/*[local-name()="ToggleButton"]'))
+
+        $implicitToggleStyles | Should -BeNullOrEmpty
+        $tabStyle | Should -Not -BeNullOrEmpty
+        $comboToggleStyle | Should -Not -BeNullOrEmpty
+        $comboToggle.GetAttribute("Style") | Should -Be "{StaticResource ComboBoxToggleButtonStyle}"
+        $comboItemStyle | Should -Not -BeNullOrEmpty
+        $navButtons.Count | Should -Be 5
+        foreach ($navButton in $navButtons) {
+            $navButton.GetAttribute("Style") | Should -Be "{StaticResource TabToggleButton}"
+        }
+    }
+
+    It "uses state-aware maximize and restore icons" {
+        $themes = Get-WinUtilConfigObject -Name "themes"
+        $minimizeButton = $script:xaml.SelectSingleNode('//*[local-name()="Button"][@Name="WPFMinimizeButton"]')
+        $maximizeButton = $script:xaml.SelectSingleNode('//*[local-name()="Button"][@Name="WPFMaximizeButton"]')
+        $closeButton = $script:xaml.SelectSingleNode('//*[local-name()="Button"][@Name="WPFCloseButton"]')
+        $maximizeStyle = $maximizeButton.SelectSingleNode('./*[local-name()="Button.Style"]/*[local-name()="Style"]')
+        $maximizeIcon = $maximizeStyle.SelectSingleNode('./*[local-name()="Setter"][@Property="Content"]')
+        $maximizedTrigger = $maximizeStyle.SelectSingleNode('./*[local-name()="Style.Triggers"]/*[local-name()="DataTrigger"][@Value="Maximized"]')
+        $restoreIcon = $maximizedTrigger.SelectSingleNode('./*[local-name()="Setter"][@Property="Content"]')
+
+        foreach ($button in @($minimizeButton, $maximizeButton, $closeButton)) {
+            $button.GetAttribute("FontFamily") | Should -Be "Segoe MDL2 Assets"
+            $button.GetAttribute("FontSize") | Should -Be "{DynamicResource CloseIconFontSize}"
+            $button.GetAttribute("Margin") | Should -BeIn @("0", "0,0,0,0")
+        }
+
+        $minimizeButton.GetAttribute("Content") | Should -Be ([string][char]0xE921)
+        $maximizeIcon.GetAttribute("Value") | Should -Be ([string][char]0xE922)
+        $restoreIcon.GetAttribute("Value") | Should -Be ([string][char]0xE923)
+        $closeButton.GetAttribute("Content") | Should -Be ([string][char]0xE8BB)
+        $maximizeStyle.GetAttribute("BasedOn") | Should -Be "{StaticResource HoverButtonStyle}"
+        [int]$themes.shared.CloseIconFontSize | Should -BeLessThan ([int]$themes.shared.SettingsIconFontSize)
+    }
 }
 
 Describe "XAML and sync wiring" {
     It "wires generated config panels to existing target grids" {
         $xamlNames = @(Get-WinUtilXamlRuntimeNamedControls | ForEach-Object { $_.Name })
-        $mainLines = Get-Content -Path $script:mainScriptPath
+        $uiLines = Get-Content -Path $script:uiScriptPath
         $invalidTargets = New-Object System.Collections.Generic.List[string]
 
-        foreach ($line in $mainLines) {
+        foreach ($line in $uiLines) {
             if ($line.TrimStart().StartsWith("#")) {
                 continue
             }
@@ -272,10 +411,35 @@ Describe "XAML and sync wiring" {
             "Buttons",
             "PSScriptRoot",
             "version",
+            "IsLocalCompile",
             "winutildir",
             "logPath",
             "transcriptPath",
-            "ProcessRunning",
+            "ActiveJob",
+            "ActiveJobToken",
+            "LastJobResult",
+            # Intrinsic to the synchronized hashtable rather than WinUtil state; the job layer
+            # locks on it to claim and release the active job slot
+            "SyncRoot",
+            "UIRunspace",
+            "UIDispatchDelegate",
+            "StepTimings",
+            "LoggedErrors",
+            "StartedAt",
+            "SessionState",
+            "TabWarmupQueue",
+            "BackgroundQueues",
+            "ConsoleProgressState",
+            "LastInputAt",
+            "ActiveShells",
+            "RunspacePoolLock",
+            "AssetRenderLock",
+            "ShuttingDown",
+            "ForceClose",
+            "FinishInConsole",
+            "PendingCloseWork",
+            "StopWatchdogTimer",
+            "IconFetchRunning",
             "selected",
             "selectedAppx",
             "selectedApps",
@@ -289,7 +453,6 @@ Describe "XAML and sync wiring" {
             "appPopup",
             "appPopupSelectedApp",
             "ItemsControl",
-            "InstalledPrograms",
             "ImportInProgress",
             "ScriptsInstallPrograms",
             "keys",
@@ -300,24 +463,21 @@ Describe "XAML and sync wiring" {
             "checkmarkrender",
             "warningrender",
             "InitializedTabs",
+            "AppCategoryChips",
+            "SelectedAppCategories",
+            "AppCategoryAutoExpanded",
             "RenderedAssetCache",
             "ToggleStatusCache",
-            "InstallAppAreaBorder",
-            "InstallAppAreaScrollViewer",
-            "InstallAppAreaOverlay",
-            "InstallAppAreaOverlayText",
             "InstallAppRenderQueue",
             "InstallAppEntriesRendered",
-            "ProgressBar",
-            "progressBarTextBlock",
             "FontScaleFactor",
             "Win11ISOImageInfo",
             "Win11ISODriveLetter",
             "Win11ISOWimPath",
             "Win11ISOImagePath",
-            "Win11ISOModifying",
             "Win11ISOWorkDir",
             "Win11ISOContentsDir",
+            "Win11ISOExistingWorkRetryPending",
             "Win11ISOUSBDisks"
         )
         $allowedNames = @($xamlNames + $generatedNames + $dynamicStateNames) | Sort-Object -Unique
@@ -371,7 +531,7 @@ Describe "WPF handler wiring" {
         )
         $buttonSwitchNames = @(Get-WinUtilButtonSwitchNames)
         $featureNames = @((Get-WinUtilConfigObject -Name "feature").PSObject.Properties.Name)
-        $mainScript = Get-Content -Path $script:mainScriptPath -Raw
+        $uiScript = Get-Content -Path $script:uiScriptPath -Raw
         $unhandledButtons = New-Object System.Collections.Generic.List[string]
 
         foreach ($button in $buttonControls) {
@@ -379,9 +539,12 @@ Describe "WPF handler wiring" {
             $hasFeatureHandler = Test-WinUtilNameInSet -Name $button.Name -Set $featureNames
             $escapedName = [regex]::Escape($button.Name)
             $explicitHandlerPattern = '\$sync\s*(?:\[\s*["'']' + $escapedName + '["'']\s*\]|\.' + $escapedName + ')\.Add_Click'
-            $hasExplicitHandler = $mainScript -imatch $explicitHandlerPattern
+            $hasExplicitHandler = $uiScript -imatch $explicitHandlerPattern
 
-            if (-not ($hasSwitchHandler -or $hasFeatureHandler -or $hasExplicitHandler)) {
+            # The category chips share one handler, wired from the list that names them
+            $hasChipHandler = $uiScript -imatch ('@\{\s*Name\s*=\s*"' + $escapedName + '"')
+
+            if (-not ($hasSwitchHandler -or $hasFeatureHandler -or $hasExplicitHandler -or $hasChipHandler)) {
                 $unhandledButtons.Add($button.Name)
             }
         }

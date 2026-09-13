@@ -1,4 +1,4 @@
-Write-Host @"
+﻿Write-Host @"
     CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
  CCC::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
 CC:::::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
@@ -31,480 +31,142 @@ $sync.configs.appxHashtable = @{}
 $sync.configs.appx.PSObject.Properties | ForEach-Object {
     $sync.configs.appxHashtable[$_.Name] = $_.Value
 }
-$sync.preferences.theme = "Auto"
+$sync.preferences.theme = "自动"
 $sync.preferences.packagemanager = "Winget"
 
-if ($Preset) {
-    Initialize-WinUtilRunspacePool | Out-Null
+function Remove-WinUtilTempScript {
+    <#
+    .SYNOPSIS
+        Removes the temporary script downloaded by windev.ps1.
 
-    # Selects the tweaks from $Preset varible
-    Update-WinUtilSelections -flatJson $sync.configs.preset.$Preset
+    .DESCRIPTION
+        Deletes the current script only when it is a winutil-*.ps1 file in
+        the system temporary directory. This preserves normal file-backed
+        and in-memory WinUtil launches.
+    #>
 
-    # Run tweaks that were selected by Update-WinUtilSelections
-    Invoke-WinUtilAutoRun
+    $scriptPath = $PSCommandPath
+    $tempPath = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\')
 
-    # Cleanup and exit
-    Close-WinUtilRunspacePool
-    [System.GC]::Collect()
-    Stop-Transcript
-    return
-}
-
-if ($Config) {
-    Initialize-WinUtilRunspacePool | Out-Null
-
-    Invoke-WPFImpex -type "import" -Config $Config
-
-    Invoke-WinUtilAutoRun
-
-    # Cleanup and exit
-    Close-WinUtilRunspacePool
-    [System.GC]::Collect()
-    Stop-Transcript
-    return
-}
-
-[void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
-[xml]$XAML = $inputXML
-
-# Read the XAML file
-$readerOperationSuccessful = $false # There's more cases of failure then success.
-$reader = (New-Object System.Xml.XmlNodeReader $xaml)
-try {
-    $sync["Form"] = [Windows.Markup.XamlReader]::Load( $reader )
-    $readerOperationSuccessful = $true
-} catch [System.Management.Automation.MethodInvocationException] {
-    Write-Host "我们遇到了 XAML 代码的问题。请检查此控件的语法..." -ForegroundColor Red
-    Write-Host $error[0].Exception.Message -ForegroundColor Red
-
-    If ($error[0].Exception.Message -like "*button*") {
-        write-Host "Ensure your &lt;button in the `$inputXML does NOT have a Click=ButtonClick property.  PS can't handle this`n`n`n`n" -ForegroundColor Red
-    }
-} catch {
-    Write-Host "无法加载 Windows.Markup.XamlReader。请检查语法并确保已安装 .NET。" -ForegroundColor Red
-}
-
-if (-NOT ($readerOperationSuccessful)) {
-    Write-Host "使用 Windows.Markup.XamlReader 的 Load 方法解析 XAML 内容失败。" -ForegroundColor Red
-    Write-Host "正在退出 WinUtil..." -ForegroundColor Red
-    Close-WinUtilRunspacePool
-    [System.GC]::Collect()
-    exit 1
-}
-
-# Setup the Window to follow listen for windows Theme Change events and update the winutil theme
-# throttle logic needed, because windows seems to send more than one theme change event per change
-$lastThemeChangeTime = [datetime]::MinValue
-$debounceInterval = [timespan]::FromSeconds(2)
-$sync.Form.Add_Loaded({
-    $interopHelper = New-Object System.Windows.Interop.WindowInteropHelper $sync.Form
-    $hwndSource = [System.Windows.Interop.HwndSource]::FromHwnd($interopHelper.Handle)
-    $hwndSource.AddHook({
-        param (
-            [System.IntPtr]$hwnd,
-            [int]$msg,
-            [System.IntPtr]$wParam,
-            [System.IntPtr]$lParam,
-            [ref]$handled
-        )
-        $null = $hwnd, $wParam, $lParam
-        # Check for the Event WM_SETTINGCHANGE (0x1001A) and validate that Button shows the icon for "Auto" => [char]0xF08C
-        if (($msg -eq 0x001A) -and $sync.ThemeButton.Content -eq [char]0xF08C) {
-            $currentTime = [datetime]::Now
-            if ($currentTime - $lastThemeChangeTime -gt $debounceInterval) {
-                Invoke-WinutilThemeChange -theme "Auto"
-                $script:lastThemeChangeTime = $currentTime
-                $handled = $true
-            }
-        }
-        return 0
-    })
-})
-
-Invoke-WinutilThemeChange -theme $sync.preferences.theme
-
-
-# Build only the default tab before first paint; other tabs initialize on first activation.
-$sync.InitializedTabs = @{}
-Initialize-WinUtilTabContent -TabName "Install"
-
-# Future implementation: Add Windows Version to updates panel
-#Invoke-WPFUIElements -configVariable $sync.configs.updates -targetGridName "updatespanel" -columncount 1
-
-#===========================================================================
-# Store Form Objects In PowerShell
-#===========================================================================
-
-$xaml.SelectNodes("//*[@Name]") | ForEach-Object {$sync["$("$($psitem.Name)")"] = $sync["Form"].FindName($psitem.Name)}
-
-$sync.ChocoRadioButton.Add_Checked({
-    $sync.preferences.packagemanager = "Choco"
-})
-$sync.WingetRadioButton.Add_Checked({
-    $sync.preferences.packagemanager = "Winget"
-})
-
-switch ($sync.preferences.packagemanager) {
-    "Choco" {$sync.ChocoRadioButton.IsChecked = $true; break}
-    "Winget" {$sync.WingetRadioButton.IsChecked = $true; break}
-}
-
-$sync.keys | ForEach-Object {
-    if($sync.$psitem) {
-        if($($sync["$psitem"].GetType() | Select-Object -ExpandProperty Name) -eq "ToggleButton") {
-            if ($sync.Buttons -notcontains $psitem) {
-                $sync["$psitem"].Add_Click({
-                    [System.Object]$Sender = $args[0]
-                    Invoke-WPFButton $Sender.name
-                })
-                $sync.Buttons.Add($psitem) | Out-Null
-            }
-        }
-
-        if($($sync["$psitem"].GetType() | Select-Object -ExpandProperty Name) -eq "Button") {
-            if ($sync.Buttons -notcontains $psitem) {
-                $sync["$psitem"].Add_Click({
-                    [System.Object]$Sender = $args[0]
-                    Invoke-WPFButton $Sender.name
-                })
-                $sync.Buttons.Add($psitem) | Out-Null
-            }
-        }
-
-        if ($($sync["$psitem"].GetType() | Select-Object -ExpandProperty Name) -eq "TextBlock") {
-            if ($sync["$psitem"].Name.EndsWith("Link")) {
-                $sync["$psitem"].Add_MouseUp({
-                    [System.Object]$Sender = $args[0]
-                    Start-Process $Sender.ToolTip -ErrorAction Stop
-                })
-            }
-
-        }
+    if (
+        $scriptPath -and
+        [IO.Path]::GetDirectoryName($scriptPath) -eq $tempPath -and
+        [IO.Path]::GetFileName($scriptPath) -like 'winutil-*.ps1'
+    ) {
+        Remove-Item -LiteralPath $scriptPath -Force -ErrorAction SilentlyContinue
     }
 }
 
 #===========================================================================
-# Setup and Show the Form
+# Headless runs never build a window
 #===========================================================================
 
-# Progress bar in taskbaritem > Set-WinUtilProgressbar
-$sync["Form"].TaskbarItemInfo = New-Object System.Windows.Shell.TaskbarItemInfo
-Set-WinUtilTaskbaritem -state "None"
-
-# Set the titlebar
-$sync["Form"].title = $sync["Form"].title + " " + $sync.version
-# Set the commands that will run when the form is closed
-$sync["Form"].Add_Closing({
-    Close-WinUtilRunspacePool
-    [System.GC]::Collect()
-})
-
-# Attach the event handler to the Click event
-$sync.SearchBarClearButton.Add_Click({
-    $sync.SearchBar.Text = ""
-    $sync.SearchBarClearButton.Visibility = "Collapsed"
-
-    # Focus the search bar after clearing the text
-    $sync.SearchBar.Focus()
-    $sync.SearchBar.SelectAll()
-})
-
-# add some shortcuts for people that don't like clicking
-function Invoke-WinUtilFontScaleStep([double]$Step) { $sync.FontScalingSlider.Value = [math]::Max(0.75, [math]::Min(2.0, $sync.FontScalingSlider.Value + $Step)); Invoke-WinUtilFontScaling -ScaleFactor $sync.FontScalingSlider.Value }
-
-$commonKeyEvents = {
-    # Prevent shortcuts from executing if a process is already running
-    if ($sync.ProcessRunning -eq $true) {
-        return
-    }
-
-    # Handle key presses of single keys
-    switch ($_.Key) {
-        "Escape" { $sync.SearchBar.Text = "" }
-    }
-    # Handle Alt key combinations for navigation
-    if ($_.KeyboardDevice.Modifiers -eq "Alt") {
-        $keyEventArgs = $_
-        switch ($_.SystemKey) {
-            "I" { Invoke-WPFButton "WPFTab1BT"; $keyEventArgs.Handled = $true } # Navigate to Install tab and suppress Windows Warning Sound
-            "T" { Invoke-WPFButton "WPFTab2BT"; $keyEventArgs.Handled = $true } # Navigate to Tweaks tab
-            "C" { Invoke-WPFButton "WPFTab3BT"; $keyEventArgs.Handled = $true } # Navigate to Config tab
-            "U" { Invoke-WPFButton "WPFTab4BT"; $keyEventArgs.Handled = $true } # Navigate to Updates tab
-            "W" { Invoke-WPFButton "WPFTab5BT"; $keyEventArgs.Handled = $true } # Navigate to Win11ISO tab
-        }
-    }
-    # Handle Ctrl key combinations for specific actions
-    if ($_.KeyboardDevice.Modifiers -eq "Ctrl") {
-        $keyEventArgs = $_
-        switch ($_.Key) {
-            "F" { $sync.SearchBar.Focus() } # Focus on the search bar
-            "Q" { $this.Close() } # Close the application
-        }
-    }
-    $ctrlShiftModifiers = [Windows.Input.ModifierKeys]::Control -bor [Windows.Input.ModifierKeys]::Shift
-    if ($_.KeyboardDevice.Modifiers -eq "Ctrl" -or $_.KeyboardDevice.Modifiers -eq $ctrlShiftModifiers) {
-        $keyEventArgs = $_
-        switch ($_.Key) {
-            { $_ -in "OemPlus", "Add" } { Invoke-WinUtilFontScaleStep 0.05; $keyEventArgs.Handled = $true }
-            { $_ -in "OemMinus", "Subtract" } { Invoke-WinUtilFontScaleStep -0.05; $keyEventArgs.Handled = $true }
-        }
-    }
-}
-$sync["Form"].Add_PreViewKeyDown($commonKeyEvents)
-$sync["Form"].Add_PreviewMouseWheel({
-    if ([Windows.Input.Keyboard]::Modifiers -eq "Ctrl") { Invoke-WinUtilFontScaleStep $(if ($_.Delta -gt 0) { 0.05 } else { -0.05 }); $_.Handled = $true }
-})
-
-$sync["Form"].Add_MouseLeftButtonDown({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings", "Theme", "FontScaling")
-    $sync["Form"].DragMove()
-})
-
-$sync["Form"].Add_MouseDoubleClick({
-    if ($_.OriginalSource.Name -eq "NavDockPanel" -or
-        $_.OriginalSource.Name -eq "GridBesideNavDockPanel") {
-            if ($sync["Form"].WindowState -eq [Windows.WindowState]::Normal) {
-                $sync["Form"].WindowState = [Windows.WindowState]::Maximized
-            }
-            else{
-                $sync["Form"].WindowState = [Windows.WindowState]::Normal
-            }
-    }
-})
-
-$sync["Form"].Add_Deactivated({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings", "Theme", "FontScaling")
-})
-
-$sync["Form"].Add_ContentRendered({
-    # Load the Windows Forms assembly
-    Add-Type -AssemblyName System.Windows.Forms
-    $primaryScreen = [System.Windows.Forms.Screen]::PrimaryScreen
-    # Check if the primary screen is found
-    if ($primaryScreen) {
-        # Extract screen width and height for the primary monitor
-        $screenWidth = $primaryScreen.Bounds.Width
-        $screenHeight = $primaryScreen.Bounds.Height
-
-        # Compare with the primary monitor size
-        if ($sync.Form.ActualWidth -gt $screenWidth -or $sync.Form.ActualHeight -gt $screenHeight) {
-            $sync.Form.Left = 0
-            $sync.Form.Top = 0
-            $sync.Form.Width = $screenWidth
-            $sync.Form.Height = $screenHeight
-        }
-    }
-
-    if ($PARAM_OFFLINE) {
-        # Show offline banner
-        $sync.WPFOfflineBanner.Visibility = [System.Windows.Visibility]::Visible
-
-        # Disable the install tab
-        $sync.WPFTab1BT.IsEnabled = $false
-        $sync.WPFTab1BT.Opacity = 0.5
-        $sync.WPFTab1BT.ToolTip = "安装应用程序需要网络连接。"
-
-        # Disable install-related buttons
-        $sync.WPFInstall.IsEnabled = $false
-        $sync.WPFUninstall.IsEnabled = $false
-        $sync.WPFInstallUpgrade.IsEnabled = $false
-        $sync.WPFGetInstalled.IsEnabled = $false
-
-        # Show offline indicator
-        Write-Host "检测到离线模式 - 安装选项卡已禁用。" -ForegroundColor Yellow
-
-        # Optionally switch to a different tab if install tab was going to be default
-        Invoke-WPFTab "WPFTab2BT"  # Switch to Tweaks tab instead
-    }
-    else {
-        # Online - ensure install tab is enabled
-        $sync.WPFTab1BT.IsEnabled = $true
-        $sync.WPFTab1BT.Opacity = 1.0
-        $sync.WPFTab1BT.ToolTip = $null
-        Invoke-WPFTab "WPFTab1BT"  # Default to install tab
-    }
-
-    $sync["Form"].Focus()
-    $sync["Form"].Dispatcher.BeginInvoke([System.Windows.Threading.DispatcherPriority]::Background, [action]{ Initialize-WinUtilRunspacePool | Out-Null }) | Out-Null
-    $sync["Form"].Dispatcher.BeginInvoke([System.Windows.Threading.DispatcherPriority]::Background, [action]{ Initialize-WinUtilTaskbarOverlayAssets -IncludeLogo $false -IncludeStatusAssets $true }) | Out-Null
-})
-
-# The SearchBarTimer is used to delay the search operation until the user has stopped typing for a short period
-# This prevents the ui from stuttering when the user types quickly as it dosnt need to update the ui for every keystroke
-
-$searchBarTimer = New-Object System.Windows.Threading.DispatcherTimer
-$searchBarTimer.Interval = [TimeSpan]::FromMilliseconds(300)
-$searchBarTimer.IsEnabled = $false
-
-$searchBarTimer.add_Tick({
-    $searchBarTimer.Stop()
-    switch ($sync.currentTab) {
-        "Install" {
-            Find-AppsByNameOrDescription -SearchString $sync.SearchBar.Text
-        }
-        "Tweaks" {
-            Find-TweaksByNameOrDescription -SearchString $sync.SearchBar.Text
-        }
-        "AppX" {
-            Find-TweaksByNameOrDescription -SearchString $sync.SearchBar.Text
-        }
-    }
-})
-$sync["SearchBar"].Add_TextChanged({
-    if ($sync.SearchBar.Text -ne "") {
-        $sync.SearchBarClearButton.Visibility = "Visible"
-    } else {
-        $sync.SearchBarClearButton.Visibility = "Collapsed"
-    }
-    if ($searchBarTimer.IsEnabled) {
-        $searchBarTimer.Stop()
-    }
-    $searchBarTimer.Start()
-})
-
-$sync["Form"].Add_Loaded({
-    param($e)
-    $null = $e
-    $sync.Form.MinWidth = "1000"
-    $sync["Form"].MaxWidth = [Double]::PositiveInfinity
-    $sync["Form"].MaxHeight = [Double]::PositiveInfinity
-})
-
-$NavLogoPanel = $sync["Form"].FindName("NavLogoPanel")
-$NavLogoPanel.Children.Add((Invoke-WinUtilAssets -Type "logo" -Size 25)) | Out-Null
-Initialize-WinUtilTaskbarOverlayAssets -IncludeLogo $true -IncludeStatusAssets $false
-
-Set-WinUtilTaskbaritem -overlay "logo"
-
-$sync["Form"].Add_Activated({
-    Set-WinUtilTaskbaritem -overlay "logo"
-})
-
-$sync["ThemeButton"].Add_Click({
-    Invoke-WPFPopup -PopupActionTable @{ "Settings" = "Hide"; "Theme" = "Toggle"; "FontScaling" = "Hide" }
-})
-$sync["AutoThemeMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Theme")
-    Invoke-WinutilThemeChange -theme "Auto"
-})
-$sync["DarkThemeMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Theme")
-    Invoke-WinutilThemeChange -theme "Dark"
-})
-$sync["LightThemeMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Theme")
-    Invoke-WinutilThemeChange -theme "Light"
-})
-
-$sync["SettingsButton"].Add_Click({
-    Invoke-WPFPopup -PopupActionTable @{ "Settings" = "Toggle"; "Theme" = "Hide"; "FontScaling" = "Hide" }
-})
-$sync["ImportMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
-    Invoke-WPFImpex -type "import"
-})
-$sync["ExportMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
-    Invoke-WPFImpex -type "export"
-})
-$sync["AboutMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
-
-    $authorInfo = @"
-作者    : <a href="https://github.com/ChrisTitusTech">@ChrisTitusTech</a>
-界面    : <a href="https://github.com/MyDrift-user">@MyDrift-user</a>, <a href="https://github.com/Marterich">@Marterich</a>
-运行空间: <a href="https://github.com/DeveloperDurp">@DeveloperDurp</a>, <a href="https://github.com/Marterich">@Marterich</a>
-GitHub  : <a href="https://github.com/ChrisTitusTech/winutil">ChrisTitusTech/winutil</a>
-版本    : <a href="https://github.com/ChrisTitusTech/winutil/releases/tag/$($sync.version)">$($sync.version)</a>
-"@
-    Show-CustomDialog -Title "关于" -Message $authorInfo
-})
-$sync["DocumentationMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
-    Start-Process "https://winutil.christitus.com/"
-})
-$sync["SponsorMenuItem"].Add_Click({
-    Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
-
-    $authorInfo = @"
-<a href="https://github.com/sponsors/ChrisTitusTech">ChrisTitusTech 的当前赞助者：</a>
-"@
-    $authorInfo += "`n"
+if ($Preset -or $Config) {
+    $headlessCode = 1
     try {
-        $sponsors = Invoke-WinUtilSponsors
-        foreach ($sponsor in $sponsors) {
-            $authorInfo += "<a href=`"https://github.com/sponsors/ChrisTitusTech`">$sponsor</a>`n"
+        Initialize-WinUtilRunspacePool | Out-Null
+
+        if ($Preset) {
+            if (-not $sync.configs.preset.$Preset) {
+                throw "There is no preset called '$Preset'. Available: $(($sync.configs.preset.PSObject.Properties.Name) -join ', ')"
+            }
+            Write-WinUtilLog -Component "AutoRun" -Message "Applying preset '$Preset'."
+            # SkipUnknown so a retired entry in a preset is named and stepped over rather than
+            # ending a headless run that has nobody to read the error
+            $skipped = @(Update-WinUtilSelections -flatJson $sync.configs.preset.$Preset -SkipUnknown)
+            if ($skipped.Count -gt 0) {
+                Write-WinUtilLog -Level "WARN" -Component "AutoRun" -Message "Preset '$Preset' names $($skipped.Count) entr(y/ies) this version does not have: $($skipped -join ', ')"
+            }
         }
+
+        # Both may be given: the preset sets a baseline and the config adds to it
+        if ($Config) {
+            Write-WinUtilLog -Component "AutoRun" -Message "Importing selections from '$Config'."
+            Invoke-WPFImpex -type "import" -Config $Config -Merge:([bool]$Preset) -ThrowOnError
+        }
+
+        $summary = Invoke-WinUtilAutoRun
+        $headlessCode = Write-WinUtilAutoRunSummary -Summary $summary
     } catch {
-        $authorInfo += "获取或处理赞助者信息时出错：$_`n"
+        Write-WinUtilErrorRecord -ErrorRecord $_ -Component "AutoRun" -Context "Headless run"
+        Write-Host "WinUtil could not complete the headless run: $($_.Exception.Message)" -ForegroundColor Red
+        $headlessCode = 1
+    } finally {
+        Close-WinUtilRunspacePool
+        [System.GC]::Collect()
+        Remove-WinUtilTempScript
+        Stop-Transcript | Out-Null
     }
-    Show-CustomDialog -Title "赞助者" -Message $authorInfo -EnableScroll $true
-})
 
-# Font Scaling Event Handlers
-$sync["FontScalingButton"].Add_Click({
-    Invoke-WPFPopup -PopupActionTable @{ "Settings" = "Hide"; "Theme" = "Hide"; "FontScaling" = "Toggle" }
-})
+    # An isolated elevated child and an explicit file launch own their process. The documented
+    # in-memory invocation runs inside the caller's terminal and must return without closing it.
+    if ($env:WINUTIL_HEADLESS_CHILD -eq "1" -or $script:WinUtilIsFileProcess) {
+        exit $headlessCode
+    }
+    $global:LASTEXITCODE = $headlessCode
+    return $headlessCode
+}
 
-$sync["FontScalingSlider"].Add_ValueChanged({
-    param($slider)
-    $percentage = [math]::Round($slider.Value * 100)
-    $sync.FontScalingValue.Text = "$percentage%"
-})
+#===========================================================================
+# Start the interface on its own thread and manage it from here
+#===========================================================================
+#
+# The main thread stays out of the window's way. It creates the dedicated STA runspace the
+# interface lives on, waits for that window to close, and reports anything the interface
+# thread failed with. Work started from the interface goes to the worker pool through
+# Start-WinUtilJob, so neither the window nor this thread is ever blocked by it.
 
-$sync["FontScalingResetButton"].Add_Click({
-    $sync.FontScalingSlider.Value = 1.0
-    $sync.FontScalingValue.Text = "100%"
-})
+$sync.UIRunspace = [runspacefactory]::CreateRunspace($Host, (New-WinUtilSessionState))
+$sync.UIRunspace.ApartmentState = "STA"
+$sync.UIRunspace.ThreadOptions = "ReuseThread"
+$sync.UIRunspace.Open()
 
-$sync["FontScalingApplyButton"].Add_Click({
-    $scaleFactor = $sync.FontScalingSlider.Value
-    Invoke-WinUtilFontScaling -ScaleFactor $scaleFactor
-    Invoke-WPFPopup -Action "Hide" -Popups @("FontScaling")
-})
+$uiShell = [powershell]::Create()
+$uiShell.Runspace = $sync.UIRunspace
+[void]$uiShell.AddScript({ Start-WinUtilUserInterface })
 
-# ── Win11ISO Tab button handlers ──────────────────────────────────────────────
+Write-WinUtilLog -Component "UI" -Message "Starting the interface thread."
+$uiHandle = $uiShell.BeginInvoke()
 
-$sync["WPFWin11ISOBrowseButton"].Add_Click({
-    Invoke-WinUtilISOBrowse
-})
+# This thread has nothing to do but wait, so it pays for the overlay render rather than
+# leaving it to the thread that is building the window
+Start-WinUtilAssetRendering | Out-Null
 
-$sync["WPFWin11ISODownloadLink"].Add_Click({
-    Start-Process "https://www.microsoft.com/software-download/windows11"
-})
+$uiHandle.AsyncWaitHandle.WaitOne() | Out-Null
 
-$sync["WPFWin11ISOMountButton"].Add_Click({
-    Invoke-WinUtilISOMountAndVerify
-})
+$uiFailed = $false
+try {
+    $uiShell.EndInvoke($uiHandle) | Out-Null
+} catch {
+    $uiFailed = $true
+    Write-WinUtilErrorRecord -ErrorRecord $_ -Component "UI" -Context "Interface thread stopped"
+}
 
-$sync["WPFWin11ISOModifyButton"].Add_Click({
-    Invoke-WinUtilISOModify
-})
+foreach ($uiWarning in $uiShell.Streams.Warning) {
+    Write-WinUtilLog -Level "WARN" -Component "UI" -Message $uiWarning.Message
+}
 
-$sync["WPFWin11ISOChooseISOButton"].Add_Click({
-    $sync["WPFWin11ISOOptionUSB"].Visibility = "Collapsed"
-    Invoke-WinUtilISOExport
-})
+foreach ($uiError in $uiShell.Streams.Error) {
+    Write-WinUtilErrorRecord -ErrorRecord $uiError -Component "UI" -Context "Interface thread"
+}
 
-$sync["WPFWin11ISOChooseUSBButton"].Add_Click({
-    $sync["WPFWin11ISOOptionUSB"].Visibility = "Visible"
-    Invoke-WinUtilISORefreshUSBDrives
-})
+$uiShell.Dispose()
+$sync.UIRunspace.Dispose()
+$sync.Remove("UIRunspace")
 
-$sync["WPFWin11ISORefreshUSBButton"].Add_Click({
-    Invoke-WinUtilISORefreshUSBDrives
-})
+# The window may have been closed over a job that the user chose to let finish. It is still on
+# the worker pool, so the pool cannot be closed until it is done.
+Wait-WinUtilRemainingWork
 
-$sync["WPFWin11ISOWriteUSBButton"].Add_Click({
-    Invoke-WinUtilISOWriteUSB
-})
+Close-WinUtilRunspacePool
+[System.GC]::Collect()
 
-$sync["WPFWin11ISOCleanResetButton"].Add_Click({
-    Invoke-WinUtilISOCleanAndReset
-})
-
-# ──────────────────────────────────────────────────────────────────────────────
-
-$sync["Form"].ShowDialog() | out-null
+Remove-WinUtilTempScript
+Write-Host "再见！" -ForegroundColor Cyan
 Stop-Transcript
 
+if ($uiFailed) {
+    $global:LASTEXITCODE = 1
+    if ($script:WinUtilIsFileProcess) { exit 1 }
+    return 1
+}

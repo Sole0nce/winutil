@@ -62,7 +62,7 @@ function Invoke-WinUtilTweaks {
         }
     }
     if ($sync.configs.tweaks.$CheckBox.registry) {
-        $sync.configs.tweaks.$CheckBox.registry | ForEach-Object {
+        $sync.configs.tweaks.$CheckBox.registry | Where-Object { -not $psitem.Values } | ForEach-Object {
             Set-WinUtilRegistry -Name $psitem.Name -Path $psitem.Path -Type $psitem.Type -Value $psitem.$($values.registry)
         }
     }
@@ -78,6 +78,7 @@ function Invoke-WinUtilTweaks {
             $sync.configs.tweaks.$CheckBox.appx | ForEach-Object {
                 Remove-WinUtilAPPX -Name $psitem
             }
+            Remove-WinUtilProvisionedAPPX -PackageList $sync.configs.tweaks.$CheckBox.appx
         }
     }
     Write-WinUtilLog -Component "Tweaks" -Message "$action tweak completed: $CheckBox"

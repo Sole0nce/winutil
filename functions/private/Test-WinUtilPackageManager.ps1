@@ -1,4 +1,4 @@
-function Test-WinUtilPackageManager {
+﻿function Test-WinUtilPackageManager {
     <#
 
     .SYNOPSIS
@@ -19,28 +19,16 @@ function Test-WinUtilPackageManager {
 
     if ($winget) {
         if (Get-Command winget -ErrorAction SilentlyContinue) {
-            Write-Host "===========================================" -ForegroundColor Green
-            Write-Host "---        WinGet 已安装          ---" -ForegroundColor Green
-            Write-Host "===========================================" -ForegroundColor Green
             $status = "installed"
         } else {
-            Write-Host "===========================================" -ForegroundColor Red
-            Write-Host "---      WinGet 未安装        ---" -ForegroundColor Red
-            Write-Host "===========================================" -ForegroundColor Red
             $status = "not-installed"
         }
     }
 
     if ($choco) {
         if (Get-Command choco -ErrorAction SilentlyContinue) {
-            Write-Host "===========================================" -ForegroundColor Green
-            Write-Host "---      Chocolatey 已安装        ---" -ForegroundColor Green
-            Write-Host "===========================================" -ForegroundColor Green
             $status = "installed"
         } else {
-            Write-Host "===========================================" -ForegroundColor Red
-            Write-Host "---    Chocolatey 未安装      ---" -ForegroundColor Red
-            Write-Host "===========================================" -ForegroundColor Red
             $status = "not-installed"
         }
     }
