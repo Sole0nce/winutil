@@ -23,17 +23,17 @@ function Find-AppsByNameOrDescription {
 
     # Validate that $sync exists and has required structure
     if ($null -eq $sync) {
-        Write-Warning "Find-AppsByNameOrDescription: Global `$sync not found. Aborting search."
+        Write-Warning "搜索应用时出错：全局 `$sync 未找到。已中止搜索。"
         return
     }
 
     if ($null -eq $sync.ItemsControl) {
-        Write-Warning "Find-AppsByNameOrDescription: `$sync.ItemsControl not initialized. Aborting search."
+        Write-Warning "搜索应用时出错：`$sync.ItemsControl 未初始化。已中止搜索。"
         return
     }
 
     if ($null -eq $sync.configs -or $null -eq $sync.configs.applicationsHashtable) {
-        Write-Warning "Find-AppsByNameOrDescription: `$sync.configs.applicationsHashtable not initialized. Aborting search."
+        Write-Warning "搜索应用时出错：`$sync.configs.applicationsHashtable 未初始化。已中止搜索。"
         return
     }
 
@@ -129,7 +129,7 @@ function Find-AppsByNameOrDescription {
         }
     }
     catch {
-        Write-Warning "Find-AppsByNameOrDescription: An error occurred during search: $_"
+        Write-Warning "搜索应用时出错：$_"
         # Fail gracefully - do not crash the UI thread
         return
     }

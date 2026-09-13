@@ -1,8 +1,8 @@
 ﻿{
     "WPFFeaturesdotnet":  {
-                              "Content":  ".NET Framework（2、3、4版本）- 启用",
-                              "Description":  ".NET和.NET Framework是一个开发平台，由工具、编程语言和库组成，用于构建多种类型的应用程序。",
-                              "category":  "功能",
+"Content":  "安装/启用 .NET Framework（2/3/4）",
+                               "Description":  "启用/安装 Windows 的 .NET Framework 功能组件（常用于运行旧软件/开发环境）。",
+                              "category":  "功能组件",
                               "panel":  "1",
                               "feature":  [
                                               "NetFx4-AdvSrvs",
@@ -14,8 +14,8 @@
                               "link":  "https://winutil.christitus.com/dev/features/features/dotnet"
                           },
     "WPFFixesNTPPool":  {
-                            "Content":  "NTP服务器 - 启用",
-                            "Description":  "将默认Windows NTP服务器（time.windows.com）替换为pool.ntp.org，以提高时间同步的准确性和可靠性。",
+"Content":  "配置 NTP 时间服务器",
+                             "Description":  "将 Windows 默认时间服务器（time.windows.com）替换为 pool.ntp.org，以提高校时准确性和稳定性。",
                             "category":  "修复",
                             "panel":  "1",
                             "Type":  "Button",
@@ -24,9 +24,9 @@
                             "link":  "https://winutil.christitus.com/dev/features/fixes/ntppool"
                         },
     "WPFFeatureshyperv":  {
-                              "Content":  "Hyper-V - 启用",
-                              "Description":  "Hyper-V是微软开发的硬件虚拟化产品，允许用户创建和管理虚拟机。",
-                              "category":  "功能",
+"Content":  "启用 Hyper‑V 虚拟化",
+                               "Description":  "启用 Hyper‑V 及其管理工具，用于创建与管理虚拟机（需要硬件虚拟化支持）。",
+                              "category":  "功能组件",
                               "panel":  "1",
                               "feature":  [
                                               "Microsoft-Hyper-V-All"
@@ -34,9 +34,9 @@
                               "link":  "https://winutil.christitus.com/dev/features/features/hyperv"
                           },
     "WPFFeatureslegacymedia":  {
-                                   "Content":  "旧版媒体组件（WMP、DirectPlay）- 启用",
-                                   "Description":  "启用来自旧版Windows的旧程序兼容支持。",
-                                   "category":  "功能",
+"Content":  "启用旧媒体组件（WMP/DirectPlay）",
+                                    "Description":  "启用旧版媒体相关组件（Windows Media Player、DirectPlay 等），用于兼容老游戏/老播放器。",
+                                   "category":  "功能组件",
                                    "panel":  "1",
                                    "feature":  [
                                                    "WindowsMediaPlayer",
@@ -50,9 +50,9 @@
                                    "link":  "https://winutil.christitus.com/dev/features/features/legacymedia"
                                },
     "WPFFeaturewsl":  {
-                          "Content":  "Windows Linux子系统（WSL）- 启用",
-                          "Description":  "Windows Linux子系统是Windows的一个可选功能，允许Linux程序在Windows上原生运行，无需单独的虚拟机或双系统。",
-                          "category":  "功能",
+"Content":  "启用 WSL（Linux 子系统）",
+                           "Description":  "启用 WSL，让你在 Windows 上运行 Linux 发行版（开发/命令行工具常用）。",
+                          "category":  "功能组件",
                           "panel":  "1",
                           "feature":  [
                                           "VirtualMachinePlatform",
@@ -64,9 +64,9 @@
                           "link":  "https://winutil.christitus.com/dev/features/features/wsl"
                       },
     "WPFFeaturenfs":  {
-                          "Content":  "网络文件系统（NFS）- 启用",
-                          "Description":  "网络文件系统（NFS）是一种在网络中存储文件的机制。",
-                          "category":  "功能",
+"Content":  "启用 NFS（网络文件系统）",
+                           "Description":  "启用 NFS 客户端/相关组件，用于挂载 NFS 共享（多见于 NAS/Unix/Linux 环境）。",
+                          "category":  "功能组件",
                           "panel":  "1",
                           "feature":  [
                                           "ServicesForNFS-ClientOnly",
@@ -83,9 +83,9 @@
                           "link":  "https://winutil.christitus.com/dev/features/features/nfs"
                       },
     "WPFFeatureRegBackup":  {
-                                "Content":  "注册表备份（每日凌晨12:30任务）- 启用",
-                                "Description":  "启用每日注册表备份，该功能在Windows 10 1803中被微软禁用。",
-                                "category":  "功能",
+"Content":  "启用每日注册表备份任务（00:30）",
+                                 "Description":  "创建/启用每日注册表自动备份计划任务（默认 00:30），便于系统故障时回滚。",
+                                "category":  "功能组件",
                                 "panel":  "1",
                                 "feature":  [
 
@@ -96,9 +96,9 @@
                                 "link":  "https://winutil.christitus.com/dev/features/features/regbackup"
                             },
     "WPFFeatureEnableLegacyRecovery":  {
-                                           "Content":  "旧版F8启动恢复 - 启用",
-                                           "Description":  "启用高级启动选项屏幕，让您可以以高级故障排除模式启动Windows。",
-                                           "category":  "功能",
+"Content":  "启用传统 F8 启动恢复菜单",
+                                            "Description":  "启用传统「按 F8 进入高级启动选项」的恢复菜单（对排障更方便）。",
+                                           "category":  "功能组件",
                                            "panel":  "1",
                                            "feature":  [
 
@@ -109,9 +109,9 @@
                                            "link":  "https://winutil.christitus.com/dev/features/features/enablelegacyrecovery"
                                        },
     "WPFFeatureDisableLegacyRecovery":  {
-                                            "Content":  "旧版F8启动恢复 - 禁用",
-                                            "Description":  "禁用高级启动选项屏幕，该屏幕允许您以高级故障排除模式启动Windows。",
-                                            "category":  "功能",
+"Content":  "禁用传统 F8 启动恢复菜单",
+                                             "Description":  "关闭传统 F8 恢复菜单，恢复为默认快速启动行为。",
+                                            "category":  "功能组件",
                                             "panel":  "1",
                                             "feature":  [
 
@@ -122,9 +122,9 @@
                                             "link":  "https://winutil.christitus.com/dev/features/features/disablelegacyrecovery"
                                         },
     "WPFFeaturesSandbox":  {
-                               "Content":  "Windows沙盒 - 启用",
-                               "Description":  "Windows沙盒是一个轻量级虚拟机，提供临时桌面环境，用于在隔离环境中安全运行应用程序。",
-                               "category":  "功能",
+"Content":  "启用 Windows Sandbox（沙盒）",
+                                "Description":  "启用 Windows 沙盒：一次性、隔离的临时系统环境，适合测试不可信程序（退出即清空）。",
+                               "category":  "功能组件",
                                "panel":  "1",
                                "feature":  [
                                                "Containers-DisposableClientVM"
@@ -132,8 +132,8 @@
                                "link":  "https://winutil.christitus.com/dev/features/features/sandbox"
                            },
     "WPFFeatureInstall":  {
-                              "Content":  "安装功能",
-                              "category":  "功能",
+                              "Content":  "安装/启用所选功能",
+                              "category":  "功能组件",
                               "panel":  "1",
                               "Type":  "Button",
                               "ButtonWidth":  "300",
@@ -141,7 +141,7 @@
                               "link":  "https://winutil.christitus.com/dev/features/features/install"
                           },
     "WPFPanelAutologin":  {
-                              "Content":  "自动登录 - 运行",
+                              "Content":  "设置自动登录",
                               "category":  "修复",
                               "panel":  "1",
                               "Type":  "Button",
@@ -150,7 +150,7 @@
                               "link":  "https://winutil.christitus.com/dev/features/fixes/autologin"
                           },
     "WPFFixesUpdate":  {
-                           "Content":  "Windows更新 - 重置",
+                           "Content":  "重置 Windows 更新组件",
                            "category":  "修复",
                            "panel":  "1",
                            "Type":  "Button",
@@ -159,7 +159,7 @@
                            "link":  "https://winutil.christitus.com/dev/features/fixes/update"
                        },
     "WPFFixesNetwork":  {
-                            "Content":  "网络 - 重置",
+                            "Content":  "重置网络设置",
                             "category":  "修复",
                             "panel":  "1",
                             "Type":  "Button",
@@ -168,7 +168,7 @@
                             "link":  "https://winutil.christitus.com/dev/features/fixes/network"
                         },
     "WPFPanelDISM":  {
-                         "Content":  "系统损坏扫描 - 运行",
+                         "Content":  "系统损坏扫描/修复（SFC/DISM）",
                          "category":  "修复",
                          "panel":  "1",
                          "Type":  "Button",
@@ -177,7 +177,7 @@
                          "link":  "https://winutil.christitus.com/dev/features/fixes/dism"
                      },
     "WPFFixesWinget":  {
-                           "Content":  "WinGet - 重新安装",
+                           "Content":  "重新安装/修复 WinGet",
                            "category":  "修复",
                            "panel":  "1",
                            "Type":  "Button",
@@ -187,7 +187,7 @@
                        },
     "WPFPanelControl":  {
                             "Content":  "控制面板",
-                            "category":  "旧版Windows面板",
+                            "category":  "传统控制面板入口",
                             "panel":  "2",
                             "Type":  "Button",
                             "ButtonWidth":  "300",
@@ -198,7 +198,7 @@
                         },
     "WPFPanelComputer":  {
                              "Content":  "计算机管理",
-                             "category":  "旧版Windows面板",
+                             "category":  "传统控制面板入口",
                              "panel":  "2",
                              "Type":  "Button",
                              "ButtonWidth":  "300",
@@ -209,7 +209,7 @@
                          },
     "WPFPanelNetwork":  {
                             "Content":  "网络连接",
-                            "category":  "旧版Windows面板",
+                            "category":  "传统控制面板入口",
                             "panel":  "2",
                             "Type":  "Button",
                             "ButtonWidth":  "300",
@@ -220,7 +220,7 @@
                         },
     "WPFPanelPower":  {
                           "Content":  "电源选项",
-                          "category":  "旧版Windows面板",
+                          "category":  "传统控制面板入口",
                           "panel":  "2",
                           "Type":  "Button",
                           "ButtonWidth":  "300",
@@ -231,7 +231,7 @@
                       },
     "WPFPanelPrinter":  {
                             "Content":  "打印机设置",
-                            "category":  "旧版Windows面板",
+                            "category":  "传统控制面板入口",
                             "panel":  "2",
                             "Type":  "Button",
                             "ButtonWidth":  "300",
@@ -242,7 +242,7 @@
                         },
     "WPFPanelRegion":  {
                            "Content":  "区域",
-                           "category":  "旧版Windows面板",
+                           "category":  "传统控制面板入口",
                            "panel":  "2",
                            "Type":  "Button",
                            "ButtonWidth":  "300",
@@ -253,7 +253,7 @@
                        },
     "WPFPanelRestore":  {
                             "Content":  "系统还原",
-                            "category":  "旧版Windows面板",
+                            "category":  "传统控制面板入口",
                             "panel":  "2",
                             "Type":  "Button",
                             "ButtonWidth":  "300",
@@ -264,7 +264,7 @@
                         },
     "WPFPanelSound":  {
                           "Content":  "声音设置",
-                          "category":  "旧版Windows面板",
+                          "category":  "传统控制面板入口",
                           "panel":  "2",
                           "Type":  "Button",
                           "ButtonWidth":  "300",
@@ -275,7 +275,7 @@
                       },
     "WPFPanelSystem":  {
                            "Content":  "系统属性",
-                           "category":  "旧版Windows面板",
+                           "category":  "传统控制面板入口",
                            "panel":  "2",
                            "Type":  "Button",
                            "ButtonWidth":  "300",
@@ -286,7 +286,7 @@
                        },
     "WPFPanelTimedate":  {
                              "Content":  "时间和日期",
-                             "category":  "旧版Windows面板",
+                             "category":  "传统控制面板入口",
                              "panel":  "2",
                              "Type":  "Button",
                              "ButtonWidth":  "300",
@@ -296,8 +296,8 @@
                              "link":  "https://winutil.christitus.com/dev/features/legacy-windows-panels/timedate"
                          },
     "WPFWinUtilInstallPSProfile":  {
-                                       "Content":  "CTT PowerShell配置文件 - 安装",
-                                       "category":  "PowerShell配置文件（仅PowerShell 7+）",
+                                       "Content":  "安装 CTT PowerShell 配置文件",
+                                       "category":  "PowerShell 配置文件",
                                        "panel":  "2",
                                        "Type":  "Button",
                                        "ButtonWidth":  "300",
@@ -305,8 +305,8 @@
                                        "link":  "https://winutil.christitus.com/dev/features/powershell-profile-powershell-7--only/installpsprofile"
                                    },
     "WPFWinUtilUninstallPSProfile":  {
-                                         "Content":  "CTT PowerShell配置文件 - 移除",
-                                         "category":  "PowerShell配置文件（仅PowerShell 7+）",
+                                         "Content":  "卸载 CTT PowerShell 配置文件",
+                                         "category":  "PowerShell 配置文件",
                                          "panel":  "2",
                                          "Type":  "Button",
                                          "ButtonWidth":  "300",
@@ -314,7 +314,7 @@
                                          "link":  "https://winutil.christitus.com/dev/features/powershell-profile-powershell-7--only/uninstallpsprofile"
                                      },
     "WPFWinUtilSSHServer":  {
-                                "Content":  "OpenSSH服务器 - 启用",
+                                "Content":  "启用 OpenSSH Server",
                                 "category":  "远程访问",
                                 "panel":  "2",
                                 "Type":  "Button",

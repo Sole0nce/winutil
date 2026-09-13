@@ -968,7 +968,7 @@
                     Background="{DynamicResource ButtonInstallBackgroundColor}" Foreground="white" FontWeight="Bold" Name="WPFTab1BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonInstallForegroundColor}" >
-                            <Underline>I</Underline>nstall
+                            <Underline>I</Underline> 安装
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -976,7 +976,7 @@
                     Background="{DynamicResource ButtonTweaksBackgroundColor}" Foreground="{DynamicResource ButtonTweaksForegroundColor}" FontWeight="Bold" Name="WPFTab2BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonTweaksForegroundColor}">
-                            <Underline>T</Underline>weaks
+                            <Underline>T</Underline> 优化
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -984,7 +984,7 @@
                     Background="{DynamicResource ButtonConfigBackgroundColor}" Foreground="{DynamicResource ButtonConfigForegroundColor}" FontWeight="Bold" Name="WPFTab3BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonConfigForegroundColor}">
-                            <Underline>C</Underline>onfig
+                            <Underline>C</Underline> 设置
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -992,7 +992,7 @@
                     Background="{DynamicResource ButtonUpdatesBackgroundColor}" Foreground="{DynamicResource ButtonUpdatesForegroundColor}" FontWeight="Bold" Name="WPFTab4BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonUpdatesForegroundColor}">
-                            <Underline>U</Underline>pdates
+                            <Underline>U</Underline> 更新
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -1000,7 +1000,7 @@
                     Background="{DynamicResource ButtonWin11ISOBackgroundColor}" Foreground="{DynamicResource ButtonWin11ISOForegroundColor}" FontWeight="Bold" Name="WPFTab5BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonWin11ISOForegroundColor}">
-                            <Underline>W</Underline>in11 Creator
+                            <Underline>W</Underline> Win11 制作
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -1008,7 +1008,7 @@
                     Background="{DynamicResource ButtonAppxBackgroundColor}" Foreground="{DynamicResource ButtonAppxForegroundColor}" FontWeight="Bold" Name="WPFTab6BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonAppxForegroundColor}">
-                            <Underline>A</Underline>ppX Removal
+                            <Underline>A</Underline> AppX 移除
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -1032,7 +1032,7 @@
                             Name="SearchBar"
                             Foreground="{DynamicResource MainForegroundColor}" Background="{DynamicResource MainBackgroundColor}"
                             Padding="3,3,30,0"
-                            ToolTip="按Ctrl-F输入应用名称筛选下方列表，按Esc重置筛选">
+                            ToolTip="按 Ctrl+F 输入应用名称以筛选下方列表；按 Esc 清除筛选">
                         </TextBox>
                         <TextBlock
                             VerticalAlignment="Center" HorizontalAlignment="Right"
@@ -1073,7 +1073,7 @@
                         <StackPanel Background="{DynamicResource MainBackgroundColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="自动" Name="AutoThemeMenuItem" Foreground="{DynamicResource MainForegroundColor}">
                                 <MenuItem.ToolTip>
-                                    <ToolTip Content="跟随Windows主题"/>
+                                    <ToolTip Content="跟随系统主题"/>
                                 </MenuItem.ToolTip>
                             </MenuItem>
                             <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="深色" Name="DarkThemeMenuItem" Foreground="{DynamicResource MainForegroundColor}">
@@ -1101,7 +1101,7 @@
                     Margin="0,0,2,0"
                     FontFamily="Segoe MDL2 Assets"
                     Content="&#xE8D3;"
-                    ToolTip="调整字体缩放以改善可访问性"
+                    ToolTip="调整字体缩放（便于阅读/无障碍）"
                 />
                     <Popup Name="FontScalingPopup"
                     IsOpen="False"
@@ -1177,18 +1177,18 @@
                         <StackPanel Background="{DynamicResource MainBackgroundColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="导入" Name="ImportMenuItem" Foreground="{DynamicResource MainForegroundColor}">
                                 <MenuItem.ToolTip>
-                                    <ToolTip Content="从导出的配置文件导入设置"/>
+                                    <ToolTip Content="从导出文件导入配置。"/>
                                 </MenuItem.ToolTip>
                             </MenuItem>
                             <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="导出" Name="ExportMenuItem" Foreground="{DynamicResource MainForegroundColor}">
                                 <MenuItem.ToolTip>
-                                    <ToolTip Content="导出选中的项目并将执行命令复制到剪贴板"/>
+                                    <ToolTip Content="导出所选项目，并将执行命令复制到剪贴板。"/>
                                 </MenuItem.ToolTip>
                             </MenuItem>
                             <Separator/>
                             <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="关于" Name="AboutMenuItem" Foreground="{DynamicResource MainForegroundColor}"/>
                             <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="文档" Name="DocumentationMenuItem" Foreground="{DynamicResource MainForegroundColor}"/>
-                            <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="赞助者" Name="SponsorMenuItem" Foreground="{DynamicResource MainForegroundColor}"/>
+                            <MenuItem FontSize="{DynamicResource ButtonFontSize}" Header="赞助" Name="SponsorMenuItem" Foreground="{DynamicResource MainForegroundColor}"/>
                         </StackPanel>
                     </Border>
                 </Popup>
@@ -1251,11 +1251,11 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Background="{DynamicResource MainBackgroundColor}" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
-                                <Label Content="推荐选择方案:" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
+                                <Label Content="推荐预设：" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2,0,0">
-                                    <Button Name="WPFstandard" Content=" Standard " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFminimal" Content=" Minimal " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFAdvanced" Content=" Advanced " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFstandard" Content=" 标准 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFminimal" Content=" 最小化 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFAdvanced" Content=" 高级 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFClearTweaksSelection" Content=" 清除选择 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFGetInstalledTweaks" Content=" 获取已安装优化 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                 </StackPanel>
@@ -1277,7 +1277,7 @@
                     <Border Grid.Row="1" Background="{DynamicResource MainBackgroundColor}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" Padding="10">
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0">
                             <Button Name="WPFTweaksbutton" Content="执行优化" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                            <Button Name="WPFUndoall" Content="撤销选中优化" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFUndoall" Content="撤销所选优化" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                         </WrapPanel>
                     </Border>
                 </Grid>
@@ -1405,7 +1405,7 @@
                                 <StackPanel Grid.Column="0" Margin="5,5,15,5">
                                     <TextBlock FontSize="{DynamicResource FontSize}" FontWeight="Bold"
                                                Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,8">
-                                        Step 1 - Select Windows 11 ISO
+                                        步骤 1 - 选择 Windows 11 ISO
                                     </TextBlock>
                                     <TextBlock FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource MainForegroundColor}"
                                                TextWrapping="Wrap" Margin="0,0,0,6">
@@ -1425,7 +1425,7 @@
                                                  VerticalAlignment="Center"
                                                  Padding="6,4"
                                                  Margin="0,0,6,0"
-                                                 Text="未选择ISO..."
+                                                  Text="尚未选择 ISO 文件..."
                                                  Foreground="{DynamicResource MainForegroundColor}"
                                                  Background="{DynamicResource MainBackgroundColor}"/>
                                         <Button Grid.Column="1"
@@ -1467,9 +1467,9 @@
                                         <TextBlock FontSize="{DynamicResource FontSize}"
                                                    Foreground="{DynamicResource MainForegroundColor}"
                                                    TextWrapping="Wrap" Margin="12,0,0,12">
-                                            - Edition  : Windows 11
-                                            <LineBreak/>- Language : your preferred language
-                                            <LineBreak/>- Architecture : 64-bit (x64)
+                                             - 版本  : Windows 11
+                                             <LineBreak/>- 语言  : 您偏好的语言
+                                             <LineBreak/>- 架构  : 64-bit (x64)
                                         </TextBlock>
                                         <Button Name="WPFWin11ISODownloadLink"
                                                 Content="打开微软下载页面"
@@ -1493,7 +1493,7 @@
                                 <StackPanel Grid.Column="0" Margin="0,0,20,0" VerticalAlignment="Top">
                                     <TextBlock FontSize="{DynamicResource FontSize}" FontWeight="Bold"
                                                Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,8">
-                                        Step 2 - Mount &amp; Verify ISO
+                                        步骤 2 - 挂载并验证 ISO
                                     </TextBlock>
                                     <TextBlock FontSize="{DynamicResource FontSize}"
                                                Foreground="{DynamicResource MainForegroundColor}"
@@ -1512,7 +1512,7 @@
                                               Foreground="{DynamicResource MainForegroundColor}"
                                               IsChecked="False"
                                               Margin="0,8,0,0"
-                                              ToolTip="导出本机所有驱动并注入到 install.wim 和 boot.wim 中。推荐用于包含不被支持的 NVMe 或网卡控制器的系统。"/>
+                                              ToolTip="导出当前机器上的驱动，并注入到 install.wim 与 boot.wim。适合缺少 NVMe 或网卡驱动的机器。"/>
                                 </StackPanel>
 
                                 <!-- Verification results panel -->
@@ -1554,7 +1554,7 @@
                                         HorizontalAlignment="Left" MinWidth="{DynamicResource ButtonWidth}">
                                 <TextBlock FontSize="{DynamicResource FontSize}" FontWeight="Bold"
                                            Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,8">
-                                    Step 3 - Modify install.wim
+                                    步骤 3 - 修改 install.wim
                                 </TextBlock>
                                 <TextBlock FontSize="{DynamicResource FontSize}"
                                            Foreground="{DynamicResource MainForegroundColor}"
@@ -1564,7 +1564,7 @@
                                     具体取决于您的硬件性能。
                                 </TextBlock>
                                 <Button Name="WPFWin11ISOModifyButton"
-                                        Content="运行Windows ISO修改与制作"
+                                        Content="开始修改并生成镜像"
                                         HorizontalAlignment="Left"
                                         Width="Auto" Padding="12,0"
                                         Height="{DynamicResource ButtonHeight}"/>
@@ -1584,7 +1584,7 @@
                                     <TextBlock Grid.Column="0" FontSize="{DynamicResource FontSize}" FontWeight="Bold"
                                                Foreground="{DynamicResource MainForegroundColor}"
                                                VerticalAlignment="Center">
-                                        Step 4 - 输出: 您希望如何处理修改后的镜像？
+                                        步骤 4：输出方式 - 你想如何处理修改后的镜像？
                                     </TextBlock>
                                     <Button Grid.Column="1"
                                             Name="WPFWin11ISOCleanResetButton"
@@ -1592,7 +1592,7 @@
                                             Foreground="OrangeRed"
                                             Width="Auto" Padding="12,0"
                                             Height="{DynamicResource ButtonHeight}"
-                                            ToolTip="删除临时工作目录并将界面重置回第一步"
+                                            ToolTip="删除临时工作目录，并把界面重置回步骤 1"
                                             Margin="12,0,0,0"/>
                                 </Grid>
 
@@ -1605,13 +1605,13 @@
                                     </Grid.ColumnDefinitions>
                                     <Button Grid.Column="0"
                                             Name="WPFWin11ISOChooseISOButton"
-                                            Content="另存为ISO文件"
+                                            Content="保存为 ISO 文件"
                                             HorizontalAlignment="Stretch"
                                             Width="Auto" Padding="12,0"
                                             Height="{DynamicResource ButtonHeight}"/>
                                     <Button Grid.Column="2"
                                             Name="WPFWin11ISOChooseUSBButton"
-                                            Content="直接写入USB驱动器（会清空驱动器）"
+                                            Content="直接写入 USB 盘（会清空磁盘）"
                                             Foreground="OrangeRed"
                                             HorizontalAlignment="Stretch"
                                             Width="Auto" Padding="12,0"
@@ -1650,7 +1650,7 @@
                                                     Height="{DynamicResource ButtonHeight}"/>
                                         </Grid>
                                         <Button Name="WPFWin11ISOWriteUSBButton"
-                                                Content="擦除并写入USB"
+                                                Content="擦除并写入 USB"
                                                 Foreground="OrangeRed"
                                                 HorizontalAlignment="Stretch"
                                                 Width="Auto" Padding="12,0"
@@ -1685,7 +1685,7 @@
                                  Foreground="{DynamicResource MainForegroundColor}"
                                  BorderBrush="{DynamicResource BorderColor}"
                                  BorderThickness="1"
-                                 Text="就绪。请选择Windows 11 ISO以开始。"/>
+                                 Text="已就绪。请选择一个 Windows 11 ISO 以开始。"/>
                     </Grid>
 
                 </Grid>
@@ -1708,7 +1708,7 @@
                             <StackPanel Background="{DynamicResource MainBackgroundColor}" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <Label Content="选择方案:" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2,0,0">
-                                    <Button Name="WPFDefaultAppxSelection" Content=" Default " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFDefaultAppxSelection" Content=" 默认 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFGetInstalledAppx" Content=" 获取已安装 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFSelectAllAppx" Content=" 全选 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFClearAppxSelection" Content=" 清除选择 " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>

@@ -24,7 +24,7 @@ if ($ExecutionContext.SessionState.LanguageMode -ne 'FullLanguage') {
 }
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Output "WinUtil needs to be run as Administrator. Attempting to relaunch."
+    Write-Output "WinUtil 需要以管理员身份运行。正在尝试重新启动。"
     $argList = @()
 
     $PSBoundParameters.GetEnumerator() | ForEach-Object {

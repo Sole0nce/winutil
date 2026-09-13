@@ -411,13 +411,13 @@ $sync["AboutMenuItem"].Add_Click({
     Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
 
     $authorInfo = @"
-Author   : <a href="https://github.com/ChrisTitusTech">@ChrisTitusTech</a>
-UI       : <a href="https://github.com/MyDrift-user">@MyDrift-user</a>, <a href="https://github.com/Marterich">@Marterich</a>
-Runspace : <a href="https://github.com/DeveloperDurp">@DeveloperDurp</a>, <a href="https://github.com/Marterich">@Marterich</a>
-GitHub   : <a href="https://github.com/ChrisTitusTech/winutil">ChrisTitusTech/winutil</a>
-Version  : <a href="https://github.com/ChrisTitusTech/winutil/releases/tag/$($sync.version)">$($sync.version)</a>
+作者    : <a href="https://github.com/ChrisTitusTech">@ChrisTitusTech</a>
+界面    : <a href="https://github.com/MyDrift-user">@MyDrift-user</a>, <a href="https://github.com/Marterich">@Marterich</a>
+运行空间: <a href="https://github.com/DeveloperDurp">@DeveloperDurp</a>, <a href="https://github.com/Marterich">@Marterich</a>
+GitHub  : <a href="https://github.com/ChrisTitusTech/winutil">ChrisTitusTech/winutil</a>
+版本    : <a href="https://github.com/ChrisTitusTech/winutil/releases/tag/$($sync.version)">$($sync.version)</a>
 "@
-    Show-CustomDialog -Title "About" -Message $authorInfo
+    Show-CustomDialog -Title "关于" -Message $authorInfo
 })
 $sync["DocumentationMenuItem"].Add_Click({
     Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
@@ -427,7 +427,7 @@ $sync["SponsorMenuItem"].Add_Click({
     Invoke-WPFPopup -Action "Hide" -Popups @("Settings")
 
     $authorInfo = @"
-<a href="https://github.com/sponsors/ChrisTitusTech">Current sponsors for ChrisTitusTech:</a>
+<a href="https://github.com/sponsors/ChrisTitusTech">ChrisTitusTech 的当前赞助者：</a>
 "@
     $authorInfo += "`n"
     try {
@@ -436,9 +436,9 @@ $sync["SponsorMenuItem"].Add_Click({
             $authorInfo += "<a href=`"https://github.com/sponsors/ChrisTitusTech`">$sponsor</a>`n"
         }
     } catch {
-        $authorInfo += "An error occurred while fetching or processing the sponsors: $_`n"
+        $authorInfo += "获取或处理赞助者信息时出错：$_`n"
     }
-    Show-CustomDialog -Title "Sponsors" -Message $authorInfo -EnableScroll $true
+    Show-CustomDialog -Title "赞助者" -Message $authorInfo -EnableScroll $true
 })
 
 # Font Scaling Event Handlers

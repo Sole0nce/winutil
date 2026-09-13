@@ -47,7 +47,7 @@ function Set-WinUtilRegistry {
             Remove-ItemProperty -Path $Path -Name $Name -Force -ErrorAction Stop | Out-Null
         }
     } catch [System.Security.SecurityException] {
-        Write-Warning "Unable to set $Path\$Name to $Value due to a Security Exception."
+        Write-Warning "由于安全异常，无法将 $Path\$Name 设置为 $Value。"
         Write-WinUtilLog -Level "ERROR" -Component "Registry" -Message "Security exception while changing $Path\$Name to $Value`: $($psitem.Exception.Message)"
     } catch [System.Management.Automation.ItemNotFoundException] {
         Write-Warning $psitem.Exception.ErrorRecord
@@ -56,7 +56,7 @@ function Set-WinUtilRegistry {
        Write-Warning $psitem.Exception.Message
        Write-WinUtilLog -Level "ERROR" -Component "Registry" -Message "Unauthorized while changing $Path\$Name`: $($psitem.Exception.Message)"
     } catch {
-        Write-Warning "Unable to set $Name due to unhandled exception."
+        Write-Warning "由于未处理的异常，无法设置 $Name。"
         Write-Warning $psitem.Exception.StackTrace
         Write-WinUtilLog -Level "ERROR" -Component "Registry" -Message "Unhandled exception while changing $Path\$Name`: $($psitem.Exception.Message)"
     }

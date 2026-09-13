@@ -5,7 +5,7 @@ function Invoke-WinUtilISORefreshUSBDrives {
     $combo.Items.Clear()
 
     if ($removable.Count -eq 0) {
-        $combo.Items.Add("No USB drives detected.")
+        $combo.Items.Add("未检测到 USB 驱动器。")
         $combo.SelectedIndex = 0
         $sync["Win11ISOUSBDisks"] = @()
         Write-Win11ISOLog "No USB drives detected."
@@ -26,7 +26,7 @@ function Invoke-WinUtilISOWriteUSB {
     $usbDisks    = $sync["Win11ISOUSBDisks"]
 
     if (-not $contentsDir -or -not (Test-Path $contentsDir)) {
-        [System.Windows.MessageBox]::Show("No modified ISO content found. Please complete Steps 1-3 first.", "Not Ready", "OK", "Warning")
+        [System.Windows.MessageBox]::Show("未找到修改后的 ISO 内容。请先完成步骤 1-3。", "未就绪", "OK", "Warning")
         return
     }
 
@@ -44,7 +44,7 @@ function Invoke-WinUtilISOWriteUSB {
     }
 
     if (-not $targetDisk) {
-        [System.Windows.MessageBox]::Show("Please select a USB drive from the dropdown.", "No Drive Selected", "OK", "Warning")
+        [System.Windows.MessageBox]::Show("请从下拉列表中选择 USB 驱动器。", "未选择驱动器", "OK", "Warning")
         return
     }
 
@@ -53,7 +53,7 @@ function Invoke-WinUtilISOWriteUSB {
 
     $confirm = [System.Windows.MessageBox]::Show(
         "磁盘 $diskNum（$($targetDisk.FriendlyName)，$sizeGB GB）上的所有数据将被永久删除。`n`n确定要继续吗？",
-        "Confirm USB Erase", "YesNo", "Warning")
+        "确认擦除 USB", "YesNo", "Warning")
 
     if ($confirm -ne "Yes") {
         Write-Win11ISOLog "USB write cancelled by user."
@@ -251,7 +251,7 @@ function Invoke-WinUtilISOWriteUSB {
         } catch {
             Log "ERROR during USB write: $_"
             $sync["WPFWin11ISOStatusLog"].Dispatcher.Invoke([action]{
-                [System.Windows.MessageBox]::Show("USB write failed:`n`n$_", "USB Write Error", "OK", "Error")
+                [System.Windows.MessageBox]::Show("USB 写入失败：`n`n$_", "USB 写入出错", "OK", "Error")
             })
         } finally {
             Start-Sleep -Milliseconds 800

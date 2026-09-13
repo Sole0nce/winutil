@@ -27,7 +27,7 @@ function Set-WinUtilDNS {
         if($DNSProvider -ne "DHCP") {
             $dns = $sync.configs.dns.$DNSProvider
             if($null -eq $dns) {
-                Write-Warning "DNS provider $DNSProvider was not found in configuration."
+                Write-Warning "配置中未找到 DNS 提供商 $DNSProvider。"
                 Write-WinUtilLog -Level "ERROR" -Component "DNS" -Message "DNS provider $DNSProvider was not found in configuration."
                 return
             }
@@ -48,7 +48,7 @@ function Set-WinUtilDNS {
         }
         Write-WinUtilLog -Component "DNS" -Message "DNS provider change completed: $DNSProvider"
     } catch {
-        Write-Warning "Unable to set DNS Provider due to an unhandled exception."
+        Write-Warning "由于未处理的异常，无法设置 DNS 提供商。"
         Write-Warning $psitem.Exception.StackTrace
         Write-WinUtilLog -Level "ERROR" -Component "DNS" -Message "Unable to set DNS provider $DNSProvider`: $($psitem.Exception.Message)"
     }

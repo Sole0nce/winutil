@@ -2,7 +2,7 @@
     "WPFTweaksActivity":  {
                               "Content":  "活动历史 - 禁用",
                               "Description":  "清除最近的文档、剪贴板和运行历史。",
-                              "category": "1__基本优化",
+                              "category": "a__基本优化",
                               "panel":  "1",
                               "registry":  [
                                                {
@@ -32,7 +32,7 @@
     "WPFTweaksHiber":  {
                            "Content":  "休眠 - 禁用",
                            "Description":  "休眠功能主要针对笔记本电脑，在关机前将内存数据保存到硬盘。台式机不应使用此功能。",
-                           "category": "1__基本优化",
+                           "category": "a__基本优化",
                            "panel":  "1",
                            "registry":  [
                                             {
@@ -61,17 +61,17 @@
     "WPFTweaksWidget":  {
                             "Content":  "小组件 - 移除",
                             "Description":  "移除任务栏左下角的烦人小组件。",
-                            "category": "1__基本优化",
+                            "category": "a__基本优化",
                             "panel":  "1",
                             "InvokeScript":  [
-                                                 "\r\n      # Sometimes if you dont stop the Widgets process the removal may fail\r\n\r\n      Get-Process *Widget* | Stop-Process\r\n      Get-AppxPackage Microsoft.WidgetsPlatformRuntime -AllUsers | Remove-AppxPackage -AllUsers\r\n      Get-AppxPackage MicrosoftWindows.Client.WebExperience -AllUsers | Remove-AppxPackage -AllUsers\r\n\r\n      Invoke-WinUtilExplorerUpdate -action \"restart\"\r\n      Write-Host \"Removed widgets\"\r\n      "
+                                                 "\r\n      # Sometimes if you dont stop the Widgets process the removal may fail\r\n\r\n      Get-Process *Widget* | Stop-Process\r\n      Get-AppxPackage Microsoft.WidgetsPlatformRuntime -AllUsers | Remove-AppxPackage -AllUsers\r\n      Get-AppxPackage MicrosoftWindows.Client.WebExperience -AllUsers | Remove-AppxPackage -AllUsers\r\n\r\n      Invoke-WinUtilExplorerUpdate -action \"restart\"\r\n      Write-Host \"已移除小组件\"\r\n      "
                                              ],
                             "link":  "https://winutil.christitus.com/dev/tweaks/essential-tweaks/widget"
                         },
     "WPFTweaksRevertStartMenu":  {
                                      "Content":  "开始菜单旧版布局 - 启用",
                                      "Description":  "恢复25H2逐步推出新布局之前的旧版开始菜单。在较新版本的Windows上，此项优化将无法使用！",
-                                     "category": "1__基本优化",
+                                     "category": "a__基本优化",
                                      "panel":  "1",
                                      "registry":  [
                                                       {
@@ -87,7 +87,7 @@
     "WPFTweaksDisableStoreSearch":  {
                                         "Content":  "Microsoft Store推荐搜索结果 - 禁用",
                                         "Description":  "在开始菜单搜索应用时将不再显示推荐的Microsoft Store应用。",
-                                        "category": "1__基本优化",
+                                        "category": "a__基本优化",
                                         "panel":  "1",
                                         "InvokeScript":  [
                                                              "icacls \"$Env:LocalAppData\\Packages\\Microsoft.WindowsStore_8wekyb3d8bbwe\\LocalState\\store.db\" /deny Everyone:F"
@@ -100,7 +100,7 @@
     "WPFTweaksLocation":  {
                               "Content":  "位置跟踪 - 禁用",
                               "Description":  "禁用位置跟踪。",
-                              "category": "1__基本优化",
+                              "category": "a__基本优化",
                               "panel":  "1",
                               "service":  [
                                               {
@@ -137,7 +137,7 @@
     "WPFTweaksServices":  {
                               "Content":  "服务 - 设为手动",
                               "Description":  "将某些服务设为手动启动，并调整SvcHostSplitThresholdInKB注册表值以匹配系统内存，可显著减少svchost.exe进程数量。",
-                              "category": "1__基本优化",
+                              "category": "a__基本优化",
                               "panel":  "1",
                               "service":  [
                                               {
@@ -174,7 +174,7 @@
     "WPFTweaksBraveDebloat":  {
                                   "Content":  "Brave浏览器 - 精简",
                                   "Description":  "禁用各种烦人功能，如Brave Rewards、Leo AI、加密钱包和VPN。",
-                                  "category":  "2__高级优化 - 谨慎",
+                                  "category":  "b__高级优化 - 谨慎",
                                   "panel":  "1",
                                   "registry":  [
                                                    {
@@ -267,7 +267,7 @@
     "WPFTweaksDisableWarningForUnsignedRdp":  {
                                                   "Content":  "RDP未签名文件警告 - 禁用",
                                                   "Description":  "禁用启动未签名RDP文件时显示的警告（来自最新的Windows 10和11更新）。",
-                                                  "category":  "2__高级优化 - 谨慎",
+                                                  "category":  "b__高级优化 - 谨慎",
                                                   "panel":  "1",
                                                   "registry":  [
                                                                    {
@@ -290,7 +290,7 @@
     "WPFTweaksEdgeDebloat":  {
                                  "Content":  "Microsoft Edge - 精简",
                                  "Description":  "禁用Edge中的各种遥测选项、弹窗和其他烦人功能。",
-                                 "category":  "2__高级优化 - 谨慎",
+                                 "category":  "b__高级优化 - 谨慎",
                                  "panel":  "1",
                                  "registry":  [
                                                   {
@@ -418,7 +418,7 @@
     "WPFTweaksConsumerFeatures":  {
                                       "Content":  "消费体验功能 - 禁用",
                                       "Description":  "Windows不会为当前登录用户自动安装来自Microsoft Store的任何游戏、第三方应用或应用链接。某些默认应用将无法访问（例如手机连接）。",
-                                      "category": "1__基本优化",
+                                      "category": "a__基本优化",
                                       "panel":  "1",
                                       "registry":  [
                                                        {
@@ -434,7 +434,7 @@
     "WPFTweaksTelemetry":  {
                                "Content":  "遥测 - 禁用",
                                "Description":  "禁用Microsoft遥测。",
-                               "category": "1__基本优化",
+                               "category": "a__基本优化",
                                "panel":  "1",
                                "registry":  [
                                                 {
@@ -533,7 +533,7 @@
     "WPFTweaksDeliveryOptimization":  {
                                           "Content":  "传递优化 - 禁用",
                                           "Description":  "阻止Windows使用你的带宽向互联网或本地网络上的其他电脑上传更新。",
-                                          "category": "1__基本优化",
+                                          "category": "a__基本优化",
                                           "panel":  "1",
                                           "registry":  [
                                                            {
@@ -549,20 +549,20 @@
     "WPFTweaksRemoveEdge":  {
                                 "Content":  "Microsoft Edge - 移除",
                                 "Description":  "通过在旧版Edge文件夹中创建虚拟的MicrosoftEdge.exe文件来卸载Edge。这会欺骗Windows解锁官方Edge卸载程序，实现系统级移除。",
-                                "category":  "2__高级优化 - 谨慎",
+                                "category":  "b__高级优化 - 谨慎",
                                 "panel":  "1",
                                 "InvokeScript":  [
-                                                     "\r\n      $Path = Resolve-Path -Path \"$Env:ProgramFiles (x86)\\Microsoft\\Edge\\Application\\*\\Installer\\setup.exe\" | Select-Object -Last 1\r\n\r\n      if (Test-Path $Path) {\r\n          New-Item -Path \"$Env:SystemRoot\\SystemApps\\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\\MicrosoftEdge.exe\" -Force\r\n          Start-Process -FilePath $Path -ArgumentList \"--uninstall --system-level --force-uninstall --delete-profile\" -Wait\r\n          Write-Host \"Microsoft Edge was removed\"\r\n      } else {\r\n          Write-Host \"Microsoft Edge is not installed\"\r\n      }\r\n      "
+                                                     "\r\n      $Path = Resolve-Path -Path \"$Env:ProgramFiles (x86)\\Microsoft\\Edge\\Application\\*\\Installer\\setup.exe\" | Select-Object -Last 1\r\n\r\n      if (Test-Path $Path) {\r\n          New-Item -Path \"$Env:SystemRoot\\SystemApps\\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\\MicrosoftEdge.exe\" -Force\r\n          Start-Process -FilePath $Path -ArgumentList \"--uninstall --system-level --force-uninstall --delete-profile\" -Wait\r\n          Write-Host \"Microsoft Edge 已移除\"\r\n      } else {\r\n          Write-Host \"Microsoft Edge 未安装\"\r\n      }\r\n      "
                                                  ],
                                 "UndoScript":  [
-                                                   "\r\n      Write-Host \"Installing Microsoft Edge...\"\r\n      winget install Microsoft.Edge --source winget\r\n      "
+                                                   "\r\n      Write-Host \"正在安装 Microsoft Edge...\"\r\n      winget install Microsoft.Edge --source winget\r\n      "
                                                ],
                                 "link":  "https://winutil.christitus.com/dev/tweaks/z--advanced-tweaks---caution/removeedge"
                             },
     "WPFTweaksDisableBitLocker":  {
                                       "Content":  "BitLocker - 禁用",
                                       "Description":  "禁用BitLocker加密。",
-                                      "category": "1__基本优化",
+                                      "category": "a__基本优化",
                                       "panel":  "1",
                                       "InvokeScript":  [
                                                            "Disable-BitLocker -MountPoint $Env:SystemDrive"
@@ -575,7 +575,7 @@
     "WPFTweaksUTC":  {
                          "Content":  "日期和时间 - 设为UTC",
                          "Description":  "双系统电脑必需。修复与Linux系统的时间同步问题。",
-                         "category":  "2__高级优化 - 谨慎",
+                         "category":  "b__高级优化 - 谨慎",
                          "panel":  "1",
                          "registry":  [
                                           {
@@ -591,20 +591,20 @@
     "WPFTweaksRemoveOneDrive":  {
                                     "Content":  "Microsoft OneDrive - 移除",
                                     "Description":  "先拒绝删除OneDrive用户文件的权限，然后使用其自带的卸载程序移除OneDrive，最后恢复原始权限。",
-                                    "category":  "2__高级优化 - 谨慎",
+                                    "category":  "b__高级优化 - 谨慎",
                                     "panel":  "1",
                                     "InvokeScript":  [
-                                                         "\r\n      # Deny permission to remove OneDrive folder\r\n      icacls $Env:OneDrive /deny \"Administrators:(D,DC)\"\r\n\r\n      Write-Host \"Uninstalling OneDrive...\"\r\n      Start-Process \u0027$Env:SystemRoot\\System32\\OneDriveSetup.exe\u0027 -ArgumentList \u0027/uninstall\u0027 -Wait\r\n\r\n      # Some of OneDrive files use explorer, and OneDrive uses FileCoAuth\r\n      Write-Host \"Removing leftover OneDrive Files...\"\r\n\r\n      Stop-Process -Name FileCoAuth,Explorer\r\n\r\n      Remove-Item \"$Env:LocalAppData\\Microsoft\\OneDrive\" -Recurse -Force\r\n      Remove-Item \"$Env:ProgramData\\Microsoft OneDrive\" -Recurse -Force\r\n\r\n      # Grant back permission to access OneDrive folder\r\n      icacls $Env:OneDrive /grant \"Administrators:(D,DC)\"\r\n\r\n      if (-not (Get-ChildItem -Path $Env:OneDrive)) {\r\n          Remove-Item -Path $Env:OneDrive -Recurse\r\n          [Environment]::SetEnvironmentVariable(\u0027OneDrive\u0027, $null, \u0027User\u0027)\r\n      }\r\n\r\n      # Disable OneSyncSvc\r\n      Set-Service -Name OneSyncSvc -StartupType Disabled\r\n      "
+                                                         "\r\n      # Deny permission to remove OneDrive folder\r\n      icacls $Env:OneDrive /deny \"Administrators:(D,DC)\"\r\n\r\n      Write-Host \"正在卸载 OneDrive...\"\r\n      Start-Process \u0027$Env:SystemRoot\\System32\\OneDriveSetup.exe\u0027 -ArgumentList \u0027/uninstall\u0027 -Wait\r\n\r\n      # Some of OneDrive files use explorer, and OneDrive uses FileCoAuth\r\n      Write-Host \"正在清理残留的 OneDrive 文件...\"\r\n\r\n      Stop-Process -Name FileCoAuth,Explorer\r\n\r\n      Remove-Item \"$Env:LocalAppData\\Microsoft\\OneDrive\" -Recurse -Force\r\n      Remove-Item \"$Env:ProgramData\\Microsoft OneDrive\" -Recurse -Force\r\n\r\n      # Grant back permission to access OneDrive folder\r\n      icacls $Env:OneDrive /grant \"Administrators:(D,DC)\"\r\n\r\n      if (-not (Get-ChildItem -Path $Env:OneDrive)) {\r\n          Remove-Item -Path $Env:OneDrive -Recurse\r\n          [Environment]::SetEnvironmentVariable(\u0027OneDrive\u0027, $null, \u0027User\u0027)\r\n      }\r\n\r\n      # Disable OneSyncSvc\r\n      Set-Service -Name OneSyncSvc -StartupType Disabled\r\n      "
                                                      ],
                                     "UndoScript":  [
-                                                       "\r\n      Write-Host \"Installing OneDrive\"\r\n      winget install Microsoft.Onedrive --source winget\r\n\r\n      # Enabled OneSyncSvc\r\n      Set-Service -Name OneSyncSvc -StartupType Automatic\r\n      "
+                                                       "\r\n      Write-Host \"正在安装 OneDrive\"\r\n      winget install Microsoft.Onedrive --source winget\r\n\r\n      # Enabled OneSyncSvc\r\n      Set-Service -Name OneSyncSvc -StartupType Automatic\r\n      "
                                                    ],
                                     "link":  "https://winutil.christitus.com/dev/tweaks/z--advanced-tweaks---caution/removeonedrive"
                                 },
     "WPFTweaksRemoveHomeAndGallery":  {
                                           "Content":  "文件资源管理器主页和图库 - 禁用",
                                           "Description":  "从资源管理器中移除主页和图库，并将此电脑设为默认视图。",
-                                          "category":  "2__高级优化 - 谨慎",
+                                          "category":  "b__高级优化 - 谨慎",
                                           "panel":  "1",
                                           "registry":  [
                                                            {
@@ -634,7 +634,7 @@
     "WPFTweaksDisplay":  {
                              "Content":  "视觉效果 - 设为最佳性能",
                              "Description":  "将系统偏好设置为性能模式。也可以通过sysdm.cpl手动设置。",
-                             "category":  "2__高级优化 - 谨慎",
+                             "category":  "b__高级优化 - 谨慎",
                              "panel":  "1",
                              "registry":  [
                                               {
@@ -733,7 +733,7 @@
     "WPFTweaksReservedStorage":  {
                                      "Content":  "禁用预留存储",
                                      "Description":  "禁用Windows预留存储（为更新/临时文件保留7-10 GB）。仅建议在小容量驱动器上使用。在执行重大Windows功能更新前请重新启用，以免安装失败。",
-                                     "category":  "2__高级优化 - 谨慎",
+                                     "category":  "b__高级优化 - 谨慎",
                                      "panel":  "1",
                                      "InvokeScript":  [
                                                           "DISM /Online /Set-ReservedStorageState /State:Disabled"
@@ -746,7 +746,7 @@
     "WPFTweaksRestorePoint":  {
                                   "Content":  "还原点 - 创建",
                                   "Description":  "在运行时创建系统还原点，以便在需要时撤销WinUtil的修改。",
-                                  "category": "1__基本优化",
+                                  "category": "a__基本优化",
                                   "panel":  "1",
                                   "Checked":  "False",
                                   "registry":  [
@@ -759,14 +759,14 @@
                                                    }
                                                ],
                                   "InvokeScript":  [
-                                                       "\r\n      if (-not (Get-ComputerRestorePoint)) {\r\n          Enable-ComputerRestore -Drive $Env:SystemDrive\r\n      }\r\n\r\n      Checkpoint-Computer -Description \"System Restore Point created by WinUtil\" -RestorePointType MODIFY_SETTINGS\r\n      Write-Host \"System Restore Point Created Successfully\" -ForegroundColor Green\r\n      "
+                                                       "\r\n      if (-not (Get-ComputerRestorePoint)) {\r\n          Enable-ComputerRestore -Drive $Env:SystemDrive\r\n      }\r\n\r\n      Checkpoint-Computer -Description \"System Restore Point created by WinUtil\" -RestorePointType MODIFY_SETTINGS\r\n      Write-Host \"系统还原点创建成功\" -ForegroundColor Green\r\n      "
                                                    ],
                                   "link":  "https://winutil.christitus.com/dev/tweaks/essential-tweaks/restorepoint"
                               },
     "WPFTweaksEndTaskOnTaskbar":  {
                                       "Content":  "右键结束任务 - 启用",
                                       "Description":  "在任务栏右键程序时启用结束任务选项。",
-                                      "category": "1__基本优化",
+                                      "category": "a__基本优化",
                                       "panel":  "1",
                                       "registry":  [
                                                        {
@@ -782,7 +782,7 @@
     "WPFTweaksStorage":  {
                              "Content":  "存储感知 - 禁用",
                              "Description":  "存储感知会自动删除临时文件。",
-                             "category":  "2__高级优化 - 谨慎",
+                             "category":  "b__高级优化 - 谨慎",
                              "panel":  "1",
                              "registry":  [
                                               {
@@ -798,7 +798,7 @@
     "WPFTweaksWindowsAI":  {
                                "Content":  "Windows AI - 禁用并移除",
                                "Description":  "移除并禁用所有AI功能/包",
-                               "category":  "2__高级优化 - 谨慎",
+                               "category":  "b__高级优化 - 谨慎",
                                "panel":  "1",
                                "registry":  [
                                                 {
@@ -817,14 +817,14 @@
                                                 }
                                             ],
                                "InvokeScript":  [
-                                                    "\r\n      $Appx = (Get-AppxPackage MicrosoftWindows.Client.CoreAI).PackageFullName\r\n      $Sid = (Get-LocalUser $Env:UserName).Sid.Value\r\n\r\n      New-Item \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Appx\\AppxAllUserStore\\EndOfLife\\$Sid\\$Appx\" -Force\r\n\r\n      Get-AppxPackage -AllUsers \"*Copilot*\" | Remove-AppxPackage -AllUsers\r\n      winget uninstall -e --name \"Copilot\" --silent --force --accept-source-agreements 2\u003e$null\r\n      Get-AppxPackage -AllUsers Microsoft.MicrosoftOfficeHub | Remove-AppxPackage -AllUsers\r\n\r\n      if ($Appx) {\r\n          Remove-AppxPackage $Appx\r\n      }\r\n\r\n      Set-Service -Name WSAIFabricSvc -StartupType Disabled\r\n      Disable-WindowsOptionalFeature -FeatureName Recall -Online -NoRestart\r\n\r\n      Write-Host \"Windows AI Disabled\"\r\n      "
+                                                    "\r\n      $Appx = (Get-AppxPackage MicrosoftWindows.Client.CoreAI).PackageFullName\r\n      $Sid = (Get-LocalUser $Env:UserName).Sid.Value\r\n\r\n      New-Item \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Appx\\AppxAllUserStore\\EndOfLife\\$Sid\\$Appx\" -Force\r\n\r\n      Get-AppxPackage -AllUsers \"*Copilot*\" | Remove-AppxPackage -AllUsers\r\n      winget uninstall -e --name \"Copilot\" --silent --force --accept-source-agreements 2\u003e$null\r\n      Get-AppxPackage -AllUsers Microsoft.MicrosoftOfficeHub | Remove-AppxPackage -AllUsers\r\n\r\n      if ($Appx) {\r\n          Remove-AppxPackage $Appx\r\n      }\r\n\r\n      Set-Service -Name WSAIFabricSvc -StartupType Disabled\r\n      Disable-WindowsOptionalFeature -FeatureName Recall -Online -NoRestart\r\n\r\n      Write-Host \"Windows AI 已禁用\"\r\n      "
                                                 ],
                                "link":  "https://winutil.christitus.com/dev/tweaks/z--advanced-tweaks---caution/windowsai"
                            },
     "WPFTweaksWPBT":  {
                           "Content":  "Windows平台二进制表(WPBT) - 禁用",
                           "Description":  "如果启用，WPBT允许电脑厂商在启动时执行程序，如防盗软件、驱动程序，以及未经用户同意强制安装软件。存在潜在安全风险。",
-                          "category": "1__基本优化",
+                          "category": "a__基本优化",
                           "panel":  "1",
                           "registry":  [
                                            {
@@ -840,7 +840,7 @@
     "WPFTweaksRazerBlock":  {
                                 "Content":  "雷蛇软件自动安装 - 禁用",
                                 "Description":  "阻止所有雷蛇软件的安装。无需任何软件，硬件即可正常工作。",
-                                "category":  "2__高级优化 - 谨慎",
+                                "category":  "b__高级优化 - 谨慎",
                                 "panel":  "1",
                                 "registry":  [
                                                  {
@@ -869,7 +869,7 @@
     "WPFTweaksDisableNotifications":  {
                                           "Content":  "系统托盘通知和日历 - 禁用",
                                           "Description":  "禁用所有通知，包括日历。",
-                                          "category":  "2__高级优化 - 谨慎",
+                                          "category":  "b__高级优化 - 谨慎",
                                           "panel":  "1",
                                           "registry":  [
                                                            {
@@ -892,20 +892,20 @@
     "WPFTweaksBlockAdobeNet":  {
                                    "Content":  "Adobe URL阻止列表 - 启用",
                                    "Description":  "通过有选择地阻止连接到Adobe的激活和遥测服务器来减少对用户的干扰。鸣谢：Ruddernation-Designs",
-                                   "category":  "2__高级优化 - 谨慎",
+                                   "category":  "b__高级优化 - 谨慎",
                                    "panel":  "1",
                                    "InvokeScript":  [
-                                                        "\r\n      $hostsUrl = Invoke-RestMethod -Uri https://github.com/Ruddernation-Designs/Adobe-URL-Block-List/raw/refs/heads/master/hosts\r\n      Add-Content -Path \"$Env:SystemRoot\\System32\\drivers\\etc\\hosts\" -Value $hostsUrl\r\n\r\n      ipconfig /flushdns\r\n      Write-Host \u0027Added Adobe url block list from host file\u0027\r\n      "
+                                                        "\r\n      $hostsUrl = Invoke-RestMethod -Uri https://github.com/Ruddernation-Designs/Adobe-URL-Block-List/raw/refs/heads/master/hosts\r\n      Add-Content -Path \"$Env:SystemRoot\\System32\\drivers\\etc\\hosts\" -Value $hostsUrl\r\n\r\n      ipconfig /flushdns\r\n      Write-Host \u0027已添加 Adobe URL 阻止列表到 hosts 文件\u0027\r\n      "
                                                     ],
                                    "UndoScript":  [
-                                                      "\r\n      Set-Content \"$Env:SystemRoot\\System32\\drivers\\etc\\hosts\" (\r\n          (Get-Content \"$Env:SystemRoot\\System32\\drivers\\etc\\hosts\") -join \"`n\" -replace \u0027(?s)#New Ver.*\u0027, \u0027\u0027\r\n      )\r\n\r\n      ipconfig /flushdns\r\n      Write-Host \u0027Removed Adobe url block list from host file\u0027\r\n      "
+                                                      "\r\n      Set-Content \"$Env:SystemRoot\\System32\\drivers\\etc\\hosts\" (\r\n          (Get-Content \"$Env:SystemRoot\\System32\\drivers\\etc\\hosts\") -join \"`n\" -replace \u0027(?s)#New Ver.*\u0027, \u0027\u0027\r\n      )\r\n\r\n      ipconfig /flushdns\r\n      Write-Host \u0027已从 hosts 文件移除 Adobe URL 阻止列表\u0027\r\n      "
                                                   ],
                                    "link":  "https://winutil.christitus.com/dev/tweaks/z--advanced-tweaks---caution/blockadobenet"
                                },
     "WPFTweaksRightClickMenu":  {
                                     "Content":  "右键菜单旧版样式 - 启用",
                                     "Description":  "恢复文件资源管理器中右键时的经典上下文菜单，替换Windows 11简化版本。",
-                                    "category":  "2__高级优化 - 谨慎",
+                                    "category":  "b__高级优化 - 谨慎",
                                     "panel":  "1",
                                     "InvokeScript":  [
                                                          "\r\n      New-Item -Path \"HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\" -Name InprocServer32 -Value \"\" -Force\r\n      Stop-Process -Name explorer\r\n      "
@@ -918,7 +918,7 @@
     "WPFTweaksDiskCleanup":  {
                                  "Content":  "磁盘清理 - 运行",
                                  "Description":  "在C盘运行磁盘清理并删除旧的Windows更新。",
-                                 "category": "1__基本优化",
+                                 "category": "a__基本优化",
                                  "panel":  "1",
                                  "InvokeScript":  [
                                                       "\r\n      cleanmgr.exe /d C: /VERYLOWDISK\r\n      Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase\r\n      "
@@ -928,7 +928,7 @@
     "WPFTweaksDeleteTempFiles":  {
                                      "Content":  "临时文件 - 移除",
                                      "Description":  "清除临时文件夹。",
-                                     "category": "1__基本优化",
+                                     "category": "a__基本优化",
                                      "panel":  "1",
                                      "InvokeScript":  [
                                                           "\r\n      Remove-Item -Path \"$Env:Temp\\*\" -Recurse -Force\r\n      Remove-Item -Path \"$Env:SystemRoot\\Temp\\*\" -Recurse -Force\r\n      "
@@ -938,7 +938,7 @@
     "WPFTweaksIPv46":  {
                            "Content":  "IPv6 - 优先使用IPv4",
                            "Description":  "在未配置IPv6的专用网络上，设置IPv4优先可带来延迟和安全方面的优势。",
-                           "category":  "2__高级优化 - 谨慎",
+                           "category":  "b__高级优化 - 谨慎",
                            "panel":  "1",
                            "registry":  [
                                             {
@@ -954,7 +954,7 @@
     "WPFTweaksTeredo":  {
                             "Content":  "Teredo - 禁用",
                             "Description":  "Teredo网络隧道是一项IPv6功能，可能导致额外延迟，但也可能在某些游戏中引发问题。",
-                            "category":  "2__高级优化 - 谨慎",
+                            "category":  "b__高级优化 - 谨慎",
                             "panel":  "1",
                             "registry":  [
                                              {
@@ -976,7 +976,7 @@
     "WPFTweaksDisableIPv6":  {
                                  "Content":  "IPv6 - 禁用",
                                  "Description":  "禁用IPv6。",
-                                 "category":  "2__高级优化 - 谨慎",
+                                 "category":  "b__高级优化 - 谨慎",
                                  "panel":  "1",
                                  "registry":  [
                                                   {
@@ -998,7 +998,7 @@
     "WPFTweaksDisableBGapps":  {
                                    "Content":  "后台应用 - 禁用",
                                    "Description":  "禁止所有Microsoft Store应用在后台运行（自Windows 11起需要逐个设置）。",
-                                   "category":  "2__高级优化 - 谨慎",
+                                   "category":  "b__高级优化 - 谨慎",
                                    "panel":  "1",
                                    "registry":  [
                                                     {
@@ -1014,7 +1014,7 @@
     "WPFTweaksDisableFSO":  {
                                 "Content":  "全屏优化 - 禁用",
                                 "Description":  "禁用所有应用的全屏优化。注意：这将禁用独占全屏模式下的色彩管理。",
-                                "category":  "2__高级优化 - 谨慎",
+                                "category":  "b__高级优化 - 谨慎",
                                 "panel":  "1",
                                 "registry":  [
                                                  {
@@ -1030,20 +1030,20 @@
     "WPFTweaksDisableExplorerAutoDiscovery":  {
                                                   "Content":  "文件资源管理器自动文件夹发现 - 禁用",
                                                   "Description":  "Windows资源管理器会根据内容自动猜测文件夹类型，导致浏览速度变慢。警告：将禁用文件资源管理器分组功能。",
-                                                  "category": "1__基本优化",
+                                                  "category": "a__基本优化",
                                                   "panel":  "1",
                                                   "InvokeScript":  [
-                                                                       "\r\n      # Previously detected folders\r\n      $bags = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\"\r\n\r\n      # Folder types lookup table\r\n      $bagMRU = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\BagMRU\"\r\n\r\n      # Flush Explorer view database\r\n      Remove-Item -Path $bags -Recurse -Force\r\n      Write-Host \"Removed $bags\"\r\n\r\n      Remove-Item -Path $bagMRU -Recurse -Force\r\n      Write-Host \"Removed $bagMRU\"\r\n\r\n      # Every folder\r\n      $allFolders = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\\AllFolders\\Shell\"\r\n\r\n      if (!(Test-Path $allFolders)) {\r\n        New-Item -Path $allFolders -Force\r\n        Write-Host \"Created $allFolders\"\r\n      }\r\n\r\n      # Generic view\r\n      New-ItemProperty -Path $allFolders -Name \"FolderType\" -Value \"NotSpecified\" -PropertyType String -Force\r\n      Write-Host \"Set FolderType to NotSpecified\"\r\n\r\n      Write-Host Please sign out and back in, or restart your computer to apply the changes!\r\n      "
+                                                                       "\r\n      # Previously detected folders\r\n      $bags = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\"\r\n\r\n      # Folder types lookup table\r\n      $bagMRU = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\BagMRU\"\r\n\r\n      # Flush Explorer view database\r\n      Remove-Item -Path $bags -Recurse -Force\r\n      Write-Host \"已移除 $bags\"\r\n\r\n      Remove-Item -Path $bagMRU -Recurse -Force\r\n      Write-Host \"已移除 $bagMRU\"\r\n\r\n      # Every folder\r\n      $allFolders = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\\AllFolders\\Shell\"\r\n\r\n      if (!(Test-Path $allFolders)) {\r\n        New-Item -Path $allFolders -Force\r\n        Write-Host \"已创建 $allFolders\"\r\n      }\r\n\r\n      # Generic view\r\n      New-ItemProperty -Path $allFolders -Name \"FolderType\" -Value \"NotSpecified\" -PropertyType String -Force\r\n      Write-Host \"已将 FolderType 设为 NotSpecified\"\r\n\r\n      Write-Host 请注销后重新登录，或重新启动计算机以应用更改！\r\n      "
                                                                    ],
                                                   "UndoScript":  [
-                                                                     "\r\n      # Previously detected folders\r\n      $bags = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\"\r\n\r\n      # Folder types lookup table\r\n      $bagMRU = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\BagMRU\"\r\n\r\n      # Flush Explorer view database\r\n      Remove-Item -Path $bags -Recurse -Force\r\n      Write-Host \"Removed $bags\"\r\n\r\n      Remove-Item -Path $bagMRU -Recurse -Force\r\n      Write-Host \"Removed $bagMRU\"\r\n\r\n      Write-Host Please sign out and back in, or restart your computer to apply the changes!\r\n      "
+                                                                     "\r\n      # Previously detected folders\r\n      $bags = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\"\r\n\r\n      # Folder types lookup table\r\n      $bagMRU = \"HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\BagMRU\"\r\n\r\n      # Flush Explorer view database\r\n      Remove-Item -Path $bags -Recurse -Force\r\n      Write-Host \"已移除 $bags\"\r\n\r\n      Remove-Item -Path $bagMRU -Recurse -Force\r\n      Write-Host \"已移除 $bagMRU\"\r\n\r\n      Write-Host 请注销后重新登录，或重新启动计算机以应用更改！\r\n      "
                                                                  ],
                                                   "link":  "https://winutil.christitus.com/dev/tweaks/essential-tweaks/disableexplorerautodiscovery"
                                               },
     "WPFToggleDetailedBSoD":  {
                                   "Content":  "蓝屏详细模式",
                                   "Description":  "蓝屏时显示更多信息。",
-                                  "category":  "4__自定义偏好",
+                                  "category":  "d__个性化选项",
                                   "panel":  "2",
                                   "Type":  "Toggle",
                                   "registry":  [
@@ -1069,7 +1069,7 @@
     "WPFToggleBatteryPercentage":  {
                                        "Content":  "系统托盘电池百分比",
                                        "Description":  "在系统托盘的电池图标旁显示数字电池百分比。",
-                                       "category":  "4__自定义偏好",
+                                       "category":  "d__个性化选项",
                                        "panel":  "2",
                                        "Type":  "Toggle",
                                        "registry":  [
@@ -1087,7 +1087,7 @@
     "WPFToggleDarkMode":  {
                               "Content":  "Windows深色主题",
                               "Description":  "系统和应用的深色模式。",
-                              "category":  "4__自定义偏好",
+                              "category":  "d__个性化选项",
                               "panel":  "2",
                               "Type":  "Toggle",
                               "registry":  [
@@ -1119,7 +1119,7 @@
     "WPFToggleShowExt":  {
                              "Content":  "文件资源管理器文件扩展名",
                              "Description":  "在资源管理器中显示文件扩展名（如.exe、.png等）。",
-                             "category":  "4__自定义偏好",
+                             "category":  "d__个性化选项",
                              "panel":  "2",
                              "Type":  "Toggle",
                              "registry":  [
@@ -1143,7 +1143,7 @@
     "WPFToggleHiddenFiles":  {
                                  "Content":  "文件资源管理器隐藏文件",
                                  "Description":  "在资源管理器中显示隐藏文件。",
-                                 "category":  "4__自定义偏好",
+                                 "category":  "d__个性化选项",
                                  "panel":  "2",
                                  "Type":  "Toggle",
                                  "registry":  [
@@ -1167,7 +1167,7 @@
     "WPFToggleVerboseLogon":  {
                                   "Content":  "登录详细模式",
                                   "Description":  "在启动/关机时显示详细消息。",
-                                  "category":  "4__自定义偏好",
+                                  "category":  "d__个性化选项",
                                   "panel":  "2",
                                   "Type":  "Toggle",
                                   "registry":  [
@@ -1185,7 +1185,7 @@
     "WPFToggleNewOutlook":  {
                                 "Content":  "Microsoft Outlook新版",
                                 "Description":  "此设置将确保使用经典版Outlook应用程序。",
-                                "category":  "4__自定义偏好",
+                                "category":  "d__个性化选项",
                                 "panel":  "2",
                                 "Type":  "Toggle",
                                 "registry":  [
@@ -1227,7 +1227,7 @@
     "WPFToggleScrollbars":  {
                                 "Content":  "滚动条始终可见",
                                 "Description":  "如果启用，滚动条将始终可见。如果禁用，Windows将在不使用时自动隐藏滚动条。",
-                                "category":  "4__自定义偏好",
+                                "category":  "d__个性化选项",
                                 "panel":  "2",
                                 "Type":  "Toggle",
                                 "registry":  [
@@ -1246,7 +1246,7 @@
     "WPFToggleMultiplaneOverlay":  {
                                        "Content":  "多平面覆盖",
                                        "Description":  "多平面覆盖合成多个图像层，有时可能导致显卡问题。",
-                                       "category":  "4__自定义偏好",
+                                       "category":  "d__个性化选项",
                                        "panel":  "2",
                                        "Type":  "Toggle",
                                        "registry":  [
@@ -1272,7 +1272,7 @@
     "WPFToggleMouseAcceleration":  {
                                        "Content":  "鼠标加速",
                                        "Description":  "使光标移动受到物理鼠标移动速度的影响。",
-                                       "category":  "4__自定义偏好",
+                                       "category":  "d__个性化选项",
                                        "panel":  "2",
                                        "Type":  "Toggle",
                                        "registry":  [
@@ -1306,7 +1306,7 @@
     "WPFToggleNumLock":  {
                              "Content":  "启动时Num Lock",
                              "Description":  "在电脑启动时切换Num Lock键状态。",
-                             "category":  "4__自定义偏好",
+                             "category":  "d__个性化选项",
                              "panel":  "2",
                              "Type":  "Toggle",
                              "registry":  [
@@ -1332,7 +1332,7 @@
     "WPFToggleWindowSnapping":  {
                                     "Content":  "窗口对齐",
                                     "Description":  "切换拖拽窗口时的对齐功能。",
-                                    "category":  "4__自定义偏好",
+                                    "category":  "d__个性化选项",
                                     "panel":  "2",
                                     "Type":  "Toggle",
                                     "registry":  [
@@ -1350,7 +1350,7 @@
     "WPFToggleStandbyFix":  {
                                 "Content":  "S0睡眠网络连接",
                                 "Description":  "切换现代笔记本电脑低功耗待机(S0睡眠)期间的网络连接。",
-                                "category":  "4__自定义偏好",
+                                "category":  "d__个性化选项",
                                 "panel":  "2",
                                 "Type":  "Toggle",
                                 "registry":  [
@@ -1368,7 +1368,7 @@
     "WPFToggleS3Sleep":  {
                              "Content":  "S3睡眠",
                              "Description":  "在现代待机和S3睡眠之间切换，S3睡眠会切断CPU电源但继续刷新内存。",
-                             "category":  "4__自定义偏好",
+                             "category":  "d__个性化选项",
                              "panel":  "2",
                              "Type":  "Toggle",
                              "registry":  [
@@ -1386,7 +1386,7 @@
     "WPFToggleHideSettingsHome":  {
                                       "Content":  "设置主页",
                                       "Description":  "在Windows设置应用中切换主页显示。",
-                                      "category":  "4__自定义偏好",
+                                      "category":  "d__个性化选项",
                                       "panel":  "2",
                                       "Type":  "Toggle",
                                       "registry":  [
@@ -1404,7 +1404,7 @@
     "WPFToggleBingSearch":  {
                                 "Content":  "开始菜单必应搜索",
                                 "Description":  "在Windows搜索中切换必应网页搜索结果。",
-                                "category":  "4__自定义偏好",
+                                "category":  "d__个性化选项",
                                 "panel":  "2",
                                 "Type":  "Toggle",
                                 "registry":  [
@@ -1422,7 +1422,7 @@
     "WPFToggleLoginBlur":  {
                                "Content":  "登录屏幕亚克力模糊",
                                "Description":  "切换登录屏幕背景上的亚克力模糊效果。",
-                               "category":  "4__自定义偏好",
+                               "category":  "d__个性化选项",
                                "panel":  "2",
                                "Type":  "Toggle",
                                "registry":  [
@@ -1440,7 +1440,7 @@
     "WPFTweaksDisableLockscreen":  {
                                        "Content":  "锁定屏幕 - 禁用",
                                        "Description":  "完全跳过锁定屏幕，在开机和唤醒时直接进入登录屏幕。",
-                                       "category":  "4__自定义偏好",
+                                       "category":  "d__个性化选项",
                                        "panel":  "2",
                                        "Type":  "Toggle",
                                        "registry":  [
@@ -1457,7 +1457,7 @@
     "WPFToggleStartMenuRecommendations":  {
                                               "Content":  "开始菜单推荐",
                                               "Description":  "切换开始菜单中的推荐区域。警告：作为副作用，这将同时禁用锁定屏幕上的Windows聚焦。",
-                                              "category":  "4__自定义偏好",
+                                              "category":  "d__个性化选项",
                                               "panel":  "2",
                                               "Type":  "Toggle",
                                               "registry":  [
@@ -1497,7 +1497,7 @@
     "WPFToggleStickyKeys":  {
                                 "Content":  "粘滞键",
                                 "Description":  "切换粘滞键功能，连续按Shift键时会激活该功能。",
-                                "category":  "4__自定义偏好",
+                                "category":  "d__个性化选项",
                                 "panel":  "2",
                                 "Type":  "Toggle",
                                 "registry":  [
@@ -1515,7 +1515,7 @@
     "WPFToggleTaskbarAlignment":  {
                                       "Content":  "任务栏居中图标",
                                       "Description":  "切换任务栏对齐方式为靠左或居中。",
-                                      "category":  "4__自定义偏好",
+                                      "category":  "d__个性化选项",
                                       "panel":  "2",
                                       "Type":  "Toggle",
                                       "registry":  [
@@ -1539,7 +1539,7 @@
     "WPFToggleTaskbarSearch":  {
                                    "Content":  "任务栏搜索图标",
                                    "Description":  "切换任务栏上的搜索按钮。",
-                                   "category":  "4__自定义偏好",
+                                   "category":  "d__个性化选项",
                                    "panel":  "2",
                                    "Type":  "Toggle",
                                    "registry":  [
@@ -1557,7 +1557,7 @@
     "WPFToggleTaskView":  {
                               "Content":  "任务栏任务视图图标",
                               "Description":  "切换任务栏中的任务视图按钮。",
-                              "category":  "4__自定义偏好",
+                              "category":  "d__个性化选项",
                               "panel":  "2",
                               "Type":  "Toggle",
                               "registry":  [
@@ -1575,7 +1575,7 @@
     "WPFToggleGameMode":  {
                               "Content":  "游戏模式",
                               "Description":  "切换Windows是否通过分配系统资源来优先保证游戏性能。",
-                              "category":  "4__自定义偏好",
+                              "category":  "d__个性化选项",
                               "panel":  "2",
                               "Type":  "Toggle",
                               "registry":  [
@@ -1601,7 +1601,7 @@
     "WPFToggleLongPaths":  {
                                "Content":  "启用长路径",
                                "Description":  "在资源管理器中切换对超过260个字符的文件路径的支持。",
-                               "category":  "4__自定义偏好",
+                               "category":  "d__个性化选项",
                                "panel":  "2",
                                "Type":  "Toggle",
                                "registry":  [
@@ -1618,14 +1618,14 @@
                            },
     "WPFOOSUbutton":  {
                           "Content":  "O\u0026O ShutUp10++ - 运行",
-                          "category":  "2__高级优化 - 谨慎",
+                          "category":  "b__高级优化 - 谨慎",
                           "panel":  "1",
                           "Type":  "Button",
                           "link":  "https://winutil.christitus.com/dev/tweaks/z--advanced-tweaks---caution/oosubutton"
                       },
     "WPFchangedns":  {
                          "Content":  "DNS - 设为：",
-                         "category":  "2__高级优化 - 谨慎",
+                         "category":  "b__高级优化 - 谨慎",
                          "panel":  "1",
                          "Type":  "Combobox",
                          "ComboItems":  "Default DHCP Google Cloudflare Cloudflare_Malware Cloudflare_Malware_Adult Open_DNS Quad9 AdGuard_Ads_Trackers AdGuard_Ads_Trackers_Malware_Adult",
@@ -1633,7 +1633,7 @@
                      },
     "WPFAddUltPerf":  {
                           "Content":  "卓越性能方案 - 启用",
-                          "category": "3__Performance Plans - NOT FOR LAPTOPS",
+                          "category": "c__性能电源计划",
                           "panel":  "2",
                           "Type":  "Button",
                           "ButtonWidth":  "300",
@@ -1641,7 +1641,7 @@
                       },
     "WPFRemoveUltPerf":  {
                              "Content":  "卓越性能方案 - 禁用",
-                             "category": "3__Performance Plans - NOT FOR LAPTOPS",
+                             "category": "c__性能电源计划",
                              "panel":  "2",
                              "Type":  "Button",
                              "ButtonWidth":  "300",

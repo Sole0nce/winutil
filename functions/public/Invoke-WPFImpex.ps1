@@ -48,7 +48,7 @@ function Invoke-WPFImpex {
                     if (-not $allConfs) {
                         [System.Windows.MessageBox]::Show(
                             "未选择要导出的设置。请在导出前至少选择一个应用、优化、开关、功能或 AppX 包。",
-                            "Nothing to Export", "OK", "Warning")
+                            "无内容可导出", "OK", "Warning")
                         return
                     }
                     $jsonFile = $allConfs | ConvertTo-Json
@@ -56,7 +56,7 @@ function Invoke-WPFImpex {
                     "iex ""& { `$(irm https://christitus.com/win) } -Config '$Config'""" | Set-Clipboard
                 }
             } catch {
-                Write-Error "An error occurred while exporting: $_"
+                Write-Error "导出时出错：$_"
             }
         }
         "import" {
@@ -70,7 +70,7 @@ function Invoke-WPFImpex {
                             $jsonFile = Get-Content $Config | ConvertFrom-Json
                         }
                     } catch {
-                        Write-Error "Failed to load the JSON file from the specified path or URL: $_"
+                        Write-Error "无法从指定路径或 URL 加载 JSON 文件：$_"
                         return
                     }
                     # TODO how to handle old style? detected json type then flatten it in a func?
@@ -80,7 +80,7 @@ function Invoke-WPFImpex {
                     if (-not $flattenedJson) {
                         [System.Windows.MessageBox]::Show(
                             "所选文件不包含要导入的设置。未进行任何更改。",
-                            "Empty Configuration", "OK", "Warning")
+                            "空的配置", "OK", "Warning")
                         return
                     }
 
@@ -99,7 +99,7 @@ function Invoke-WPFImpex {
                     }
                 }
             } catch {
-                Write-Error "An error occurred while importing: $_"
+                Write-Error "导入时出错：$_"
             }
         }
     }

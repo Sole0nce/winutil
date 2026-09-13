@@ -40,10 +40,10 @@ Function Set-WinUtilService {
         Write-WinUtilLog -Component "Service" -Message "Service $Name startup type set to $StartupType"
     } catch {
         if ($_.FullyQualifiedErrorId -like "NoServiceFoundForGivenName,*") {
-            Write-Warning "Service $Name was not found."
+            Write-Warning "未找到服务 $Name。"
             Write-WinUtilLog -Level "WARN" -Component "Service" -Message "Service $Name was not found."
         } else {
-            Write-Warning "Unable to set $Name due to unhandled exception."
+            Write-Warning "由于未处理的异常，无法设置 $Name。"
             Write-Warning $_.Exception.Message
             Write-WinUtilLog -Level "ERROR" -Component "Service" -Message "Unable to set service $Name to $StartupType`: $($_.Exception.Message)"
         }

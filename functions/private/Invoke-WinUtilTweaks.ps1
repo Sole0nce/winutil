@@ -52,7 +52,7 @@ function Invoke-WinUtilTweaks {
                         $changeservice = $false
                     }
                 } catch [System.ServiceProcess.ServiceNotFoundException] {
-                    Write-Warning "Service $($psitem.Name) was not found."
+                    Write-Warning "未找到服务 $($psitem.Name)。"
                 }
             }
 

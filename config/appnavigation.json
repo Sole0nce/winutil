@@ -1,28 +1,28 @@
 ﻿{
     "WPFInstall":  {
-                       "Content":  "安装/升级应用",
-                       "Category":  "____Actions",
-                       "Type":  "Button",
-                       "Order":  "1",
-                       "Description":  "安装或升级选中的应用程序"
+"Content":  "安装/升级所选应用",
+                        "Category":  "____操作",
+                        "Type":  "Button",
+                        "Order":  "1",
+                        "Description":  "安装或升级所选应用程序"
                    },
     "WPFUninstall":  {
-                         "Content":  "卸载应用",
-                         "Category":  "____Actions",
-                         "Type":  "Button",
-                         "Order":  "2",
-                         "Description":  "卸载选中的应用程序"
+"Content":  "卸载所选应用",
+                          "Category":  "____操作",
+                          "Type":  "Button",
+                          "Order":  "2",
+                          "Description":  "卸载所选应用程序"
                      },
     "WPFInstallUpgrade":  {
-                              "Content":  "升级所有应用",
-                              "Category":  "____Actions",
-                              "Type":  "Button",
-                              "Order":  "3",
-                              "Description":  "将所有应用程序升级到最新版本"
+"Content":  "升级全部应用",
+                               "Category":  "____操作",
+                               "Type":  "Button",
+                               "Order":  "3",
+                               "Description":  "将所有应用程序升级到最新版本"
                           },
     "WingetRadioButton":  {
                               "Content":  "WinGet",
-                              "Category":  "__Package Manager",
+                              "Category":  "__包管理器",
                               "Type":  "RadioButton",
                               "GroupName":  "PackageManagerGroup",
                               "Checked":  true,
@@ -31,7 +31,7 @@
                           },
     "ChocoRadioButton":  {
                              "Content":  "Chocolatey",
-                             "Category":  "__Package Manager",
+                             "Category":  "__包管理器",
                              "Type":  "RadioButton",
                              "GroupName":  "PackageManagerGroup",
                              "Checked":  false,
@@ -39,43 +39,51 @@
                              "Description":  "使用Chocolatey进行包管理"
                          },
     "WPFCollapseAllCategories":  {
-                                     "Content":  "折叠所有分类",
-                                     "Category":  "__Selection",
-                                     "Type":  "Button",
-                                     "Order":  "1",
-                                     "Description":  "折叠所有应用分类"
+"Content":  "收起全部分类",
+                                      "Category":  "__选择",
+                                      "Type":  "Button",
+                                      "Order":  "1",
+                                      "Description":  "收起所有应用分类"
                                  },
     "WPFExpandAllCategories":  {
-                                   "Content":  "展开所有分类",
-                                   "Category":  "__Selection",
-                                   "Type":  "Button",
-                                   "Order":  "2",
-                                   "Description":  "展开所有应用分类"
+"Content":  "展开全部分类",
+                                    "Category":  "__选择",
+                                    "Type":  "Button",
+                                    "Order":  "2",
+                                    "Description":  "展开所有应用分类"
                                },
     "WPFClearInstallSelection":  {
-                                     "Content":  "清除选择",
-                                     "Category":  "__Selection",
-                                     "Type":  "Button",
-                                     "Order":  "3",
-                                     "Description":  "清除已选中的应用"
+"Content":  "清空选择",
+                                      "Category":  "__选择",
+                                      "Type":  "Button",
+                                      "Order":  "3",
+                                      "Description":  "清空已选中的应用"
                                  },
     "WPFGetInstalled":  {
-                            "Content":  "显示已安装",
-                            "Category":  "__Selection",
-                            "Type":  "Button",
-                            "Order":  "4",
-                            "Description":  "显示已安装的应用程序"
+"Content":  "获取已安装",
+                             "Category":  "__选择",
+                             "Type":  "Button",
+                             "Order":  "4",
+                             "Description":  "获取已安装的应用程序"
                         },
     "WPFselectedAppsButton":  {
                                   "Content":  "已选应用: 0",
-                                  "Category":  "__Selection",
+                                  "Category":  "__选择",
                                   "Type":  "Button",
                                   "Order":  "5",
                                   "Description":  "显示已选中的应用"
-                              },
-    "WPFInstallFOSSInfo":  {
+                               },
+     "WPFToggleFOSSHighlight":  {
+                                    "Content":  "高亮 FOSS",
+                                    "Category":  "__选择",
+                                    "Type":  "Toggle",
+                                    "Checked":  true,
+                                    "Order":  "6",
+                                    "Description":  "切换对自由/开源软件（FOSS）的绿色高亮显示"
+                                },
+     "WPFInstallFOSSInfo":  {
                                "Content":  "免费开源软件",
-                               "Category":  "__Selection",
+                               "Category":  "__选择",
                                "Type":  "Note",
                                "Order":  "0",
                                "Description":  "关于应用程序条目上的#FOSS标签说明"
